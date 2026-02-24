@@ -4,19 +4,59 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ashwin | Offensive Security</title>
-<link rel="icon" type="image/png" href="https://github.com/hermit148/hermit148.github.io/blob/main/https://github.com/hermit148/hermit148.github.io/blob/main/logo.png">
+<link rel="icon" type="image/png" href="logo.png">
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
 
 <style>
-body{font-family:'JetBrains Mono',monospace;background:#000;color:#cbd5e1;overflow-x:hidden}
+body{font-family:'JetBrains Mono',monospace;background:#020617;color:#e2e8f0;overflow-x:hidden}
 canvas{position:fixed;top:0;left:0;z-index:-1}
-.glow{color:#00ff9c;text-shadow:0 0 14px #00ff9c88}
-.card{background:#020202;border:1px solid #0f172a;padding:1.5rem}
-.card:hover{border-color:#00ff9c;box-shadow:0 0 25px #00ff9c22;transform:translateY(-4px)}
-.typing{border-right:2px solid #00ff9c;white-space:nowrap;overflow:hidden}
-.badge{border:1px solid #064e3b;background:#022c22;padding:4px 10px;margin:4px;display:inline-block}
-.logo-glow{filter:drop-shadow(0 0 30px rgba(0,255,156,.35))}
+
+/* brighter hacker glow */
+.glow{color:#39ffb6;text-shadow:0 0 18px #39ffb688}
+
+/* cards more visible */
+.card{
+background:#020617;
+border:1px solid #1e293b;
+padding:1.5rem;
+transition:.3s
+}
+.card:hover{
+border-color:#39ffb6;
+box-shadow:0 0 30px #39ffb633;
+transform:translateY(-6px)
+}
+
+/* typing cursor */
+.typing{
+border-right:2px solid #39ffb6;
+white-space:nowrap;
+overflow:hidden
+}
+
+/* badges brighter */
+.badge{
+border:1px solid #065f46;
+background:#022c22;
+padding:6px 12px;
+margin:4px;
+display:inline-block;
+color:#6ee7b7;
+font-weight:500
+}
+
+.logo-glow{filter:drop-shadow(0 0 40px rgba(57,255,182,.45))}
+
+/* improve link visibility */
+a{transition:.2s}
+a:hover{color:#39ffb6}
+
+/* section titles */
+h3{color:#39ffb6}
+
+/* paragraph readability */
+p,li{color:#cbd5e1}
 </style>
 </head>
 <body class="px-6 md:px-16">
@@ -25,10 +65,10 @@ canvas{position:fixed;top:0;left:0;z-index:-1}
 
 <header class="flex justify-between py-6 text-sm">
 <div class="flex items-center gap-3">
-<img src="https://github.com/hermit148/hermit148.github.io/blob/main/logo.png" class="w-9 h-9 rounded logo-glow">
-<span class="glow">ashwin@hermit:~$</span>
+<img src="logo.png" class="w-10 h-10 rounded logo-glow">
+<span class="glow text-lg">ashwin@hermit:~$</span>
 </div>
-<nav class="space-x-6 text-gray-400">
+<nav class="space-x-6 text-slate-300">
 <a href="#projects">projects</a>
 <a href="#focus">focus</a>
 <a href="#mentoring">mentoring</a>
@@ -41,8 +81,8 @@ canvas{position:fixed;top:0;left:0;z-index:-1}
 <h1 class="text-4xl md:text-6xl font-bold">Hi, I'm <span class="glow">Ashwin</span></h1>
 <h2 id="typing" class="text-xl md:text-2xl mt-6 glow typing"></h2>
 
-<p class="mt-8 text-gray-400 max-w-xl">
-Cybersecurity Analyst specializing in <span class="text-emerald-400">Web & API Penetration Testing</span> and <span class="text-emerald-400">Hardware Security Research</span>. I build offensive tools, test real-world applications, conduct live attack demonstrations, and mentor students and professionals through practical cybersecurity sessions.
+<p class="mt-8 max-w-xl">
+Cybersecurity Analyst specializing in <span class="text-emerald-400 font-semibold">Web & API Penetration Testing</span> and <span class="text-emerald-400 font-semibold">Hardware Security Research</span>. I build offensive tools, test real-world applications, conduct live attack demonstrations, and mentor students and professionals through practical cybersecurity sessions.
 </p>
 
 <div class="mt-8 flex flex-wrap gap-3">
@@ -55,19 +95,19 @@ Cybersecurity Analyst specializing in <span class="text-emerald-400">Web & API P
 </div>
 
 <div class="mt-10 flex gap-4">
-<a href="#projects" class="border px-6 py-2 hover:bg-emerald-400 hover:text-black">View Work</a>
-<a href="https://github.com/hermit148" class="border px-6 py-2 hover:bg-emerald-400 hover:text-black">GitHub</a>
+<a href="#projects" class="border border-emerald-400 px-6 py-2 hover:bg-emerald-400 hover:text-black">View Work</a>
+<a href="https://github.com/hermit148" class="border border-emerald-400 px-6 py-2 hover:bg-emerald-400 hover:text-black">GitHub</a>
 </div>
 </div>
 
 <div class="flex justify-center">
-<img src="https://github.com/hermit148/hermit148.github.io/blob/main/logo.png" class="w-80 md:w-96 logo-glow">
+<img src="logo.png" class="w-80 md:w-96 logo-glow">
 </div>
 </section>
 
 <section id="focus" class="py-20 max-w-4xl">
-<h3 class="text-2xl glow mb-6">technical focus</h3>
-<ul class="text-gray-400 space-y-3">
+<h3 class="text-2xl mb-6">technical focus</h3>
+<ul class="space-y-3 text-lg">
 <li>🔐 Web application penetration testing — authentication, sessions, OWASP risks</li>
 <li>🌐 API security testing — REST endpoints, authorization flaws, data exposure</li>
 <li>📂 File upload vulnerability research & bypass techniques</li>
@@ -77,32 +117,32 @@ Cybersecurity Analyst specializing in <span class="text-emerald-400">Web & API P
 </section>
 
 <section id="projects" class="py-20">
-<h3 class="text-2xl glow mb-10">tools & research</h3>
+<h3 class="text-2xl mb-10">tools & research</h3>
 <div id="repoContainer" class="grid md:grid-cols-3 gap-6"></div>
 </section>
 
 <section id="mentoring" class="py-20 max-w-4xl">
-<h3 class="text-2xl glow mb-6">mentoring & sessions</h3>
-<ul class="text-gray-400 space-y-4">
+<h3 class="text-2xl mb-6">mentoring & sessions</h3>
+<ul class="space-y-4 text-lg">
 <li>🎤 Conduct cybersecurity workshops with live demonstrations of web, hardware, and wireless attack scenarios</li>
 <li>🏫 Invited as resource person by colleges to train students on real-world pentesting techniques</li>
-<li>🛡️ Led cybersecurity war-room style sessions guiding participants through attack & defense workflows</li>
-<li>👨‍🏫 Mentor students and beginners in offensive security, tool usage, and ethical hacking fundamentals</li>
-<li>📢 Share research insights and demonstrations with a 12K+ LinkedIn cybersecurity audience</li>
+<li>🛡️ Led cybersecurity war-room sessions guiding participants through attack & defense workflows</li>
+<li>👨‍🏫 Mentor students in offensive security, tool usage, and ethical hacking fundamentals</li>
+<li>📢 Share research insights with a 12K+ LinkedIn cybersecurity audience</li>
 </ul>
 </section>
 
 <section id="contact" class="py-20">
-<h3 class="text-2xl glow mb-6">contact</h3>
-<div class="card max-w-xl">
+<h3 class="text-2xl mb-6">contact</h3>
+<div class="card max-w-xl text-lg">
 <p>📍 Kannur, Kerala, India</p>
-<p class="mt-2">Email: N/A</p>
+<p class="mt-2">Email: <span class="text-emerald-400">ashwinvadakkeel0@gmail.com</span></p>
 <p>GitHub: <a class="text-emerald-400" href="https://github.com/hermit148">hermit148</a></p>
 <p>LinkedIn: <a class="text-emerald-400" href="https://linkedin.com/in/ashwin-vadakkeel">ashwin-vadakkeel</a></p>
 </div>
 </section>
 
-<footer class="py-10 text-center text-gray-600 text-sm">ashwin@hermit:~$ exit</footer>
+<footer class="py-10 text-center text-slate-500 text-sm">ashwin@hermit:~$ exit</footer>
 
 <script>
 const roles=[
@@ -133,7 +173,7 @@ for(let x=0;x<columns;x++)drops[x]=1;
 function draw(){
 ctx.fillStyle="rgba(0,0,0,0.05)";
 ctx.fillRect(0,0,canvas.width,canvas.height);
-ctx.fillStyle="#00ff9c";
+ctx.fillStyle="#39ffb6";
 ctx.font=fontSize+"px monospace";
 for(let i=0;i<drops.length;i++){
 const text=letters[Math.floor(Math.random()*letters.length)];
@@ -159,8 +199,8 @@ fetch(`https://api.github.com/repos/hermit148/${r}`)
 const div=document.createElement("a");
 div.href=data.html_url;
 div.className="card block";
-div.innerHTML=`<h4 class='text-xl'>${data.name}</h4>
-<p class='text-gray-400 mt-2'>${data.description||"Security research repository"}</p>
+div.innerHTML=`<h4 class='text-xl text-emerald-400'>${data.name}</h4>
+<p class='mt-2'>${data.description||"Security research repository"}</p>
 <p class='text-emerald-400 mt-4'>★ ${data.stargazers_count} | 🍴 ${data.forks_count}</p>`;
 container.appendChild(div);
 });
