@@ -43,7 +43,7 @@ body:before{
 
 .card{
  background:rgba(3,10,18,.7);
- border:1px solid rgba(0,255,255,.2);
+ border:1px solid rgba(0,255,255,.25);
  backdrop-filter:blur(6px);
  padding:1.6rem;
  transition:.35s;
@@ -51,11 +51,14 @@ body:before{
 .card:hover{
  border-color:#00f7ff;
  box-shadow:0 0 40px rgba(0,247,255,.25);
- transform:translateY(-6px) scale(1.01);
+ transform:translateY(-6px);
 }
 
-.logo-glow{filter:drop-shadow(0 0 40px rgba(0,247,255,.45))}
+.logo-glow{
+ filter:drop-shadow(0 0 45px rgba(0,247,255,.45));
+}
 
+/* badges */
 .badge{
  border:1px solid rgba(255,43,214,.4);
  background:rgba(255,43,214,.08);
@@ -65,15 +68,42 @@ body:before{
  color:#ff7af3;
 }
 
-.btn{
+/* PREMIUM BUTTON */
+.btn-premium{
+ position:relative;
+ padding:12px 26px;
  border:1px solid #00f7ff;
- padding:10px 22px;
- transition:.25s;
+ color:#00f7ff;
+ font-weight:600;
+ letter-spacing:.5px;
+ transition:.3s;
+ overflow:hidden;
+ display:inline-block;
 }
-.btn:hover{
- background:#00f7ff;
+
+.btn-premium:hover{
  color:black;
- box-shadow:0 0 25px #00f7ffaa;
+ background:#00f7ff;
+ box-shadow:
+ 0 0 10px #00f7ff,
+ 0 0 25px #00f7ff,
+ 0 0 45px #00f7ff66;
+ transform:translateY(-2px);
+}
+
+.btn-premium:before{
+ content:"";
+ position:absolute;
+ top:0;
+ left:-100%;
+ width:100%;
+ height:100%;
+ background:linear-gradient(120deg,transparent,#00f7ff88,transparent);
+ transition:.6s;
+}
+
+.btn-premium:hover:before{
+ left:100%;
 }
 </style>
 </head>
@@ -90,7 +120,7 @@ body:before{
 <div class="cyber-title text-xl">ASHWIN VADAKKEEL // HERMIT</div>
 </div>
 
-<nav class="space-x-8 text-cyan-200">
+<nav class="space-x-8 text-cyan-200 hidden md:block">
 <a href="#projects">projects</a>
 <a href="#focus">focus</a>
 <a href="#mentor">mentor</a>
@@ -143,13 +173,16 @@ Cybersecurity Analyst specializing in web application penetration testing, API s
 
 </div>
 
-<div class="flex justify-center">
-<img src="logo.png" class="w-96 logo-glow">
+</div>
+
+<!-- RIGHT LOGO -->
+<div class="flex justify-center md:justify-end">
+<img src="logo.png" class="w-72 md:w-96 logo-glow">
 </div>
 
 </section>
 
-<!-- ABOUT SHORT -->
+<!-- ABOUT -->
 <section class="py-12 max-w-3xl">
 <p class="text-lg text-slate-300">
 Cybersecurity Analyst at Hazercloud focusing on authentication testing, API security validation, and vulnerability discovery in real-world production systems. Passionate about offensive research, hardware experimentation, and mentoring future cybersecurity professionals.
@@ -192,7 +225,7 @@ Cybersecurity Analyst at Hazercloud focusing on authentication testing, API secu
 
 <div class="card max-w-xl">
 <p>📍 Kannur, Kerala, India</p>
-<p class="mt-2">Email: N/A</p>
+<p class="mt-2">Email: ashwinvadakkeel0@gmail.com</p>
 <p>GitHub: <a class="text-cyan-300" href="https://github.com/hermit148">hermit148</a></p>
 <p>LinkedIn: <a class="text-cyan-300" href="https://linkedin.com/in/ashwin-vadakkeel">ashwin-vadakkeel</a></p>
 </div>
