@@ -1,11 +1,297 @@
-/* typing */
-const words=["Web & API Pentester","Hardware Security Researcher","Cybersecurity Mentor"];
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ashwin | Offensive Security</title>
+
+<link rel="icon" href="logo.png">
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+ background: radial-gradient(circle at 20% 20%, #07111a, #02050a 60%);
+ color:#e6f1ff;
+ font-family:'JetBrains Mono',monospace;
+}
+
+/* grid overlay */
+body:before{
+ content:"";
+ position:fixed;
+ inset:0;
+ background-image:
+ linear-gradient(rgba(0,255,255,.05) 1px, transparent 1px),
+ linear-gradient(90deg, rgba(0,255,255,.05) 1px, transparent 1px);
+ background-size:40px 40px;
+ pointer-events:none;
+}
+
+.container{
+ max-width:1200px;
+ margin:auto;
+ padding:0 20px;
+}
+
+.cyber-title{
+ font-family:'Orbitron',sans-serif;
+ color:#00f7ff;
+ text-shadow:0 0 12px #00f7ff,0 0 30px #00f7ff55;
+}
+
+.neon{
+ color:#ff2bd6;
+ text-shadow:0 0 12px #ff2bd6aa;
+}
+
+/* stable typing */
+.typing-wrap{
+ display:inline-block;
+ width:380px;
+ max-width:100%;
+ vertical-align:bottom;
+}
+#typing::after{
+ content:"_";
+ margin-left:6px;
+ animation:blink 1s infinite;
+}
+@keyframes blink{
+ 0%,50%,100%{opacity:1}
+ 25%,75%{opacity:0}
+}
+
+/* floating logo */
+.logo-glow{
+ filter:drop-shadow(0 0 45px rgba(0,247,255,.45));
+ animation:floatLogo 6s ease-in-out infinite;
+}
+@keyframes floatLogo{
+ 0%,100%{transform:translateY(0)}
+ 50%{transform:translateY(-16px)}
+}
+
+.card{
+ background:rgba(3,10,18,.8);
+ border:1px solid rgba(0,255,255,.25);
+ padding:1.5rem;
+ transition:.3s;
+}
+.card:hover{
+ border-color:#00f7ff;
+ box-shadow:0 0 30px rgba(0,247,255,.25);
+ transform:translateY(-6px);
+}
+
+.badge{
+ border:1px solid rgba(255,43,214,.4);
+ background:rgba(255,43,214,.08);
+ padding:6px 14px;
+ display:inline-block;
+ margin:4px;
+ color:#ff7af3;
+}
+
+.btn-premium{
+ padding:12px 24px;
+ border:1px solid #00f7ff;
+ color:#00f7ff;
+ transition:.3s;
+}
+.btn-premium:hover{
+ background:#00f7ff;
+ color:black;
+ box-shadow:0 0 20px #00f7ff;
+}
+
+#bootScreen{
+ position:fixed;
+ inset:0;
+ background:black;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ z-index:9999;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- BOOT -->
+<div id="bootScreen">
+<div class="text-center">
+<div class="cyber-title text-2xl mb-6">INITIALIZING HERMlT SECURITY INTERFACE</div>
+<div id="bootText" class="text-cyan-300 text-sm"></div>
+</div>
+</div>
+
+<!-- NAV -->
+<header class="container flex justify-between items-center py-8">
+
+<div class="flex items-center gap-3">
+<img src="logo.png" class="w-11 logo-glow">
+<div class="cyber-title text-xl">ASHWIN VADAKKEEL // HERMIT</div>
+</div>
+
+<nav class="space-x-8 text-cyan-200 hidden md:block">
+<a href="#projects">projects</a>
+<a href="#focus">focus</a>
+<a href="#contact">contact</a>
+</nav>
+
+</header>
+
+<!-- HERO -->
+<section class="container grid md:grid-cols-2 gap-16 items-center py-20">
+
+<div>
+
+<h1 class="text-5xl md:text-7xl cyber-title">
+OFFENSIVE SECURITY<br>
+<span class="typing-wrap"><span id="typing" class="neon"></span></span>
+</h1>
+
+<p class="mt-4 text-cyan-300">
+Broadcom Hall of Fame • Govt of India acknowledged • Mentor • 12K+ LinkedIn reach
+</p>
+
+<p class="mt-8 text-slate-300 text-lg max-w-xl">
+Cybersecurity Analyst specializing in web & API pentesting, hardware research, and offensive security tool development.
+</p>
+
+<div class="mt-8 flex flex-wrap">
+<span class="badge">Web Pentesting</span>
+<span class="badge">API Security</span>
+<span class="badge">Hardware Research</span>
+<span class="badge">Cyber Workshops</span>
+</div>
+
+<div class="mt-10 flex flex-wrap gap-4">
+<a href="#projects" class="btn-premium">🚀 PROJECTS</a>
+<a href="https://github.com/hermit148" target="_blank" class="btn-premium">🐙 GITHUB</a>
+<a href="https://linkedin.com/in/ashwin-vadakkeel" target="_blank" class="btn-premium">💼 LINKEDIN</a>
+</div>
+
+</div>
+
+<div class="flex justify-center md:justify-end md:pl-16 lg:pl-28">
+<img src="logo.png" class="w-80 md:w-[520px] lg:w-[650px] logo-glow">
+</div>
+
+</section>
+
+<!-- CORE -->
+<section id="focus" class="container py-20">
+<h2 class="cyber-title text-3xl mb-8">CORE OPERATIONS</h2>
+<ul class="space-y-4 text-lg text-slate-300 max-w-2xl">
+<li>🔐 Web application penetration testing</li>
+<li>🌐 API security validation</li>
+<li>📂 File upload exploitation research</li>
+<li>📡 Hardware attack simulation</li>
+<li>🛠️ Offensive security tool development</li>
+</ul>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="container py-20">
+<h2 class="cyber-title text-3xl mb-10">TOOLS & RESEARCH</h2>
+<div id="repoContainer" class="grid md:grid-cols-3 gap-8"></div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="container py-20">
+<h2 class="cyber-title text-3xl mb-8">CONTACT</h2>
+<div class="card max-w-2xl">
+<p>📍 Kannur, Kerala, India</p>
+<p>Email: ashwinvadakkeel0@gmail.com</p>
+<p>GitHub: <a class="text-cyan-300" href="https://github.com/hermit148">hermit148</a></p>
+<p>LinkedIn: <a class="text-cyan-300" href="https://linkedin.com/in/ashwin-vadakkeel">ashwin-vadakkeel</a></p>
+</div>
+</section>
+
+<footer class="py-10 text-center text-slate-500">
+SYSTEM STATUS: ONLINE
+</footer>
+
+<script>
+
+/* boot */
+const lines=[
+"[ OK ] Loading modules...",
+"[ OK ] Initializing network...",
+"[ OK ] Mounting toolkit...",
+"[ OK ] Access granted"
+];
+let i=0;
+function boot(){
+ if(i<lines.length){
+  document.getElementById("bootText").innerHTML+=lines[i]+"<br>";
+  i++;
+  setTimeout(boot,500);
+ }
+}
+boot();
+window.addEventListener("load",()=>{
+ setTimeout(()=>document.getElementById("bootScreen").remove(),3500);
+});
+
+/* stable typing */
+const words=[
+"Web & API Pentester",
+"Hardware Security Researcher",
+"Cybersecurity Mentor"
+];
+
 let w=0,c=0,del=false;
+
 function type(){
-let el=document.getElementById("typing");
-let t=words[w];
-if(!del){el.textContent=t.slice(0,++c); if(c===t.length){del=true;setTimeout(type,1200);return}}
-else{el.textContent=t.slice(0,--c); if(c===0){del=false;w=(w+1)%words.length}}
-setTimeout(type,del?40:80);
+ const el=document.getElementById("typing");
+ const text=words[w];
+
+ if(!del){
+  el.textContent=text.slice(0,++c);
+  if(c===text.length){del=true;setTimeout(type,1300);return;}
+ }else{
+  el.textContent=text.slice(0,--c);
+  if(c===0){del=false;w=(w+1)%words.length;}
+ }
+
+ setTimeout(type,del?35:70);
 }
 type();
+
+/* repos */
+const repos=[
+"Hermit-ESP8266-Mint-Box-WIFI-Pentest",
+"WP-Rest-API-Basic_check",
+"PHP-File-Upload_Bypass",
+"DNS-Recon-Hermit",
+"XML-RPC-Method-Lister"
+];
+
+const container=document.getElementById("repoContainer");
+
+repos.forEach(r=>{
+fetch(`https://api.github.com/repos/hermit148/${r}`)
+.then(res=>res.json())
+.then(d=>{
+const div=document.createElement("a");
+div.href=d.html_url;
+div.target="_blank";
+div.className="card block";
+div.innerHTML=`
+<h3 class='text-xl text-cyan-300'>${d.name}</h3>
+<p class='mt-2 text-slate-300'>${d.description||"Security repo"}</p>
+<p class='text-cyan-300 mt-4'>★ ${d.stargazers_count} | 🍴 ${d.forks_count}</p>`;
+container.appendChild(div);
+});
+});
+
+</script>
+
+</body>
+</html>
