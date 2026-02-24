@@ -31,7 +31,6 @@ body:before{
  pointer-events:none;
 }
 
-/* titles */
 .cyber-title{
  font-family:'Orbitron',sans-serif;
  color:#00f7ff;
@@ -43,28 +42,6 @@ body:before{
  text-shadow:0 0 12px #ff2bd6aa;
 }
 
-/* cards */
-.card{
- background:rgba(3,10,18,.7);
- border:1px solid rgba(0,255,255,.25);
- backdrop-filter:blur(6px);
- padding:1.6rem;
- transition:.35s;
- opacity:0;
- transform:translateY(30px);
-}
-
-.card.show{
- opacity:1;
- transform:translateY(0);
-}
-
-.card:hover{
- border-color:#00f7ff;
- box-shadow:0 0 40px rgba(0,247,255,.25);
- transform:translateY(-6px);
-}
-
 /* floating logo */
 .logo-glow{
  filter:drop-shadow(0 0 45px rgba(0,247,255,.45));
@@ -74,6 +51,20 @@ body:before{
 @keyframes floatLogo{
  0%,100%{transform:translateY(0)}
  50%{transform:translateY(-16px)}
+}
+
+/* cards */
+.card{
+ background:rgba(3,10,18,.7);
+ border:1px solid rgba(0,255,255,.25);
+ backdrop-filter:blur(6px);
+ padding:1.6rem;
+ transition:.35s;
+}
+.card:hover{
+ border-color:#00f7ff;
+ box-shadow:0 0 40px rgba(0,247,255,.25);
+ transform:translateY(-6px);
 }
 
 /* badges */
@@ -117,7 +108,6 @@ body:before{
  background:linear-gradient(120deg,transparent,#00f7ff88,transparent);
  transition:.6s;
 }
-
 .btn-premium:hover:before{
  left:100%;
 }
@@ -131,15 +121,6 @@ body:before{
  align-items:center;
  justify-content:center;
  z-index:9999;
- animation:fadeOut 1s ease forwards;
- animation-delay:4s;
-}
-
-@keyframes fadeOut{
- to{
-  opacity:0;
-  visibility:hidden;
- }
 }
 
 </style>
@@ -158,7 +139,7 @@ INITIALIZING HERMlT SECURITY INTERFACE
 </div>
 
 <!-- NAV -->
-<header class="flex justify-between items-center py-8">
+<header class="flex justify-between items-center py-8 max-w-7xl mx-auto">
 
 <div class="flex items-center gap-3">
 <img src="logo.png" class="w-11 logo-glow">
@@ -175,7 +156,7 @@ INITIALIZING HERMlT SECURITY INTERFACE
 </header>
 
 <!-- HERO -->
-<section class="grid md:grid-cols-2 gap-12 items-center py-20 max-w-6xl">
+<section class="grid md:grid-cols-2 gap-20 items-center py-20 max-w-7xl mx-auto">
 
 <div>
 
@@ -201,24 +182,23 @@ Cybersecurity Analyst specializing in web application penetration testing, API s
 </div>
 
 <div class="mt-10 flex flex-wrap gap-4">
-
 <a href="#projects" class="btn-premium">🚀 PROJECTS</a>
 <a href="https://github.com/hermit148" target="_blank" class="btn-premium">🐙 GITHUB</a>
 <a href="https://linkedin.com/in/ashwin-vadakkeel" target="_blank" class="btn-premium">💼 LINKEDIN</a>
 <a href="resume.pdf" target="_blank" class="btn-premium">⬇️ RESUME</a>
-
 </div>
 
 </div>
 
-<div class="flex justify-center md:justify-end">
-<img src="logo.png" class="w-80 md:w-[520px] lg:w-[620px] logo-glow">
+<!-- RIGHT LOGO -->
+<div class="flex justify-center md:justify-end md:pl-16 lg:pl-28">
+<img src="logo.png" class="w-80 md:w-[520px] lg:w-[650px] logo-glow">
 </div>
 
 </section>
 
 <!-- FOCUS -->
-<section id="focus" class="py-20 max-w-4xl">
+<section id="focus" class="py-20 max-w-4xl mx-auto">
 <h2 class="cyber-title text-3xl mb-8">CORE OPERATIONS</h2>
 <ul class="space-y-4 text-lg text-slate-300">
 <li>🔐 Web application penetration testing</li>
@@ -230,16 +210,16 @@ Cybersecurity Analyst specializing in web application penetration testing, API s
 </section>
 
 <!-- PROJECTS -->
-<section id="projects" class="py-20">
+<section id="projects" class="py-20 max-w-7xl mx-auto">
 <h2 class="cyber-title text-3xl mb-10">TOOLS & RESEARCH</h2>
 <div id="repoContainer" class="grid md:grid-cols-3 gap-8"></div>
 </section>
 
 <!-- CONTACT -->
-<section id="contact" class="py-20">
+<section id="contact" class="py-20 max-w-4xl mx-auto">
 <h2 class="cyber-title text-3xl mb-8">CONTACT</h2>
 
-<div class="card max-w-xl">
+<div class="card">
 <p>📍 Kannur, Kerala, India</p>
 <p>Email: N/A</p>
 <p>GitHub: <a class="text-cyan-300" href="https://github.com/hermit148">hermit148</a></p>
@@ -254,7 +234,7 @@ SYSTEM STATUS: ONLINE
 
 <script>
 
-/* boot text animation */
+/* REMOVE BOOT SCREEN */
 const bootLines=[
 "[ OK ] Loading modules...",
 "[ OK ] Initializing network...",
@@ -273,30 +253,34 @@ function bootSequence(){
 }
 bootSequence();
 
-/* typing hero */
+setTimeout(()=>{
+ document.getElementById("bootScreen").remove();
+},4000);
+
+/* typing intro */
 const words=["Web & API Pentester","Hardware Security Researcher","Cybersecurity Mentor"];
-let w=0, c=0, deleting=false;
+let w=0,c=0,del=false;
 
 function type(){
 const el=document.getElementById("typing");
-let text=words[w];
+let t=words[w];
 
-if(!deleting){
- el.textContent=text.slice(0,++c);
- if(c===text.length){deleting=true;setTimeout(type,1200);return;}
+if(!del){
+ el.textContent=t.slice(0,++c);
+ if(c===t.length){del=true;setTimeout(type,1200);return;}
 }else{
- el.textContent=text.slice(0,--c);
- if(c===0){deleting=false;w=(w+1)%words.length;}
+ el.textContent=t.slice(0,--c);
+ if(c===0){del=false;w=(w+1)%words.length;}
 }
-setTimeout(type,deleting?40:80);
+setTimeout(type,del?40:80);
 }
 type();
 
 /* smooth scroll */
-document.querySelectorAll('a[href^=\"#\"]').forEach(anchor=>{
- anchor.addEventListener('click',function(e){
+document.querySelectorAll('a[href^=\"#\"]').forEach(a=>{
+ a.addEventListener('click',e=>{
   e.preventDefault();
-  document.querySelector(this.getAttribute('href')).scrollIntoView({behavior:'smooth'});
+  document.querySelector(a.getAttribute('href')).scrollIntoView({behavior:'smooth'});
  });
 });
 
@@ -328,7 +312,6 @@ div.innerHTML=`
 `;
 
 container.appendChild(div);
-setTimeout(()=>div.classList.add("show"),100);
 });
 });
 
