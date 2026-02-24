@@ -11,6 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
 
 <style>
+
 body{
  background: radial-gradient(circle at 20% 20%, #07111a, #02050a 60%);
  color:#e6f1ff;
@@ -30,6 +31,7 @@ body:before{
  pointer-events:none;
 }
 
+/* titles */
 .cyber-title{
  font-family:'Orbitron',sans-serif;
  color:#00f7ff;
@@ -41,21 +43,37 @@ body:before{
  text-shadow:0 0 12px #ff2bd6aa;
 }
 
+/* cards */
 .card{
  background:rgba(3,10,18,.7);
  border:1px solid rgba(0,255,255,.25);
  backdrop-filter:blur(6px);
  padding:1.6rem;
  transition:.35s;
+ opacity:0;
+ transform:translateY(30px);
 }
+
+.card.show{
+ opacity:1;
+ transform:translateY(0);
+}
+
 .card:hover{
  border-color:#00f7ff;
  box-shadow:0 0 40px rgba(0,247,255,.25);
  transform:translateY(-6px);
 }
 
+/* floating logo */
 .logo-glow{
  filter:drop-shadow(0 0 45px rgba(0,247,255,.45));
+ animation:floatLogo 6s ease-in-out infinite;
+}
+
+@keyframes floatLogo{
+ 0%,100%{transform:translateY(0)}
+ 50%{transform:translateY(-16px)}
 }
 
 /* badges */
@@ -68,17 +86,15 @@ body:before{
  color:#ff7af3;
 }
 
-/* PREMIUM BUTTON */
+/* premium buttons */
 .btn-premium{
  position:relative;
  padding:12px 26px;
  border:1px solid #00f7ff;
  color:#00f7ff;
  font-weight:600;
- letter-spacing:.5px;
  transition:.3s;
  overflow:hidden;
- display:inline-block;
 }
 
 .btn-premium:hover{
@@ -105,18 +121,47 @@ body:before{
 .btn-premium:hover:before{
  left:100%;
 }
+
+/* boot screen */
+#bootScreen{
+ position:fixed;
+ inset:0;
+ background:black;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ z-index:9999;
+ animation:fadeOut 1s ease forwards;
+ animation-delay:4s;
+}
+
+@keyframes fadeOut{
+ to{
+  opacity:0;
+  visibility:hidden;
+ }
+}
+
 </style>
 </head>
 
 <body class="px-6 md:px-16">
 
+<!-- BOOT SCREEN -->
+<div id="bootScreen">
+<div class="text-center">
+<div class="cyber-title text-2xl mb-6">
+INITIALIZING HERMlT SECURITY INTERFACE
+</div>
+<div id="bootText" class="text-cyan-300 text-sm"></div>
+</div>
+</div>
+
 <!-- NAV -->
 <header class="flex justify-between items-center py-8">
 
 <div class="flex items-center gap-3">
-<a href="#">
 <img src="logo.png" class="w-11 logo-glow">
-</a>
 <div class="cyber-title text-xl">ASHWIN VADAKKEEL // HERMIT</div>
 </div>
 
@@ -136,7 +181,7 @@ body:before{
 
 <h1 class="text-5xl md:text-7xl cyber-title">
 OFFENSIVE SECURITY<br>
-<span class="neon">Web & API Pentester</span>
+<span id="typing" class="neon"></span>
 </h1>
 
 <p class="mt-4 text-cyan-300">
@@ -144,7 +189,7 @@ Broadcom Hall of Fame • Govt of India acknowledged • Mentor • 12K+ LinkedI
 </p>
 
 <p class="mt-8 text-slate-300 max-w-xl text-lg">
-Cybersecurity Analyst specializing in web application penetration testing, API security validation, and hardware security research. I build offensive tools, test real-world systems, and conduct hands-on cybersecurity workshops and demonstrations.
+Cybersecurity Analyst specializing in web application penetration testing, API security validation, and hardware security research. I build offensive tools, test real-world systems, and conduct hands-on cybersecurity workshops.
 </p>
 
 <div class="mt-8 flex flex-wrap">
@@ -158,46 +203,29 @@ Cybersecurity Analyst specializing in web application penetration testing, API s
 <div class="mt-10 flex flex-wrap gap-4">
 
 <a href="#projects" class="btn-premium">🚀 PROJECTS</a>
-
-<a href="https://github.com/hermit148" target="_blank" class="btn-premium">
-🐙 GITHUB
-</a>
-
-<a href="https://linkedin.com/in/ashwin-vadakkeel" target="_blank" class="btn-premium">
-💼 LINKEDIN
-</a>
-
-<a href="resume.pdf" target="_blank" class="btn-premium">
-⬇️ RESUME
-</a>
+<a href="https://github.com/hermit148" target="_blank" class="btn-premium">🐙 GITHUB</a>
+<a href="https://linkedin.com/in/ashwin-vadakkeel" target="_blank" class="btn-premium">💼 LINKEDIN</a>
+<a href="resume.pdf" target="_blank" class="btn-premium">⬇️ RESUME</a>
 
 </div>
 
 </div>
 
-<!-- RIGHT LOGO -->
 <div class="flex justify-center md:justify-end">
-<img src="logo.png" class="w-72 md:w-96 logo-glow">
+<img src="logo.png" class="w-80 md:w-[520px] lg:w-[620px] logo-glow">
 </div>
 
-</section>
-
-<!-- ABOUT -->
-<section class="py-12 max-w-3xl">
-<p class="text-lg text-slate-300">
-Cybersecurity Analyst at Hazercloud focusing on authentication testing, API security validation, and vulnerability discovery in real-world production systems. Passionate about offensive research, hardware experimentation, and mentoring future cybersecurity professionals.
-</p>
 </section>
 
 <!-- FOCUS -->
 <section id="focus" class="py-20 max-w-4xl">
 <h2 class="cyber-title text-3xl mb-8">CORE OPERATIONS</h2>
 <ul class="space-y-4 text-lg text-slate-300">
-<li>🔐 Web application penetration testing & authentication bypass analysis</li>
-<li>🌐 API security validation & authorization flaw discovery</li>
-<li>📂 File upload exploitation research & bypass testing</li>
-<li>📡 Hardware & wireless attack simulation platforms</li>
-<li>🛠️ Custom offensive security tool development</li>
+<li>🔐 Web application penetration testing</li>
+<li>🌐 API security validation</li>
+<li>📂 File upload exploitation research</li>
+<li>📡 Hardware attack simulation</li>
+<li>🛠️ Custom offensive security tools</li>
 </ul>
 </section>
 
@@ -207,25 +235,13 @@ Cybersecurity Analyst at Hazercloud focusing on authentication testing, API secu
 <div id="repoContainer" class="grid md:grid-cols-3 gap-8"></div>
 </section>
 
-<!-- MENTOR -->
-<section id="mentor" class="py-20 max-w-4xl">
-<h2 class="cyber-title text-3xl mb-8">MENTORSHIP & SESSIONS</h2>
-<ul class="space-y-4 text-lg text-slate-300">
-<li>🎤 Conduct live cybersecurity workshops demonstrating real attack chains</li>
-<li>🏫 Resource person for colleges training students in offensive security</li>
-<li>🛡️ Led Cybersecurity War Room sessions with practical labs</li>
-<li>👨‍🏫 Mentor beginners in pentesting, tools & methodology</li>
-<li>📢 Share research with a 12K+ LinkedIn cybersecurity community</li>
-</ul>
-</section>
-
 <!-- CONTACT -->
 <section id="contact" class="py-20">
 <h2 class="cyber-title text-3xl mb-8">CONTACT</h2>
 
 <div class="card max-w-xl">
 <p>📍 Kannur, Kerala, India</p>
-<p class="mt-2">Email: ashwinvadakkeel0@gmail.com</p>
+<p>Email: N/A</p>
 <p>GitHub: <a class="text-cyan-300" href="https://github.com/hermit148">hermit148</a></p>
 <p>LinkedIn: <a class="text-cyan-300" href="https://linkedin.com/in/ashwin-vadakkeel">ashwin-vadakkeel</a></p>
 </div>
@@ -238,13 +254,49 @@ SYSTEM STATUS: ONLINE
 
 <script>
 
-/* smooth scrolling */
+/* boot text animation */
+const bootLines=[
+"[ OK ] Loading modules...",
+"[ OK ] Initializing network...",
+"[ OK ] Mounting offensive toolkit...",
+"[ OK ] Verifying access...",
+"[ OK ] Interface ready"
+];
+
+let i=0;
+function bootSequence(){
+ if(i<bootLines.length){
+  document.getElementById("bootText").innerHTML+=bootLines[i]+"<br>";
+  i++;
+  setTimeout(bootSequence,500);
+ }
+}
+bootSequence();
+
+/* typing hero */
+const words=["Web & API Pentester","Hardware Security Researcher","Cybersecurity Mentor"];
+let w=0, c=0, deleting=false;
+
+function type(){
+const el=document.getElementById("typing");
+let text=words[w];
+
+if(!deleting){
+ el.textContent=text.slice(0,++c);
+ if(c===text.length){deleting=true;setTimeout(type,1200);return;}
+}else{
+ el.textContent=text.slice(0,--c);
+ if(c===0){deleting=false;w=(w+1)%words.length;}
+}
+setTimeout(type,deleting?40:80);
+}
+type();
+
+/* smooth scroll */
 document.querySelectorAll('a[href^=\"#\"]').forEach(anchor=>{
  anchor.addEventListener('click',function(e){
   e.preventDefault();
-  document.querySelector(this.getAttribute('href')).scrollIntoView({
-   behavior:'smooth'
-  });
+  document.querySelector(this.getAttribute('href')).scrollIntoView({behavior:'smooth'});
  });
 });
 
@@ -276,6 +328,7 @@ div.innerHTML=`
 `;
 
 container.appendChild(div);
+setTimeout(()=>div.classList.add("show"),100);
 });
 });
 
