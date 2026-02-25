@@ -51,85 +51,34 @@ text-shadow:0 0 12px #00f7ff,0 0 30px #00f7ff55;
 .badge{
 border:1px solid rgba(255,43,214,.4);
 background:rgba(255,43,214,.08);
-padding:5px 12px;
+padding:6px 12px;
 margin:4px;
 display:inline-block;
 border-radius:999px;
 color:#ff7af3;
+font-size:13px;
 }
 
-.terminal{
-height:1.4em;
-width:30ch;
-position:relative;
-overflow:hidden;
-}
-.terminal span{
-position:absolute;
-white-space:nowrap;
-color:#ff2bd6;
-text-shadow:0 0 12px #ff2bd6aa;
-}
-.terminal span:after{
-content:"_";
-margin-left:6px;
-animation:blink 1s infinite;
-}
+.terminal{height:1.4em;width:30ch;position:relative;overflow:hidden;}
+.terminal span{position:absolute;white-space:nowrap;color:#ff2bd6;text-shadow:0 0 12px #ff2bd6aa;}
+.terminal span:after{content:"_";margin-left:6px;animation:blink 1s infinite;}
 @keyframes blink{0%,50%,100%{opacity:1}25%,75%{opacity:0}}
 
-.hero-box{
-width:620px;
-max-width:100%;
-aspect-ratio:1/1;
-position:relative;
-contain:layout paint size style;
-}
+.hero-box{width:580px;max-width:100%;aspect-ratio:1/1;position:relative;}
+.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;z-index:2;animation:float 8s ease-in-out infinite;}
+.hero-glow{position:absolute;inset:0;background:url('logo.png') center/contain no-repeat;filter:drop-shadow(0 0 60px rgba(0,247,255,.45));z-index:1;animation:floatGlow 9s ease-in-out infinite;}
 
-.hero-img{
-position:absolute;
-inset:0;
-width:100%;
-height:100%;
-object-fit:contain;
-z-index:2;
-animation:imgFloat 8s cubic-bezier(.45,.05,.55,.95) infinite;
-}
-
-.hero-glow{
-position:absolute;
-inset:0;
-background:url('logo.png') center/contain no-repeat;
-filter:drop-shadow(0 0 70px rgba(0,247,255,.45));
-z-index:1;
-animation:glowFloat 9s ease-in-out infinite;
-}
-
-@keyframes imgFloat{
-0%{transform:translateY(0)}
-25%{transform:translateY(-6px)}
-50%{transform:translateY(-10px)}
-75%{transform:translateY(-4px)}
-100%{transform:translateY(0)}
-}
-
-@keyframes glowFloat{
-0%{transform:translateY(0)}
-50%{transform:translateY(-16px)}
-100%{transform:translateY(0)}
-}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes floatGlow{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
 
 .card{
 background:rgba(3,10,18,.92);
 border:1px solid rgba(0,255,255,.25);
-padding:1.4rem;
+padding:1.5rem;
 border-radius:14px;
 transition:.3s;
 }
-.card:hover{
-border-color:#00f7ff;
-box-shadow:0 0 25px rgba(0,247,255,.25);
-transform:translateY(-6px);
-}
+.card:hover{border-color:#00f7ff;box-shadow:0 0 25px rgba(0,247,255,.25);transform:translateY(-6px);}
 
 .btn{
 padding:10px 22px;
@@ -137,22 +86,21 @@ border:1px solid #00f7ff;
 color:#00f7ff;
 border-radius:999px;
 transition:.25s;
+font-size:14px;
 }
-.btn:hover{
-background:#00f7ff;
-color:black;
-box-shadow:0 0 20px #00f7ff;
-}
+.btn:hover{background:#00f7ff;color:black;box-shadow:0 0 20px #00f7ff;}
 
 .masked{letter-spacing:1px;color:#9ca3af}
 section{border-top:1px solid rgba(0,255,255,.08)}
+
+.container{max-width:1100px;margin:auto;padding:0 18px}
 
 </style>
 </head>
 
 <body>
 
-<header class="max-w-6xl mx-auto flex justify-between items-center py-6 px-4">
+<header class="container flex justify-between items-center py-6">
 <div class="flex items-center gap-3">
 <img src="logo.png" class="w-10">
 <div class="cyber text-lg md:text-xl">ASHWIN VADAKKEEL</div>
@@ -160,11 +108,11 @@ section{border-top:1px solid rgba(0,255,255,.08)}
 </header>
 
 <!-- HERO -->
-<section class="max-w-6xl mx-auto flex flex-wrap items-start gap-16 py-16 px-4">
+<section class="container flex flex-wrap items-center gap-12 py-16">
 
-<div class="flex-1 min-w-[320px] max-w-[620px]">
+<div class="flex-1 min-w-[300px]">
 
-<h1 class="text-4xl md:text-7xl cyber leading-tight">
+<h1 class="text-4xl md:text-6xl cyber leading-tight">
 CYBERSECURITY ANALYST
 </h1>
 
@@ -180,20 +128,18 @@ CYBERSECURITY ANALYST
 
 <p class="mt-6 text-slate-300 text-lg max-w-xl">
 Cybersecurity Analyst specializing in Web Application Penetration Testing (VAPT),
-API security, and vulnerability validation. Currently working at Hazercloud Infotech,
-assessing authentication flows, APIs, and file-handling mechanisms to identify real-world risks
-and support remediation.
+API security, and vulnerability validation. Currently working at Hazercloud Infotech.
 </p>
 
 <div class="mt-8 flex gap-3 flex-wrap">
-<a href="https://linkedin.com/in/ashwin-vadakkeel" download class="btn">⬇ Resume</a>
+<a href="resume.pdf" download class="btn">⬇ Resume</a>
 <a href="https://github.com/hermit148" target="_blank" class="btn">GitHub</a>
 <a href="https://linkedin.com/in/ashwin-vadakkeel" target="_blank" class="btn">LinkedIn</a>
 </div>
 
 </div>
 
-<div class="flex-1 min-w-[300px] flex justify-center">
+<div class="flex-1 min-w-[260px] flex justify-center">
 <div class="hero-box">
 <img src="logo.png" class="hero-img">
 <div class="hero-glow"></div>
@@ -203,155 +149,108 @@ and support remediation.
 </section>
 
 <!-- ABOUT -->
-<section class="max-w-6xl mx-auto py-20 px-4">
-
+<section class="container py-20">
 <h2 class="cyber text-3xl mb-8">ABOUT</h2>
 
-<div class="card max-w-2xl text-slate-300">
-
+<div class="card max-w-2xl">
 <p>
 Cybersecurity Analyst focused on web pentesting, API validation,
 hardware security research, and responsible disclosure.
 </p>
 
 <div class="mt-6 space-y-2 text-sm">
-
 <p><strong>Location:</strong> Kannur, Kerala, India</p>
 <p><strong>Email:</strong> <span class="masked">ashwi************@gmail.com</span></p>
 <p><strong>Phone:</strong> <span class="masked">9*6*5*****</span></p>
-
-<p class="mt-3 text-xs text-slate-400">
-LinkedIn community: 12K+ followers • Research demo reached 2.1M+ impressions
-</p>
-
 </div>
-
 </div>
-
 </section>
 
 <!-- RECOGNITIONS -->
-<section class="max-w-6xl mx-auto py-20 px-4">
-
+<section class="container py-20">
 <h2 class="cyber text-3xl mb-8">RECOGNITIONS</h2>
 
 <div class="grid md:grid-cols-3 gap-8">
 
-<a href="https://www.broadcom.com/support/security-center/security-thanks"
-target="_blank" class="card block">
-<h3 class="text-cyan-300">Broadcom PSIRT Hall of Fame (2025)</h3>
-<p class="mt-2 text-slate-300 text-sm">
-Officially listed by Broadcom for responsible disclosure. Click to view →
-</p>
+<a href="https://www.broadcom.com/support/security-center/security-thanks" target="_blank" class="card block">
+<h3 class="text-cyan-300">Broadcom PSIRT Hall of Fame</h3>
+<p class="mt-2 text-sm text-slate-300">Official listing for responsible disclosure →</p>
 </a>
 
-<a href="https://www.linkedin.com/posts/ashwin-vadakkeel_cybersecurity-responsibledisclosure-ethicalhacking-activity-7273920968874426369-vrK7"
-target="_blank" class="card block">
+<a href="https://www.linkedin.com/posts/ashwin-vadakkeel_cybersecurity-responsibledisclosure-ethicalhacking-activity-7273920968874426369-vrK7" target="_blank" class="card block">
 <h3 class="text-cyan-300">NCIIPC Acknowledgement</h3>
-<p class="mt-2 text-slate-300 text-sm">
-Proof of government acknowledgement for vulnerability disclosures →
-</p>
+<p class="mt-2 text-sm text-slate-300">Government acknowledgement proof →</p>
 </a>
 
-<a href="https://www.linkedin.com/posts/ashwin-vadakkeel_cybersecurity-diy-opensource-activity-7283806951489028096-0cCi"
-target="_blank" class="card block">
-<h3 class="text-cyan-300">Hardware Research Impact</h3>
-<p class="mt-2 text-slate-300 text-sm">
-2.1M+ impressions • 47K+ likes • 1K+ comments on research demo →
-</p>
+<a href="https://www.linkedin.com/posts/ashwin-vadakkeel_cybersecurity-diy-opensource-activity-7283806951489028096-0cCi" target="_blank" class="card block">
+<h3 class="text-cyan-300">Research Impact</h3>
+<p class="mt-2 text-sm text-slate-300">2.1M+ impressions research demo →</p>
 </a>
 
 </div>
-
 </section>
 
 <!-- EXPERIENCE -->
-<section class="max-w-6xl mx-auto py-20 px-4">
-
+<section class="container py-20">
 <h2 class="cyber text-3xl mb-8">EXPERIENCE</h2>
 
 <div class="card max-w-3xl">
 <h3 class="text-cyan-300 text-xl">Cybersecurity Analyst — Hazercloud Infotech</h3>
-<p class="text-slate-400 text-sm mt-1">Sep 2024 – Present • Kannur, Kerala</p>
-
-<ul class="mt-4 space-y-2 text-slate-300 text-sm">
-<li>• Perform web application pentesting across authentication flows, APIs, sessions and uploads.</li>
-<li>• Identify access-control flaws, input validation issues and security misconfigurations.</li>
-<li>• Produce structured vulnerability reports with CVSS scoring and remediation guidance.</li>
-<li>• Collaborate with developers to verify fixes and reduce exposure to risks.</li>
-<li>• Tested production education platforms, WooCommerce stores and custom e-commerce systems.</li>
+<p class="text-slate-400 text-sm mt-1">Sep 2024 – Present • Kannur</p>
+<ul class="mt-4 text-sm text-slate-300 space-y-2">
+<li>• Perform web application pentesting across authentication, APIs and sessions.</li>
+<li>• Identify access control flaws, validation issues and misconfigurations.</li>
+<li>• Produce structured vulnerability reports with CVSS scoring.</li>
+<li>• Collaborate with developers to verify fixes.</li>
 </ul>
 </div>
-
 </section>
 
-<!-- PROJECTS -->
-<section class="max-w-6xl mx-auto py-20 px-4">
-
-<h2 class="cyber text-3xl mb-8">GITHUB PROJECTS</h2>
-<div id="repos" class="grid md:grid-cols-3 gap-8"></div>
-
-</section>
-
-<!-- SKILLS -->
-<section class="max-w-6xl mx-auto py-20 px-4">
-
-<h2 class="cyber text-3xl mb-8">TECHNICAL SKILLS</h2>
+<!-- MENTOR -->
+<section class="container py-20">
+<h2 class="cyber text-3xl mb-8">MENTORSHIP & COMMUNITY</h2>
 
 <div class="grid md:grid-cols-2 gap-8">
 
 <div class="card">
-<h3 class="text-cyan-300 mb-2">Security Testing</h3>
-<p class="text-slate-300 text-sm">
-Web App Pentesting, API Security Testing, Access Control Validation,
-Network Enumeration, Security Misconfiguration Analysis.
+<h3 class="text-cyan-300">Lead Mentor — Future Summit 2025</h3>
+<p class="mt-2 text-sm text-slate-300">
+Led Cybersecurity War Room conducting live hardware demonstrations and guiding participants.
 </p>
 </div>
 
 <div class="card">
-<h3 class="text-cyan-300 mb-2">Tools</h3>
-<p class="text-slate-300 text-sm">
-Burp Suite, Nmap, Metasploit, SQLMap, Nikto, Nuclei,
-Hashcat, OWASP ZAP, Postman, Kali Linux, Git.
+<h3 class="text-cyan-300">Cybersecurity Workshops</h3>
+<p class="mt-2 text-sm text-slate-300">
+Delivered multiple hands-on workshops demonstrating web, hardware and attack-defense techniques.
 </p>
 </div>
 
 </div>
+</section>
 
+<!-- PROJECTS -->
+<section class="container py-20">
+<h2 class="cyber text-3xl mb-8">GITHUB PROJECTS</h2>
+<div id="repos" class="grid md:grid-cols-3 gap-8"></div>
 </section>
 
 <footer class="py-10 text-center text-slate-500">
 <p>SYSTEM STATUS: ONLINE</p>
 <p class="text-xs mt-2">Last updated: Aug 2026</p>
-<p class="text-xs mt-1">© 2026 Ashwin Vadakkeel</p>
 </footer>
 
 <script>
 
-const words=[
-"Web Application Pentester",
-"API Security Analyst",
-"Hardware Security Researcher",
-"Cybersecurity Mentor"
-];
-
+const words=["Web Application Pentester","API Security Analyst","Hardware Security Researcher","Cybersecurity Mentor"];
 let w=0,c=0,del=false;
-
 function type(){
 const el=document.getElementById("typing");
 const t=words[w];
-
-if(!del){
-el.textContent=t.slice(0,++c);
-if(c===t.length){del=true;setTimeout(type,1200);return;}
-}else{
-el.textContent=t.slice(0,--c);
-if(c===0){del=false;w=(w+1)%words.length;}
-}
-
+if(!del){el.textContent=t.slice(0,++c);if(c===t.length){del=true;setTimeout(type,1200);return}}
+else{el.textContent=t.slice(0,--c);if(c===0){del=false;w=(w+1)%words.length}}
 setTimeout(type,del?30:60);
 }
-
 type();
 
 fetch("https://api.github.com/users/hermit148/repos?sort=updated")
@@ -362,13 +261,10 @@ const a=document.createElement("a");
 a.href=d.html_url;
 a.target="_blank";
 a.className="card block";
-
 a.innerHTML=`
 <h3 class='text-cyan-300 text-lg font-semibold'>${d.name.replaceAll("-"," ")}</h3>
 <p class='mt-2 text-slate-300 text-sm'>${d.description||"Security repository"}</p>
-<p class='text-cyan-300 mt-3 text-sm'>★ ${d.stargazers_count} | 🍴 ${d.forks_count}</p>
-`;
-
+<p class='text-cyan-300 mt-3 text-sm'>★ ${d.stargazers_count} | 🍴 ${d.forks_count}</p>`;
 repos.appendChild(a);
 });
 });
