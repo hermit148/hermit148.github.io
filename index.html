@@ -3,151 +3,150 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ashwin | Offensive Security</title>
+<title>Ashwin Vadakkeel | Offensive Security</title>
 
 <link rel="icon" href="logo.png">
 <script src="https://cdn.tailwindcss.com"></script>
+
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
 
 <style>
 
+html{scroll-behavior:smooth}
+
 body{
- background: radial-gradient(circle at 20% 20%, #07111a, #02050a 60%);
- color:#e6f1ff;
- font-family:'JetBrains Mono',monospace;
- overflow-x:hidden;
+background: radial-gradient(circle at 20% 20%, #07111a, #02050a 60%);
+color:#e6f1ff;
+font-family:'JetBrains Mono',monospace;
+overflow-x:hidden;
 }
 
+/* cyber grid */
 body:before{
- content:"";
- position:fixed;
- inset:0;
- background-image:
- linear-gradient(rgba(0,255,255,.05) 1px, transparent 1px),
- linear-gradient(90deg, rgba(0,255,255,.05) 1px, transparent 1px);
- background-size:40px 40px;
- pointer-events:none;
+content:"";
+position:fixed;
+inset:0;
+background-image:
+linear-gradient(rgba(0,255,255,.05) 1px, transparent 1px),
+linear-gradient(90deg, rgba(0,255,255,.05) 1px, transparent 1px);
+background-size:40px 40px;
+pointer-events:none;
 }
 
-.container{
- max-width:1200px;
- margin:auto;
- padding:0 18px;
+/* titles */
+.cyber{
+font-family:'Orbitron',sans-serif;
+color:#00f7ff;
+text-shadow:0 0 12px #00f7ff,0 0 30px #00f7ff55;
 }
 
-/* TITLES */
-.cyber-title{
- font-family:'Orbitron',sans-serif;
- color:#00f7ff;
- text-shadow:0 0 12px #00f7ff,0 0 30px #00f7ff55;
+/* terminal typing */
+.terminal{
+height:1.4em;
+width:28ch;
+position:relative;
+overflow:hidden;
 }
-.neon{
- color:#ff2bd6;
- text-shadow:0 0 12px #ff2bd6aa;
+.terminal span{
+position:absolute;
+left:0;
+top:0;
+white-space:nowrap;
+color:#ff2bd6;
+text-shadow:0 0 12px #ff2bd6aa;
 }
-
-/* HERO LAYOUT — STABLE */
-.hero{
- display:flex;
- flex-wrap:wrap;
- align-items:flex-start;
- gap:60px;
-}
-
-.hero-left{
- flex:1 1 520px;
- min-height:420px; /* reserve space so nothing moves */
- position:relative;
-}
-
-.hero-right{
- flex:1 1 420px;
- display:flex;
- justify-content:center;
- align-items:flex-start;
-}
-
-/* TYPING — ABSOLUTE OVERLAY (NO REFLOW EVER) */
-.typing-box{
- position:relative;
- height:1.4em;
- margin-top:6px;
-}
-#typing{
- position:absolute;
- left:0;
- top:0;
- white-space:nowrap;
-}
-#typing:after{
- content:"_";
- margin-left:6px;
- animation:blink 1s infinite;
+.terminal span:after{
+content:"_";
+margin-left:6px;
+animation:blink 1s infinite;
 }
 @keyframes blink{
- 0%,50%,100%{opacity:1}
- 25%,75%{opacity:0}
+0%,50%,100%{opacity:1}
+25%,75%{opacity:0}
 }
 
-/* IMAGE — FIXED BOX */
-.image-frame{
- width:650px;
- max-width:100%;
- aspect-ratio:1/1;
- display:flex;
- align-items:center;
- justify-content:center;
- contain:layout paint size;
+/* HERO ART (NUCLEAR STABLE) */
+.hero-art{
+display:flex;
+justify-content:center;
+}
+.hero-box{
+width:650px;
+max-width:100%;
+aspect-ratio:1/1;
+position:relative;
+contain:layout paint size style;
+}
+.hero-img{
+position:absolute;
+inset:0;
+width:100%;
+height:100%;
+object-fit:contain;
+z-index:2;
+}
+.hero-glow{
+position:absolute;
+inset:0;
+background:url('logo.png') center/contain no-repeat;
+filter:drop-shadow(0 0 60px rgba(0,247,255,.45));
+animation:float 6s ease-in-out infinite;
+will-change:transform;
+transform:translate3d(0,0,0);
+}
+@keyframes float{
+0%,100%{transform:translate3d(0,0,0)}
+50%{transform:translate3d(0,-18px,0)}
 }
 
-.logo{
- width:100%;
- height:100%;
- object-fit:contain;
- filter:drop-shadow(0 0 45px rgba(0,247,255,.45));
- animation:floatLogo 6s ease-in-out infinite;
- will-change:transform;
- transform:translate3d(0,0,0);
- backface-visibility:hidden;
+/* cards */
+.card{
+background:rgba(3,10,18,.9);
+border:1px solid rgba(0,255,255,.25);
+padding:1.4rem;
+border-radius:14px;
+transition:.3s;
+}
+.card:hover{
+border-color:#00f7ff;
+box-shadow:0 0 25px rgba(0,247,255,.25);
+transform:translateY(-6px);
 }
 
-@keyframes floatLogo{
- 0%,100%{transform:translate3d(0,0,0)}
- 50%{transform:translate3d(0,-14px,0)}
-}
-
-/* UI */
-.badge{
- border:1px solid rgba(255,43,214,.4);
- background:rgba(255,43,214,.08);
- padding:5px 12px;
- display:inline-block;
- margin:4px;
- color:#ff7af3;
- border-radius:999px;
-}
+/* buttons */
 .btn{
- padding:10px 20px;
- border:1px solid #00f7ff;
- color:#00f7ff;
- border-radius:999px;
- transition:.3s;
+padding:10px 22px;
+border:1px solid #00f7ff;
+color:#00f7ff;
+border-radius:999px;
+transition:.25s;
 }
 .btn:hover{
- background:#00f7ff;
- color:black;
- box-shadow:0 0 20px #00f7ff;
+background:#00f7ff;
+color:black;
+box-shadow:0 0 20px #00f7ff;
 }
 
-/* BOOT */
-#bootScreen{
- position:fixed;
- inset:0;
- background:black;
- display:flex;
- align-items:center;
- justify-content:center;
- z-index:9999;
+/* boot screen */
+#boot{
+position:fixed;
+inset:0;
+background:black;
+display:flex;
+align-items:center;
+justify-content:center;
+z-index:9999;
+}
+
+/* reveal animation */
+.reveal{
+opacity:0;
+transform:translateY(30px);
+transition:all .8s ease;
+}
+.reveal.show{
+opacity:1;
+transform:none;
 }
 
 </style>
@@ -156,9 +155,9 @@ body:before{
 <body>
 
 <!-- BOOT -->
-<div id="bootScreen">
+<div id="boot">
 <div class="text-center">
-<div class="cyber-title text-xl md:text-2xl mb-5">
+<div class="cyber text-xl md:text-2xl mb-4">
 INITIALIZING HERMIT SECURITY INTERFACE
 </div>
 <div id="bootText" class="text-cyan-300 text-sm"></div>
@@ -166,54 +165,82 @@ INITIALIZING HERMIT SECURITY INTERFACE
 </div>
 
 <!-- NAV -->
-<header class="container flex justify-between items-center py-6">
+<header class="max-w-6xl mx-auto flex justify-between items-center py-6 px-4">
 <div class="flex items-center gap-3">
 <img src="logo.png" class="w-10">
-<div class="cyber-title text-lg">ASHWIN VADAKKEEL // HERMIT</div>
+<div class="cyber text-lg md:text-xl">ASHWIN // HERMIT</div>
+</div>
+
+<div class="hidden md:flex gap-6 text-cyan-200">
+<a href="#projects">projects</a>
+<a href="#about">about</a>
+<a href="#contact">contact</a>
 </div>
 </header>
 
 <!-- HERO -->
-<section class="container py-12 md:py-20 hero">
+<section class="max-w-6xl mx-auto flex flex-wrap items-start gap-16 py-16 px-4">
 
-<div class="hero-left">
+<div class="flex-1 min-w-[320px] max-w-[620px]">
 
-<h1 class="text-4xl md:text-7xl cyber-title leading-tight">
+<h1 class="text-4xl md:text-7xl cyber leading-tight">
 OFFENSIVE SECURITY
 </h1>
 
-<div class="typing-box text-2xl md:text-3xl neon">
+<div class="terminal mt-2 text-2xl md:text-3xl">
 <span id="typing"></span>
 </div>
 
 <p class="mt-4 text-cyan-300">
-Broadcom Hall of Fame • Govt acknowledged • Cybersecurity Mentor • 10K+ LinkedIn
+Broadcom Hall of Fame • Govt Acknowledged • Cybersecurity Mentor • LinkedIn 10K+
 </p>
 
-<p class="mt-6 text-slate-300 max-w-xl text-lg">
-Cybersecurity Analyst specializing in web & API pentesting, hardware research, and offensive security tooling.
+<p class="mt-6 text-slate-300 text-lg">
+Cybersecurity analyst specializing in Web & API pentesting, hardware hacking research, and offensive security tooling.
 </p>
-
-<div class="mt-6">
-<span class="badge">Web Pentesting</span>
-<span class="badge">API Security</span>
-<span class="badge">Hardware Research</span>
-<span class="badge">Cyber Workshops</span>
-</div>
 
 <div class="mt-8 flex gap-3 flex-wrap">
-<a href="https://github.com/hermit148" target="_blank" class="btn">GITHUB</a>
-<a href="https://linkedin.com/in/ashwin-vadakkeel" target="_blank" class="btn">LINKEDIN</a>
+<a href="https://github.com/hermit148" target="_blank" class="btn">GitHub</a>
+<a href="https://linkedin.com/in/ashwin-vadakkeel" target="_blank" class="btn">LinkedIn</a>
 </div>
 
 </div>
 
-<div class="hero-right">
-<div class="image-frame">
-<img src="logo.png" class="logo">
+<div class="hero-art flex-1 min-w-[300px]">
+<div class="hero-box">
+<img src="logo.png" class="hero-img">
+<div class="hero-glow"></div>
 </div>
 </div>
 
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="max-w-6xl mx-auto py-20 px-4 reveal">
+<h2 class="cyber text-3xl mb-10">TOOLS & RESEARCH</h2>
+<div id="repos" class="grid md:grid-cols-3 gap-8"></div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="max-w-6xl mx-auto py-20 px-4 reveal">
+<h2 class="cyber text-3xl mb-6">ABOUT</h2>
+<div class="card max-w-3xl">
+<p>
+Cybersecurity trainee and offensive security researcher experienced in
+web pentesting, API validation, hardware attack simulations,
+NetHunter demonstrations, and cybersecurity workshops.
+</p>
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="max-w-6xl mx-auto py-20 px-4 reveal">
+<h2 class="cyber text-3xl mb-6">CONTACT</h2>
+<div class="card max-w-xl">
+<p>Kerala, India</p>
+<p>GitHub: hermit148</p>
+<p>LinkedIn: ashwin-vadakkeel</p>
+</div>
 </section>
 
 <footer class="py-10 text-center text-slate-500">
@@ -223,47 +250,66 @@ SYSTEM STATUS: ONLINE
 <script>
 
 /* boot */
-const lines=[
+const bootLines=[
 "[ OK ] Loading modules...",
 "[ OK ] Initializing network...",
 "[ OK ] Mounting toolkit...",
 "[ OK ] Access granted"
 ];
-let i=0;
-function boot(){
- if(i<lines.length){
-  bootText.innerHTML+=lines[i]+"<br>";
-  i++; setTimeout(boot,450);
- }
-}
-boot();
-window.addEventListener("load",()=>{
- setTimeout(()=>bootScreen.remove(),3000);
-});
+let bi=0;
+function bootRun(){
+if(bi<bootLines.length){
+bootText.innerHTML+=bootLines[bi]+"<br>";
+bi++;setTimeout(bootRun,450);
+}}
+bootRun();
+window.addEventListener("load",()=>setTimeout(()=>boot.remove(),3000));
 
-/* typing — layout safe */
+/* typing */
 const words=[
 "Web & API Pentester",
 "Hardware Security Researcher",
 "Cybersecurity Mentor"
 ];
 let w=0,c=0,del=false;
-
 function type(){
 const el=typing;
 const t=words[w];
-
 if(!del){
- el.textContent=t.slice(0,++c);
- if(c===t.length){del=true;setTimeout(type,1300);return;}
+el.textContent=t.slice(0,++c);
+if(c===t.length){del=true;setTimeout(type,1300);return;}
 }else{
- el.textContent=t.slice(0,--c);
- if(c===0){del=false;w=(w+1)%words.length;}
+el.textContent=t.slice(0,--c);
+if(c===0){del=false;w=(w+1)%words.length;}
 }
-
 setTimeout(type,del?30:60);
 }
 type();
+
+/* auto github repos */
+fetch("https://api.github.com/users/hermit148/repos?sort=updated")
+.then(r=>r.json())
+.then(data=>{
+data.slice(0,6).forEach(d=>{
+const a=document.createElement("a");
+a.href=d.html_url;
+a.target="_blank";
+a.className="card block";
+a.innerHTML=`
+<h3 class='text-cyan-300 text-lg'>${d.name}</h3>
+<p class='mt-2 text-slate-300 text-sm'>${d.description||"Security repository"}</p>
+<p class='text-cyan-300 mt-3 text-sm'>★ ${d.stargazers_count} | 🍴 ${d.forks_count}</p>`;
+repos.appendChild(a);
+});
+});
+
+/* reveal on scroll */
+const obs=new IntersectionObserver(entries=>{
+entries.forEach(e=>{
+if(e.isIntersecting)e.target.classList.add("show");
+});
+});
+document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
 
 </script>
 
