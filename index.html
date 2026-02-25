@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 
@@ -6,14 +7,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ashwin Vadakkeel | Cybersecurity Analyst</title>
 
+<meta name="description" content="Ashwin Vadakkeel - Cybersecurity Analyst specializing in Web Application Pentesting, API Security, Hardware Security Research and Responsible Disclosure.">
+
 <link rel="icon" href="logo.png">
+
 <script src="https://cdn.tailwindcss.com"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
 
 <style>
-
-/* ---------- BASE ---------- */
 
 body{
 background:
@@ -41,6 +46,7 @@ padding:1.4rem;border-radius:14px;
 transition:.35s;
 opacity:0;
 transform:translateY(25px);
+backdrop-filter: blur(6px);
 }
 .card.visible{opacity:1;transform:none;}
 
@@ -73,8 +79,6 @@ color:#ff7af3;
 font-size:12px;
 }
 
-/* ---------- HERO IMAGE ---------- */
-
 .hero-box{
 position:relative;
 width:100%;
@@ -105,16 +109,12 @@ border-radius:20px;
 box-shadow:0 0 40px rgba(0,247,255,.25);
 }
 
-/* ---------- SECTION ---------- */
-
 section{border-top:1px solid rgba(0,255,255,.08)}
 
 .terminal{height:1.4em;max-width:28ch;overflow:hidden;position:relative}
 .terminal span{position:absolute;white-space:nowrap;color:#ff2bd6;text-shadow:0 0 12px #ff2bd6aa;}
 .terminal span:after{content:"_";margin-left:6px;animation:blink 1s infinite;}
 @keyframes blink{0%,50%,100%{opacity:1}25%,75%{opacity:0}}
-
-/* ---------- MOBILE FIX ---------- */
 
 img{max-width:100%;height:auto;display:block;}
 
@@ -131,21 +131,9 @@ text-align:center;
 gap:28px;
 }
 
-.hero-box{
-max-width:240px;
-margin-top:15px;
-}
-
-.btn{
-width:100%;
-max-width:260px;
-margin:auto;
-}
-
-.md\:grid-cols-2,
-.md\:grid-cols-3{
-grid-template-columns:1fr !important;
-}
+.hero-box{max-width:240px;margin-top:15px;}
+.btn{width:100%;max-width:260px;margin:auto;}
+.md\:grid-cols-2,.md\:grid-cols-3{grid-template-columns:1fr !important;}
 
 }
 
@@ -155,17 +143,16 @@ h1{font-size:26px !important;line-height:1.2;}
 }
 
 </style>
+
 </head>
 
 <body>
 
-<!-- HEADER -->
-<header class="container py-5 flex items-center gap-3">
+<header class="container py-5 flex items-center justify-between gap-3">
 <img src="logo.png" class="w-10 h-10 object-contain">
 <div class="cyber text-xl">ASHWIN VADAKKEEL</div>
 </header>
 
-<!-- HERO -->
 <section class="container flex flex-col md:flex-row items-center gap-10 py-10">
 
 <div class="flex-1">
@@ -180,8 +167,10 @@ h1{font-size:26px !important;line-height:1.2;}
 <span class="badge">🎓 CEH Certified</span>
 <span class="badge">🏆 Broadcom Hall of Fame 2025</span>
 <span class="badge">🇮🇳 NCIIPC Acknowledged</span>
-<span class="badge">🎥Content Creator</span>
+<span class="badge">🎥 Content Creator</span>
 <span class="badge">👥 12K+ LinkedIn Followers</span>
+<span class="badge">🔐 Web & API Pentester</span>
+<span class="badge">🛠 Hardware Security Research</span>
 </div>
 
 <p class="mt-6 text-slate-300 max-w-xl mx-auto md:mx-0">
@@ -189,7 +178,7 @@ Cybersecurity Analyst specializing in Web Application Penetration Testing, API s
 </p>
 
 <div class="mt-6 flex gap-3 flex-wrap justify-center md:justify-start">
-<a href="https://linkedin.com/in/ashwin-vadakkeel" target="_blank" class="btn">⬇ Resume</a>
+<a href="resume.pdf" target="_blank" class="btn">⬇ Resume</a>
 <a href="https://github.com/hermit148" target="_blank" class="btn">GitHub</a>
 <a href="https://linkedin.com/in/ashwin-vadakkeel" target="_blank" class="btn">LinkedIn</a>
 </div>
@@ -198,13 +187,12 @@ Cybersecurity Analyst specializing in Web Application Penetration Testing, API s
 
 <div class="flex-1 flex justify-center">
 <div class="hero-box">
-<img src="profile.png" class="hero-img">
+<img src="profile.png" class="hero-img" loading="lazy" decoding="async">
 </div>
 </div>
 
 </section>
 
-<!-- ABOUT -->
 <section class="container py-12">
 <h2 class="cyber text-2xl mb-6">ABOUT</h2>
 <div class="card max-w-2xl">
@@ -220,7 +208,6 @@ Cybersecurity Analyst specializing in Web Application Penetration Testing, API s
 </div>
 </section>
 
-<!-- RECOGNITIONS -->
 <section class="container py-12">
 <h2 class="cyber text-2xl mb-6">RECOGNITIONS</h2>
 <div class="grid md:grid-cols-3 gap-6">
@@ -243,7 +230,6 @@ Cybersecurity Analyst specializing in Web Application Penetration Testing, API s
 </div>
 </section>
 
-<!-- EXPERIENCE -->
 <section class="container py-12">
 <h2 class="cyber text-2xl mb-6">EXPERIENCE</h2>
 <div class="card max-w-3xl">
@@ -258,7 +244,6 @@ Cybersecurity Analyst specializing in Web Application Penetration Testing, API s
 </div>
 </section>
 
-<!-- MENTORSHIP -->
 <section class="container py-12">
 <h2 class="cyber text-2xl mb-6">MENTORSHIP & COMMUNITY</h2>
 <div class="grid md:grid-cols-2 gap-6">
@@ -287,7 +272,6 @@ Conducted multiple cybersecurity awareness sessions and guest lectures for colle
 </div>
 </section>
 
-<!-- PROJECTS -->
 <section class="container py-12">
 <h2 class="cyber text-2xl mb-6">GITHUB PROJECTS</h2>
 <div id="repos" class="grid md:grid-cols-3 gap-6"></div>
@@ -300,7 +284,6 @@ SYSTEM STATUS: ONLINE<br>
 
 <script>
 
-/* typing */
 const words=["Web Application Pentester","API Security Analyst","Hardware Security Researcher","Cybersecurity Mentor"];
 let w=0,c=0,del=false;
 function type(){
@@ -312,16 +295,16 @@ setTimeout(type,del?30:60);
 }
 type();
 
-/* scroll reveal */
 const obs=new IntersectionObserver(e=>{
 e.forEach(x=>{if(x.isIntersecting)x.target.classList.add("visible");});
 },{threshold:.15});
 document.querySelectorAll(".card").forEach(el=>obs.observe(el));
 
-/* github repos */
-fetch("https://api.github.com/users/hermit148/repos?per_page=100")
-.then(r=>r.json())
-.then(data=>{
+async function loadRepos(){
+try{
+const r=await fetch("https://api.github.com/users/hermit148/repos?per_page=100");
+if(!r.ok) throw new Error("rate limit");
+let data=await r.json();
 data=data.filter(repo=>!repo.fork);
 data.sort((a,b)=>new Date(b.updated_at)-new Date(a.updated_at));
 data.forEach(d=>{
@@ -334,7 +317,11 @@ a.innerHTML=`<h3 class='text-cyan-300 text-lg'>${d.name.replaceAll("-"," ")}</h3
 <p class='text-cyan-300 mt-3 text-sm'>★ ${d.stargazers_count} | 🍴 ${d.forks_count}</p>`;
 document.getElementById("repos").appendChild(a);
 });
-});
+}catch(e){
+document.getElementById("repos").innerHTML="<p class='text-slate-400'>GitHub projects unavailable right now.</p>";
+}
+}
+loadRepos();
 
 </script>
 
