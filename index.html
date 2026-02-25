@@ -23,10 +23,7 @@ overflow-x:hidden;
 opacity:1;
 }
 
-body.reveal{animation:pageReveal 1s ease forwards;}
-@keyframes pageReveal{from{opacity:.6}to{opacity:1}}
-
-.container{max-width:1150px;margin:auto;padding:0 20px;}
+.container{max-width:1150px;margin:auto;padding:0 20px}
 
 .cyber{
 font-family:'Orbitron',sans-serif;
@@ -138,22 +135,17 @@ width:240px;height:5px;background:#07111a;border-radius:999px;margin-top:20px;ov
 }
 #boot-progress{height:100%;width:0%;background:#00f7ff;transition:.3s;}
 
-.fade-out{animation:fade 1s forwards}
-@keyframes fade{to{opacity:0;visibility:hidden}}
-
 section{border-top:1px solid rgba(0,255,255,.08)}
 
 .terminal{height:1.4em;max-width:28ch;overflow:hidden;position:relative}
 .terminal span{position:absolute;white-space:nowrap;color:#ff2bd6;text-shadow:0 0 12px #ff2bd6aa;}
 .terminal span:after{content:"_";margin-left:6px;animation:blink 1s infinite;}
 
-/* MOBILE */
+/* ===== MOBILE FIX ===== */
 
 @media(max-width:768px){
 
-.container{padding:0 16px}
-
-header{flex-direction:column;text-align:center;gap:8px;}
+header{flex-direction:column;text-align:center;gap:10px;}
 
 section.container.flex{
 flex-direction:column !important;
@@ -161,9 +153,19 @@ text-align:center;
 gap:30px;
 }
 
-.hero-box{max-width:260px;margin:auto;}
-.hero-img{animation:none;}
-#heroParticles{display:none;}
+.hero-box{
+max-width:260px;
+margin:20px auto 0;
+}
+
+.hero-img{
+position:relative !important;
+animation:none !important;
+transform:none !important;
+filter:none !important;
+}
+
+#heroParticles{display:none !important;}
 
 .md\:grid-cols-2,
 .md\:grid-cols-3{
@@ -172,13 +174,6 @@ grid-template-columns:1fr !important;
 
 .btn{width:100%;max-width:260px;margin:auto;}
 
-}
-
-@media(max-width:480px){
-h1{font-size:26px !important;}
-.hero-box{max-width:220px;}
-.badge{font-size:10px;padding:5px 10px;}
-.card{padding:1rem;}
 }
 
 </style>
@@ -210,7 +205,7 @@ h1{font-size:26px !important;}
 <span id="typing"></span>
 </div>
 
-<div class="mt-4 flex flex-wrap">
+<div class="mt-4 flex flex-wrap justify-center md:justify-start">
 <span class="badge">🎓 CEH Certified</span>
 <span class="badge">🏆 Broadcom Hall of Fame 2025</span>
 <span class="badge">🇮🇳 NCIIPC Acknowledged</span>
@@ -218,11 +213,11 @@ h1{font-size:26px !important;}
 <span class="badge">👥 12K+ LinkedIn Followers</span>
 </div>
 
-<p class="mt-6 text-slate-300 max-w-xl">
+<p class="mt-6 text-slate-300 max-w-xl mx-auto md:mx-0">
 Cybersecurity Analyst specializing in Web Application Penetration Testing, API security, and vulnerability validation. Currently working at Hazercloud Infotech.
 </p>
 
-<div class="mt-6 flex gap-3 flex-wrap">
+<div class="mt-6 flex gap-3 flex-wrap justify-center md:justify-start">
 <a href="https://linkedin.com/in/ashwin-vadakkeel" target="_blank" class="btn">⬇ Resume</a>
 <a href="https://github.com/hermit148" target="_blank" class="btn">GitHub</a>
 <a href="https://linkedin.com/in/ashwin-vadakkeel" target="_blank" class="btn">LinkedIn</a>
@@ -336,7 +331,7 @@ SYSTEM STATUS: ONLINE<br>
 
 document.addEventListener("DOMContentLoaded", function(){
 
-/* INTRO */
+/* BOOT */
 
 const bootLines=[
 "Booting secure portfolio...",
@@ -359,13 +354,7 @@ el.textContent+="\n";li++;ch=0;
 prog.style.width=((li/bootLines.length)*100)+"%";
 setTimeout(typeBoot,250);
 }
-}else{setTimeout(endBoot,600);}
-}
-
-function endBoot(){
-document.getElementById("boot").classList.add("fade-out");
-document.body.classList.add("reveal");
-typeHero();
+}else{setTimeout(()=>document.getElementById("boot").style.display="none",600);}
 }
 
 typeBoot();
@@ -394,35 +383,34 @@ if(cc===0){del=false;w=(w+1)%words.length;}
 setTimeout(typeHero,del?30:60);
 }
 
+typeHero();
+
 /* PARTICLES desktop only */
 
 if(window.innerWidth>768){
 const canvas=document.getElementById("heroParticles");
 const ctx=canvas.getContext("2d");
-function resize(){canvas.width=canvas.offsetWidth;canvas.height=canvas.offsetHeight;}
-resize();window.addEventListener("resize",resize);
+canvas.width=canvas.offsetWidth;
+canvas.height=canvas.offsetHeight;
 
 const particles=[];
 for(let i=0;i<40;i++){
-particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*1.8+.6,vx:(Math.random()-.5)*.25,vy:(Math.random()-.5)*.25});
+particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*2});
 }
 
-function draw(){
+(function draw(){
 ctx.clearRect(0,0,canvas.width,canvas.height);
 particles.forEach(p=>{
-p.x+=p.vx;p.y+=p.vy;
-if(p.x<0||p.x>canvas.width)p.vx*=-1;
-if(p.y<0||p.y>canvas.height)p.vy*=-1;
-ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+ctx.beginPath();
+ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
 ctx.fillStyle="rgba(0,247,255,.7)";
 ctx.fill();
 });
 requestAnimationFrame(draw);
-}
-draw();
+})();
 }
 
-/* AUTO GITHUB */
+/* GITHUB */
 
 fetch("https://api.github.com/users/hermit148/repos?per_page=100")
 .then(r=>r.json())
