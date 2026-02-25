@@ -7,35 +7,18 @@
 
 <title>Ashwin Vadakkeel | Cybersecurity Analyst</title>
 
-<meta name="description" content="Cybersecurity Analyst specializing in web pentesting, API security, hardware research, and responsible disclosure. Recognized by NCIIPC and Broadcom PSIRT.">
-
 <link rel="icon" href="logo.png">
-<link rel="apple-touch-icon" href="logo.png">
-
 <script src="https://cdn.tailwindcss.com"></script>
 
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
 
 <style>
 
-html{scroll-behavior:smooth}
-
 body{
 background: radial-gradient(circle at 20% 20%, #07111a, #02050a 60%);
 color:#e6f1ff;
 font-family:'JetBrains Mono',monospace;
 overflow-x:hidden;
-}
-
-body:before{
-content:"";
-position:fixed;
-inset:0;
-background-image:
-linear-gradient(rgba(0,255,255,.05) 1px, transparent 1px),
-linear-gradient(90deg, rgba(0,255,255,.05) 1px, transparent 1px);
-background-size:40px 40px;
-pointer-events:none;
 }
 
 .container{max-width:1150px;margin:auto;padding:0 20px;}
@@ -45,6 +28,23 @@ font-family:'Orbitron',sans-serif;
 color:#00f7ff;
 text-shadow:0 0 12px #00f7ff,0 0 30px #00f7ff55;
 }
+
+.card{
+background:rgba(3,10,18,.92);
+border:1px solid rgba(0,255,255,.25);
+padding:1.4rem;border-radius:14px;transition:.3s;
+}
+.card:hover{
+border-color:#00f7ff;
+box-shadow:0 0 25px rgba(0,247,255,.25);
+transform:translateY(-5px);
+}
+
+.btn{
+padding:10px 22px;border:1px solid #00f7ff;color:#00f7ff;
+border-radius:999px;transition:.25s;font-size:14px;
+}
+.btn:hover{background:#00f7ff;color:black;box-shadow:0 0 18px #00f7ff}
 
 .badge{
 border:1px solid rgba(255,43,214,.4);
@@ -57,82 +57,39 @@ color:#ff7af3;
 font-size:12px;
 }
 
-.terminal{height:1.4em;width:100%;max-width:28ch;position:relative;overflow:hidden;}
-.terminal span{position:absolute;white-space:nowrap;color:#ff2bd6;text-shadow:0 0 12px #ff2bd6aa;}
-.terminal span:after{content:"_";margin-left:6px;animation:blink 1s infinite;}
-@keyframes blink{0%,50%,100%{opacity:1}25%,75%{opacity:0}}
-
+/* hero image FIX */
 .hero-box{
 width:100%;
 max-width:520px;
 aspect-ratio:1/1;
 position:relative;
-
-/* smooth fade into background */
-mask-image:radial-gradient(circle at center,
-rgba(0,0,0,1) 60%,
-rgba(0,0,0,.7) 75%,
-rgba(0,0,0,0) 100%);
--webkit-mask-image:radial-gradient(circle at center,
-rgba(0,0,0,1) 60%,
-rgba(0,0,0,.7) 75%,
-rgba(0,0,0,0) 100%);
 }
-
-@media(min-width:1024px){
-.hero-box{max-width:650px;}
-}
-
 .hero-img{
 position:absolute;
 inset:0;
 width:100%;
 height:100%;
 object-fit:cover;
-z-index:2;
-animation:float 8s ease-in-out infinite;
-border-radius:20px;
-
-/* cyber blend look */
-filter:
-contrast(1.05)
-brightness(.95)
-drop-shadow(0 0 60px rgba(0,247,255,.25));
-
-mix-blend-mode:lighten;
-opacity:.95;
+border-radius:22px;
+transition:.15s;
+filter:contrast(1.05) brightness(.95);
 }
 
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+/* intro */
+#boot{
+position:fixed;inset:0;background:#02050a;
+display:flex;flex-direction:column;align-items:center;justify-content:center;
+z-index:9999;
+}
+#boot img{
+width:130px;
+margin-bottom:25px;
+filter:drop-shadow(0 0 25px #00f7ff);
+}
+#boot-text{color:#00f7ff;white-space:pre}
+.fade-out{animation:fade 1s forwards}
+@keyframes fade{to{opacity:0;visibility:hidden}}
 
-.card{
-background:rgba(3,10,18,.92);
-border:1px solid rgba(0,255,255,.25);
-padding:1.4rem;
-border-radius:14px;
-transition:.3s;
-}
-.card:hover{
-border-color:#00f7ff;
-box-shadow:0 0 25px rgba(0,247,255,.25);
-transform:translateY(-5px);
-}
-
-.btn{
-padding:10px 22px;
-border:1px solid #00f7ff;
-color:#00f7ff;
-border-radius:999px;
-transition:.25s;
-font-size:14px;
-}
-.btn:hover{
-background:#00f7ff;
-color:black;
-box-shadow:0 0 18px #00f7ff;
-}
-
-.masked{letter-spacing:1px;color:#9ca3af}
 section{border-top:1px solid rgba(0,255,255,.08)}
 
 </style>
@@ -140,38 +97,36 @@ section{border-top:1px solid rgba(0,255,255,.08)}
 
 <body>
 
-<header class="container flex justify-between items-center py-6">
-<div class="flex items-center gap-3">
-<img src="logo.png" class="w-10">
-<div class="cyber text-lg md:text-xl">ASHWIN VADAKKEEL</div>
+<!-- INTRO -->
+<div id="boot">
+<img src="logo.png">
+<div id="boot-text"></div>
 </div>
+
+<header class="container py-5 flex items-center gap-3">
+<img src="logo.png" class="w-10 h-10 object-contain">
+<div class="cyber text-xl">ASHWIN VADAKKEEL</div>
 </header>
 
 <!-- HERO -->
-<section class="container flex flex-col-reverse md:flex-row items-center justify-between gap-12 py-16">
+<section class="container flex flex-col md:flex-row items-center gap-10 py-10">
 
-<div class="w-full md:flex-1">
+<div class="flex-1">
 
-<h1 class="text-3xl sm:text-4xl md:text-6xl cyber leading-tight">
-CYBERSECURITY ANALYST
-</h1>
-
-<div class="terminal mt-2 text-xl md:text-2xl">
-<span id="typing"></span>
-</div>
+<h1 class="text-4xl md:text-6xl cyber">CYBERSECURITY ANALYST</h1>
 
 <div class="mt-4 flex flex-wrap">
 <span class="badge">🇮🇳 NCIIPC Acknowledged</span>
 <span class="badge">🏆 Broadcom Hall of Fame 2025</span>
+<span class="badge">🎓 CEH Certified</span>
 <span class="badge">👥 12K+ LinkedIn Followers</span>
 </div>
 
-<p class="mt-6 text-slate-300 text-base md:text-lg max-w-xl">
-Cybersecurity Analyst specializing in Web Application Penetration Testing,
-API security, and vulnerability validation. Currently working at Hazercloud Infotech.
+<p class="mt-6 text-slate-300 max-w-xl">
+Cybersecurity Analyst specializing in Web Application Penetration Testing, API security, and vulnerability validation. Currently working at Hazercloud Infotech.
 </p>
 
-<div class="mt-8 flex flex-wrap gap-3">
+<div class="mt-6 flex gap-3 flex-wrap">
 <a href="resume.pdf" download class="btn">⬇ Resume</a>
 <a href="https://github.com/hermit148" target="_blank" class="btn">GitHub</a>
 <a href="https://linkedin.com/in/ashwin-vadakkeel" target="_blank" class="btn">LinkedIn</a>
@@ -179,29 +134,28 @@ API security, and vulnerability validation. Currently working at Hazercloud Info
 
 </div>
 
-<!-- PROFILE IMAGE RIGHT -->
-<div class="w-full md:flex-1 flex justify-center">
-<div class="hero-box">
-<img src="profile.png" class="hero-img">
+<div class="flex-1 flex justify-center">
+<div class="hero-box" id="heroBox">
+<img src="profile.png" class="hero-img" id="heroImg">
 </div>
 </div>
 
 </section>
 
 <!-- ABOUT -->
-<section class="container py-16">
-<h2 class="cyber text-2xl md:text-3xl mb-6">ABOUT</h2>
+<section class="container py-12">
+<h2 class="cyber text-2xl mb-6">ABOUT</h2>
 
 <div class="card max-w-2xl">
+
 <p>
-Cybersecurity Analyst focused on web pentesting, API validation,
-hardware security research, and responsible disclosure.
+Cybersecurity Analyst focused on web pentesting, API validation, hardware security research, and responsible disclosure.
 </p>
 
-<div class="mt-5 space-y-2 text-sm">
+<div class="mt-4 text-sm space-y-2">
 <p><strong>Location:</strong> Kannur, Kerala, India</p>
-<p><strong>Email:</strong> <span class="masked">ashwi************@gmail.com</span></p>
-<p><strong>Phone:</strong> <span class="masked">9*6*5*****</span></p>
+<p><strong>Email:</strong> ashwi************@gmail.com</p>
+<p><strong>Phone:</strong> 9*6*5*****</p>
 </div>
 
 <p class="mt-4 text-xs text-slate-400">
@@ -212,10 +166,10 @@ LinkedIn community: 12K+ followers • Research demo reached 2.1M+ impressions
 </section>
 
 <!-- RECOGNITIONS -->
-<section class="container py-16">
-<h2 class="cyber text-2xl md:text-3xl mb-6">RECOGNITIONS</h2>
+<section class="container py-12">
+<h2 class="cyber text-2xl mb-6">RECOGNITIONS</h2>
 
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="grid md:grid-cols-3 gap-6">
 
 <a href="https://www.broadcom.com/support/security-center/security-thanks" target="_blank" class="card block">
 <h3 class="text-cyan-300">Broadcom PSIRT Hall of Fame</h3>
@@ -235,93 +189,94 @@ LinkedIn community: 12K+ followers • Research demo reached 2.1M+ impressions
 </div>
 </section>
 
-<!-- EXPERIENCE -->
-<section class="container py-16">
-<h2 class="cyber text-2xl md:text-3xl mb-6">EXPERIENCE</h2>
-
-<div class="card max-w-3xl">
-<h3 class="text-cyan-300 text-lg md:text-xl">Cybersecurity Analyst — Hazercloud Infotech</h3>
-<p class="text-slate-400 text-xs md:text-sm mt-1">Sep 2024 – Present • Kannur</p>
-
-<ul class="mt-4 text-sm text-slate-300 space-y-2">
-<li>• Perform web application pentesting across authentication, APIs and sessions.</li>
-<li>• Identify access control flaws, validation issues and misconfigurations.</li>
-<li>• Produce structured vulnerability reports with CVSS scoring.</li>
-<li>• Collaborate with developers to verify fixes.</li>
-</ul>
-</div>
-
-</section>
-
 <!-- MENTORSHIP -->
-<section class="container py-16">
-<h2 class="cyber text-2xl md:text-3xl mb-6">MENTORSHIP & COMMUNITY</h2>
+<section class="container py-12">
+<h2 class="cyber text-2xl mb-6">MENTORSHIP & COMMUNITY</h2>
 
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="grid md:grid-cols-2 gap-6">
 
-<div class="card">
+<a href="https://www.linkedin.com/posts/ashwin-vadakkeel_futuresummit-cybersecurity-realtimeattacks-activity-7289909800564359168-nA_n" target="_blank" class="card block">
 <h3 class="text-cyan-300">Lead Mentor — Cybersecurity War Room</h3>
-<p class="text-slate-400 text-xs mt-1">IEDC Summit 2026</p>
 <p class="mt-3 text-sm text-slate-300">
-Demonstrated hardware attack simulations using Flipper Zero, Wi-Fi Deauther,
-BadUSB devices, Kali NetHunter setups, M5Stick tools and embedded hardware platforms.
+Demonstrated hardware attack simulations using Flipper Zero, Wi-Fi Deauther, BadUSB devices, Kali NetHunter setups, M5Stick tools and embedded hardware platforms.
 </p>
-</div>
+<p class="mt-3 text-xs text-cyan-300">View proof →</p>
+</a>
 
-<div class="card">
-<h3 class="text-cyan-300">Future Summit Cybersecurity War Room</h3>
+<a href="https://www.linkedin.com/posts/ashwin-vadakkeel_cybersecurity-hardwarehacking-iedcsummit-activity-7421250049134895104-FEGH" target="_blank" class="card block">
+<h3 class="text-cyan-300">IEDC Summit — Hardware Security Demo</h3>
 <p class="mt-3 text-sm text-slate-300">
-Conducted live hardware demonstrations and guided participants through
-real-world attack simulations and defensive practices.
+Conducted hands-on demonstrations showcasing real-time attack simulations and embedded cybersecurity research tools.
 </p>
-</div>
+<p class="mt-3 text-xs text-cyan-300">View proof →</p>
+</a>
+
+<a href="https://www.linkedin.com/posts/ashwin-vadakkeel_cybersecurity-guestlecture-alumnipride-activity-7407760075827609600-casR" target="_blank" class="card block md:col-span-2">
+<h3 class="text-cyan-300">Guest Lectures & College Cybersecurity Sessions</h3>
+<p class="mt-3 text-sm text-slate-300">
+Conducted multiple cybersecurity awareness sessions and guest lectures for college students covering ethical hacking, web security risks, hardware attacks, and cybersecurity career guidance.
+</p>
+<p class="mt-3 text-xs text-cyan-300">View proof →</p>
+</a>
 
 </div>
-
 </section>
 
 <!-- PROJECTS -->
-<section class="container py-16">
-<h2 class="cyber text-2xl md:text-3xl mb-6">GITHUB PROJECTS</h2>
-<div id="repos" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"></div>
+<section class="container py-12">
+<h2 class="cyber text-2xl mb-6">GITHUB PROJECTS</h2>
+<div id="repos" class="grid md:grid-cols-3 gap-6"></div>
 </section>
 
-<footer class="py-8 text-center text-slate-500 text-sm">
+<footer class="py-6 text-center text-slate-500 text-sm">
 SYSTEM STATUS: ONLINE<br>
-<span class="text-xs">Last updated: Aug 2026</span>
+<span class="text-xs">Last updated: 2026</span>
 </footer>
 
 <script>
 
-const words=[
-"Web Application Pentester",
-"API Security Analyst",
-"Hardware Security Researcher",
-"Cybersecurity Mentor"
+/* intro typing */
+const lines=[
+"Booting secure portfolio...",
+"Loading Ashwin Vadakkeel modules...",
+"Access granted."
 ];
-
-let w=0,c=0,del=false;
-
+let i=0,c=0,el=document.getElementById("boot-text");
 function type(){
-const el=document.getElementById("typing");
-const t=words[w];
-if(!del){el.textContent=t.slice(0,++c);if(c===t.length){del=true;setTimeout(type,1200);return}}
-else{el.textContent=t.slice(0,--c);if(c===0){del=false;w=(w+1)%words.length}}
-setTimeout(type,del?30:60);
-}
+if(i<lines.length){
+if(c<lines[i].length){el.textContent+=lines[i][c++];setTimeout(type,20);}
+else{el.textContent+="\n";i++;c=0;setTimeout(type,300);}
+}else{
+setTimeout(()=>document.getElementById("boot").classList.add("fade-out"),500);
+}}
 type();
 
-fetch("https://api.github.com/users/hermit148/repos?sort=updated")
+/* hero glow */
+const heroBox=document.getElementById("heroBox");
+const heroImg=document.getElementById("heroImg");
+
+heroBox.addEventListener("mousemove",(e)=>{
+const r=heroBox.getBoundingClientRect();
+const x=(e.clientX-r.left)/r.width;
+const y=(e.clientY-r.top)/r.height;
+heroImg.style.filter=`drop-shadow(${(x-.5)*40}px ${(y-.5)*40}px 60px rgba(0,247,255,.35))`;
+});
+heroBox.addEventListener("mouseleave",()=>heroImg.style.filter="");
+
+/* auto github repos */
+fetch("https://api.github.com/users/hermit148/repos?per_page=100")
 .then(r=>r.json())
 .then(data=>{
-data.slice(0,6).forEach(d=>{
+data=data.filter(repo=>!repo.fork);
+data.sort((a,b)=>new Date(b.updated_at)-new Date(a.updated_at));
+data.forEach(d=>{
 const a=document.createElement("a");
 a.href=d.html_url;
 a.target="_blank";
 a.className="card block";
 a.innerHTML=`
-<h3 class='text-cyan-300 text-lg font-semibold'>${d.name.replaceAll("-"," ")}</h3>
-<p class='mt-2 text-slate-300 text-sm'>${d.description||"Security repository"}</p>
+<h3 class='text-cyan-300 text-lg'>${d.name.replaceAll("-"," ")}</h3>
+<p class='mt-2 text-sm text-slate-300'>${d.description||"Security repository"}</p>
 <p class='text-cyan-300 mt-3 text-sm'>★ ${d.stargazers_count} | 🍴 ${d.forks_count}</p>`;
 repos.appendChild(a);
 });
