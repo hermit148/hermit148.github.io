@@ -1,358 +1,871 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ashwin | CyberSecurity</title>
+    <link rel="icon" href="logo.png">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;900&family=JetBrains+Mono:wght@300;400;700&display=swap"
+        rel="stylesheet">
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ashwin Vadakkeel | Cybersecurity Analyst</title>
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-<link rel="icon" href="logo.png">
-<script src="https://cdn.tailwindcss.com"></script>
+        :root {
+            --cyan: #00f7ff;
+            --pink: #ff2bd6;
+            --bg: #02050a;
+            --card-bg: rgba(3, 10, 18, .75);
+            --text: #e6f1ff;
+            --subtle: #8892b0;
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+        html {
+            scroll-behavior: smooth;
+        }
 
-<style>
+        body {
+            background: radial-gradient(ellipse at 15% 15%, #071420, var(--bg) 65%);
+            color: var(--text);
+            font-family: 'JetBrains Mono', monospace;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
 
-/* ===== BACKGROUND GRID ===== */
+        /* ── Cyber grid overlay ── */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(0, 255, 255, .04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, .04) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+            z-index: 0;
+        }
 
-body{
-background:
-linear-gradient(rgba(0,247,255,.05) 1px, transparent 1px),
-linear-gradient(90deg, rgba(0,247,255,.05) 1px, transparent 1px),
-radial-gradient(circle at 20% 20%, #07111a, #02050a 60%);
-background-size:40px 40px,40px 40px,cover;
-color:#e6f1ff;
-font-family:'JetBrains Mono',monospace;
-overflow-x:hidden;
-}
+        /* ── Scanline overlay ── */
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: repeating-linear-gradient(to bottom,
+                    transparent,
+                    transparent 2px,
+                    rgba(0, 0, 0, .08) 2px,
+                    rgba(0, 0, 0, .08) 4px);
+            pointer-events: none;
+            z-index: 0;
+        }
 
-/* animated grid glow */
-body::before{
-content:"";
-position:fixed;
-inset:0;
-background:radial-gradient(circle at center, rgba(0,247,255,.12), transparent 70%);
-animation:gridPulse 6s ease-in-out infinite;
-pointer-events:none;
-}
-@keyframes gridPulse{
-0%,100%{opacity:.3}
-50%{opacity:.6}
-}
+        /* ── Layout wrapper ── */
+        .wrapper {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.25rem;
+        }
 
-.container{max-width:1150px;margin:auto;padding:0 20px;}
+        /* ─────────────────────────────────────
+     NAV
+  ───────────────────────────────────── */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(2, 5, 10, .85);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(0, 255, 255, .1);
+        }
 
-.cyber{
-font-family:'Orbitron',sans-serif;
-color:#00f7ff;
-text-shadow:0 0 12px #00f7ff,0 0 30px #00f7ff55;
-}
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 1.25rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-/* ===== CARDS / BUTTONS ===== */
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
 
-.card{
-background:rgba(3,10,18,.92);
-border:1px solid rgba(0,255,255,.25);
-padding:1.4rem;border-radius:14px;
-transition:.35s;
-opacity:0;transform:translateY(30px);
-}
-.card.visible{opacity:1;transform:none;}
+        .brand img {
+            width: 38px;
+            height: 38px;
+            filter: drop-shadow(0 0 8px rgba(0, 247, 255, .6));
+            flex-shrink: 0;
+        }
 
-.card:hover{
-border-color:#00f7ff;
-box-shadow:0 0 25px rgba(0,247,255,.25);
-transform:translateY(-5px);
-}
+        .brand-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(0.65rem, 2.5vw, 0.95rem);
+            color: var(--cyan);
+            text-shadow: 0 0 12px #00f7ff, 0 0 30px #00f7ff55;
+            white-space: nowrap;
+        }
 
-.btn{
-padding:10px 22px;border:1px solid #00f7ff;color:#00f7ff;
-border-radius:999px;transition:.25s;font-size:14px;
-display:inline-block;text-align:center;
-}
-.btn:hover{background:#00f7ff;color:black;box-shadow:0 0 18px #00f7ff}
+        /* Desktop nav */
+        nav.desktop-nav {
+            display: flex;
+            gap: 2rem;
+        }
 
-.badge{
-border:1px solid rgba(255,43,214,.4);
-background:rgba(255,43,214,.08);
-padding:6px 12px;margin:4px;
-display:inline-block;border-radius:999px;
-color:#ff7af3;font-size:12px;
-}
+        nav.desktop-nav a {
+            color: #a8d8e0;
+            text-decoration: none;
+            font-size: .85rem;
+            letter-spacing: .05em;
+            position: relative;
+            transition: color .2s;
+        }
 
-/* ===== PROFILE WITH CYBER RING ===== */
+        nav.desktop-nav a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -3px;
+            width: 0;
+            height: 1px;
+            background: var(--cyan);
+            transition: width .25s;
+        }
 
-.hero-box{
-position:relative;
-width:100%;
-max-width:420px;
-aspect-ratio:1/1;
-margin:auto;
-border-radius:24px;
-}
+        nav.desktop-nav a:hover {
+            color: var(--cyan);
+        }
 
-.hero-box::before{
-content:"";
-position:absolute;
-inset:-6px;
-border-radius:30px;
-background:conic-gradient(
-from 0deg,
-#00f7ff,
-#00f7ff00,
-#ff2bd6,
-#00f7ff
-);
-filter:blur(12px);
-opacity:.7;
-animation:ringSpin 8s linear infinite;
-}
+        nav.desktop-nav a:hover::after {
+            width: 100%;
+        }
 
-@keyframes ringSpin{
-from{transform:rotate(0)}
-to{transform:rotate(360deg)}
-}
+        /* Hamburger button */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 4px;
+        }
 
-.hero-img{
-position:relative;
-width:100%;
-height:100%;
-object-fit:cover;
-border-radius:22px;
-box-shadow:0 0 50px rgba(0,247,255,.2);
-}
+        .hamburger span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--cyan);
+            border-radius: 2px;
+            transition: .3s;
+            box-shadow: 0 0 6px var(--cyan);
+        }
 
-/* ===== SECTIONS ===== */
+        .hamburger.open span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
 
-section{border-top:1px solid rgba(0,255,255,.08)}
+        .hamburger.open span:nth-child(2) {
+            opacity: 0;
+        }
 
-/* typing */
-.terminal{height:1.4em;max-width:28ch;overflow:hidden;position:relative}
-.terminal span{position:absolute;white-space:nowrap;color:#ff2bd6;text-shadow:0 0 12px #ff2bd6aa;}
-.terminal span:after{content:"_";margin-left:6px;animation:blink 1s infinite;}
-@keyframes blink{0%,50%,100%{opacity:1}25%,75%{opacity:0}}
+        .hamburger.open span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
 
-/* ===== MOBILE ===== */
+        /* Mobile nav drawer */
+        nav.mobile-nav {
+            display: none;
+            flex-direction: column;
+            gap: 0;
+            background: rgba(2, 5, 10, .97);
+            border-top: 1px solid rgba(0, 255, 255, .12);
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height .4s ease;
+        }
 
-@media(max-width:768px){
+        nav.mobile-nav.open {
+            max-height: 300px;
+        }
 
-header{flex-direction:column;text-align:center}
+        nav.mobile-nav a {
+            display: block;
+            padding: .9rem 1.5rem;
+            color: #a8d8e0;
+            text-decoration: none;
+            font-size: .9rem;
+            letter-spacing: .08em;
+            border-bottom: 1px solid rgba(0, 255, 255, .06);
+            transition: background .2s, color .2s;
+        }
 
-section.container.flex{
-flex-direction:column !important;
-text-align:center;
-gap:35px;
-}
+        nav.mobile-nav a:hover {
+            background: rgba(0, 247, 255, .06);
+            color: var(--cyan);
+        }
 
-.hero-box{
-max-width:clamp(180px,55vw,260px);
-margin:25px auto 0;
-}
+        /* ─────────────────────────────────────
+     HERO
+  ───────────────────────────────────── */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            padding: 5rem 0 4rem;
+        }
 
-.md\:grid-cols-2,
-.md\:grid-cols-3{
-grid-template-columns:1fr !important;
-}
+        .hero-text h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2.4rem, 7vw, 5rem);
+            color: var(--cyan);
+            line-height: 1.1;
+            text-shadow: 0 0 14px #00f7ff, 0 0 40px #00f7ff44;
+        }
 
-.btn{width:100%;max-width:260px;margin:auto;}
+        .hero-text h1 .neon {
+            color: var(--pink);
+            text-shadow: 0 0 14px #ff2bd6aa;
+            display: block;
+            margin-top: .2rem;
+        }
 
-}
+        .hero-text p {
+            margin-top: 1.5rem;
+            color: var(--subtle);
+            font-size: clamp(.82rem, 1.8vw, 1rem);
+            line-height: 1.8;
+            max-width: 480px;
+        }
 
-</style>
+        /* Terminal cursor blink */
+        .cursor::after {
+            content: '█';
+            color: var(--cyan);
+            animation: blink 1s step-end infinite;
+            font-size: .8em;
+            margin-left: 2px;
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        .badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .4rem;
+            margin-top: 1.5rem;
+        }
+
+        .badge {
+            border: 1px solid rgba(255, 43, 214, .35);
+            background: rgba(255, 43, 214, .07);
+            padding: 5px 13px;
+            color: #ff8ef5;
+            font-size: .75rem;
+            letter-spacing: .04em;
+            border-radius: 2px;
+            transition: .2s;
+        }
+
+        .badge:hover {
+            background: rgba(255, 43, 214, .18);
+            border-color: var(--pink);
+            box-shadow: 0 0 12px rgba(255, 43, 214, .3);
+        }
+
+        .cta-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .75rem;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            border: 1px solid var(--cyan);
+            padding: 10px 22px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .82rem;
+            letter-spacing: .08em;
+            color: var(--cyan);
+            text-decoration: none;
+            background: transparent;
+            cursor: pointer;
+            transition: .25s;
+            border-radius: 2px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--cyan);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform .25s ease;
+            z-index: -1;
+        }
+
+        .btn:hover {
+            color: #000;
+            box-shadow: 0 0 28px #00f7ffaa;
+        }
+
+        .btn:hover::before {
+            transform: scaleX(1);
+        }
+
+        .hero-img {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-img img {
+            width: min(340px, 100%);
+            filter: drop-shadow(0 0 50px rgba(0, 247, 255, .5));
+            animation: float 5s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-14px);
+            }
+        }
+
+        /* ─────────────────────────────────────
+     SECTION COMMONS
+  ───────────────────────────────────── */
+        section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(1.3rem, 4vw, 2rem);
+            color: var(--cyan);
+            text-shadow: 0 0 10px #00f7ff, 0 0 28px #00f7ff44;
+            margin-bottom: 2rem;
+            position: relative;
+            padding-left: 1rem;
+        }
+
+        .section-title::before {
+            content: '//';
+            color: var(--pink);
+            margin-right: .5rem;
+            font-size: .85em;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--cyan), transparent);
+        }
+
+        /* ─────────────────────────────────────
+     CORE OPERATIONS
+  ───────────────────────────────────── */
+        .ops-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: .9rem;
+        }
+
+        .ops-list li {
+            background: rgba(0, 247, 255, .04);
+            border: 1px solid rgba(0, 255, 255, .12);
+            padding: .9rem 1.1rem;
+            border-radius: 4px;
+            font-size: clamp(.78rem, 1.6vw, .92rem);
+            color: var(--subtle);
+            transition: .25s;
+            line-height: 1.5;
+        }
+
+        .ops-list li:hover {
+            border-color: var(--cyan);
+            background: rgba(0, 247, 255, .08);
+            color: var(--text);
+            transform: translateX(4px);
+        }
+
+        /* ─────────────────────────────────────
+     PROJECTS / CARDS
+  ───────────────────────────────────── */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1.4rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid rgba(0, 255, 255, .18);
+            backdrop-filter: blur(8px);
+            padding: 1.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            color: var(--text);
+            display: block;
+            transition: .3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+            transform: scaleX(0);
+            transition: .35s;
+        }
+
+        .card:hover {
+            border-color: var(--cyan);
+            box-shadow: 0 0 40px rgba(0, 247, 255, .2), inset 0 0 30px rgba(0, 247, 255, .03);
+            transform: translateY(-6px);
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card h3 {
+            color: var(--cyan);
+            font-size: .95rem;
+            word-break: break-word;
+        }
+
+        .card p {
+            margin-top: .6rem;
+            color: var(--subtle);
+            font-size: .8rem;
+            line-height: 1.6;
+        }
+
+        .card .repo-meta {
+            margin-top: 1rem;
+            color: var(--cyan);
+            font-size: .78rem;
+            opacity: .75;
+        }
+
+        /* ─────────────────────────────────────
+     MENTORSHIP
+  ───────────────────────────────────── */
+        .mentor-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: .8rem;
+        }
+
+        .mentor-list li {
+            background: rgba(255, 43, 214, .04);
+            border-left: 3px solid rgba(255, 43, 214, .5);
+            padding: .85rem 1.1rem;
+            font-size: clamp(.78rem, 1.6vw, .92rem);
+            color: var(--subtle);
+            border-radius: 0 4px 4px 0;
+            transition: .25s;
+        }
+
+        .mentor-list li:hover {
+            border-left-color: var(--pink);
+            background: rgba(255, 43, 214, .09);
+            color: var(--text);
+        }
+
+        /* ─────────────────────────────────────
+     CONTACT
+  ───────────────────────────────────── */
+        .contact-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(0, 255, 255, .18);
+            backdrop-filter: blur(8px);
+            padding: 2rem;
+            border-radius: 6px;
+            max-width: 520px;
+            display: flex;
+            flex-direction: column;
+            gap: .75rem;
+        }
+
+        .contact-card p {
+            font-size: .9rem;
+            color: var(--subtle);
+        }
+
+        .contact-card a {
+            color: var(--cyan);
+            text-decoration: none;
+            transition: .2s;
+        }
+
+        .contact-card a:hover {
+            color: #fff;
+            text-shadow: 0 0 8px var(--cyan);
+        }
+
+        .contact-row {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+        }
+
+        .contact-label {
+            color: var(--pink);
+            font-size: .75rem;
+            min-width: 70px;
+        }
+
+        /* ─────────────────────────────────────
+     FOOTER
+  ───────────────────────────────────── */
+        footer {
+            text-align: center;
+            padding: 2.5rem 1.25rem;
+            color: #4a556b;
+            font-size: .78rem;
+            border-top: 1px solid rgba(0, 255, 255, .06);
+        }
+
+        footer .status-dot {
+            display: inline-block;
+            width: 7px;
+            height: 7px;
+            background: #00ff88;
+            border-radius: 50%;
+            margin-right: .4rem;
+            box-shadow: 0 0 8px #00ff88;
+            animation: pulse 2s ease-in-out infinite;
+            vertical-align: middle;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: .5;
+                transform: scale(1.4);
+            }
+        }
+
+        /* ─────────────────────────────────────
+     GLITCH on h1
+  ───────────────────────────────────── */
+        @keyframes glitch {
+
+            0%,
+            95%,
+            100% {
+                clip-path: none;
+                transform: none;
+                color: var(--cyan);
+            }
+
+            96% {
+                clip-path: polygon(0 20%, 100% 20%, 100% 40%, 0 40%);
+                transform: translate(-3px, 2px);
+                color: #ff2bd6;
+            }
+
+            97% {
+                clip-path: polygon(0 60%, 100% 60%, 100% 80%, 0 80%);
+                transform: translate(3px, -2px);
+            }
+
+            98% {
+                clip-path: none;
+                transform: none;
+            }
+        }
+
+        .hero-text h1 {
+            animation: glitch 8s infinite;
+        }
+
+        /* ─────────────────────────────────────
+     MOBILE RESPONSIVE
+  ───────────────────────────────────── */
+        @media (max-width: 768px) {
+            nav.desktop-nav {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            nav.mobile-nav {
+                display: flex;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 3rem 0 2rem;
+                text-align: center;
+            }
+
+            .hero-text p {
+                max-width: 100%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .badges {
+                justify-content: center;
+            }
+
+            .cta-row {
+                justify-content: center;
+            }
+
+            .hero-img {
+                order: -1;
+            }
+
+            .hero-img img {
+                width: min(200px, 60vw);
+            }
+
+            .ops-list {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 1.2rem;
+            }
+
+            .contact-card {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .brand-name {
+                font-size: .6rem;
+            }
+
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+
+            .btn {
+                font-size: .75rem;
+                padding: 9px 16px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
-<header class="container py-5 flex items-center gap-3">
-<img src="logo.png" class="w-10 h-10 object-contain">
-<div class="cyber text-xl">ASHWIN VADAKKEEL</div>
-</header>
+    <!-- ── NAV ── -->
+    <header>
+        <div class="nav-inner">
+            <a href="#" class="brand">
+                <img src="logo.png" alt="Logo">
+                <span class="brand-name">ASHWIN VADAKKEEL // HERMIT</span>
+            </a>
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+            <nav class="desktop-nav">
+                <a href="#projects">projects</a>
+                <a href="#focus">focus</a>
+                <a href="#mentor">mentor</a>
+                <a href="#contact">contact</a>
+            </nav>
+        </div>
+        <nav class="mobile-nav" id="mobileNav">
+            <a href="#projects" class="mobile-link">projects</a>
+            <a href="#focus" class="mobile-link">focus</a>
+            <a href="#mentor" class="mobile-link">mentor</a>
+            <a href="#contact" class="mobile-link">contact</a>
+        </nav>
+    </header>
 
-<!-- HERO -->
-<section class="container flex flex-col md:flex-row items-center gap-10 py-10">
+    <!-- ── HERO ── -->
+    <div class="wrapper">
+        <section class="hero">
+            <div class="hero-text">
+                <h1>HACKER<span class="neon">Cybersecurity Analyst<span class="cursor"></span></span></h1>
+                <p>
+                    Web &amp; API penetration tester. Hardware security researcher. Offensive tool builder.
+                    Cybersecurity mentor delivering real-world attack simulations and hands-on training.
+                </p>
+                <div class="badges">
+                    <span class="badge">Web Pentesting</span>
+                    <span class="badge">API Security</span>
+                    <span class="badge">File Upload Exploits</span>
+                    <span class="badge">Hardware Attacks</span>
+                    <span class="badge">Cyber Workshops</span>
+                </div>
+                <div class="cta-row">
+                    <a href="#projects" class="btn">VIEW PROJECTS</a>
+                    <a href="https://github.com/hermit148" class="btn">GITHUB</a>
+                </div>
+            </div>
+            <div class="hero-img">
+                <img src="logo.png" alt="Hermit Logo">
+            </div>
+        </section>
 
-<div class="flex-1">
+        <!-- ── CORE OPERATIONS ── -->
+        <section id="focus">
+            <h2 class="section-title">CORE OPERATIONS</h2>
+            <ul class="ops-list">
+                <li>🔐 Web application penetration testing &amp; authentication bypass analysis</li>
+                <li>🌐 API security validation &amp; authorization flaw discovery</li>
+                <li>📂 File upload exploitation research &amp; bypass testing</li>
+                <li>📡 Hardware &amp; wireless attack simulation platforms</li>
+                <li>🛠️ Custom offensive security tool development</li>
+            </ul>
+        </section>
 
-<h1 class="text-4xl md:text-6xl cyber">CYBERSECURITY ANALYST</h1>
+        <!-- ── PROJECTS ── -->
+        <section id="projects">
+            <h2 class="section-title">TOOLS &amp; RESEARCH</h2>
+            <div id="repoContainer" class="card-grid"></div>
+        </section>
 
-<div class="terminal mt-2 text-lg md:text-xl">
-<span id="typing"></span>
-</div>
+        <!-- ── MENTORSHIP ── -->
+        <section id="mentor">
+            <h2 class="section-title">MENTORSHIP &amp; SESSIONS</h2>
+            <ul class="mentor-list">
+                <li>🎤 Conduct live cybersecurity workshops demonstrating real attack chains</li>
+                <li>🏫 Resource person for colleges training students in offensive security</li>
+                <li>🛡️ Led Cybersecurity War Room sessions with practical labs</li>
+                <li>👨‍🏫 Mentor beginners in pentesting, tools &amp; methodology</li>
+                <li>📢 Share research with 12K+ LinkedIn cybersecurity community</li>
+            </ul>
+        </section>
 
-<div class="mt-4 flex flex-wrap justify-center md:justify-start">
-<span class="badge">🎓 CEH Certified</span>
-<span class="badge">🏆 Broadcom Hall of Fame 2025</span>
-<span class="badge">🇮🇳 NCIIPC Acknowledged</span>
-<span class="badge">🎥Content Creator</span>
-<span class="badge">👥 12K+ LinkedIn Followers</span>
-</div>
+        <!-- ── CONTACT ── -->
+        <section id="contact">
+            <h2 class="section-title">CONTACT</h2>
+            <div class="contact-card">
+                <div class="contact-row">
+                    <span class="contact-label">LOCATION</span>
+                    <p>📍 Kannur, Kerala, India</p>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-label">EMAIL</span>
+                    <p>N/A</p>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-label">GITHUB</span>
+                    <p><a href="https://github.com/hermit148">hermit148</a></p>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-label">LINKEDIN</span>
+                    <p><a href="https://linkedin.com/in/ashwin-vadakkeel">ashwin-vadakkeel</a></p>
+                </div>
+            </div>
+        </section>
+    </div><!-- /wrapper -->
 
-<p class="mt-6 text-slate-300 max-w-xl mx-auto md:mx-0">
-Cybersecurity Analyst specializing in Web Application Penetration Testing, API security, and vulnerability validation. Currently working at Hazercloud Infotech.
-</p>
+    <footer>
+        <span class="status-dot"></span>SYSTEM STATUS: ONLINE
+    </footer>
 
-<div class="mt-6 flex gap-3 flex-wrap justify-center md:justify-start">
-<a href="https://linkedin.com/in/ashwin-vadakkeel" target="_blank" class="btn">⬇ Resume</a>
-<a href="https://github.com/hermit148" target="_blank" class="btn">GitHub</a>
-<a href="https://linkedin.com/in/ashwin-vadakkeel" target="_blank" class="btn">LinkedIn</a>
-</div>
+    <script>
+        /* ── Hamburger toggle ── */
+        const hamburger = document.getElementById('hamburger');
+        const mobileNav = document.getElementById('mobileNav');
 
-</div>
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('open');
+            mobileNav.classList.toggle('open');
+        });
 
-<div class="flex-1 flex justify-center">
-<div class="hero-box">
-<img src="profile.png" class="hero-img">
-</div>
-</div>
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('open');
+                mobileNav.classList.remove('open');
+            });
+        });
 
-</section>
+        /* ── GitHub repos ── */
+        const repos = [
+            "Hermit-ESP8266-Mint-Box-WIFI-Pentest",
+            "WP-Rest-API-Basic_check",
+            "PHP-File-Upload_Bypass",
+            "DNS-Recon-Hermit",
+            "XML-RPC-Method-Lister"
+        ];
 
-<!-- ABOUT -->
-<section class="container py-12">
-<h2 class="cyber text-2xl mb-6">ABOUT</h2>
-<div class="card max-w-2xl">
-<p>Cybersecurity Analyst focused on web pentesting, API Pentesting, hardware security research, and responsible disclosure.</p>
-<div class="mt-4 text-sm space-y-2">
-<p><strong>Location:</strong> Kannur, Kerala, India</p>
-<p><strong>Email:</strong> ashwi************@gmail.com</p>
-<p><strong>Phone:</strong> 9*6*5*****</p>
-</div>
-<p class="mt-4 text-xs text-slate-400">
-“It scratched that part of my mind — the part that doesn’t allow good to exist without condition.” — Mr. Robot
-</p>
-</div>
-</section>
+        const container = document.getElementById("repoContainer");
 
-<!-- RECOGNITIONS -->
-<section class="container py-12">
-<h2 class="cyber text-2xl mb-6">RECOGNITIONS</h2>
-<div class="grid md:grid-cols-3 gap-6">
-
-<a href="https://www.broadcom.com/support/security-center/security-thanks" target="_blank" class="card block">
-<h3 class="text-cyan-300">Broadcom PSIRT Hall of Fame</h3>
-<p class="mt-2 text-sm text-slate-300">Official responsible disclosure listing →</p>
-</a>
-
-<a href="https://www.linkedin.com/posts/ashwin-vadakkeel_cybersecurity-responsibledisclosure-ethicalhacking-activity-7273920968874426369-vrK7" target="_blank" class="card block">
-<h3 class="text-cyan-300">NCIIPC Acknowledgement</h3>
-<p class="mt-2 text-sm text-slate-300">Government acknowledgement proof →</p>
-</a>
-
-<a href="https://www.linkedin.com/posts/ashwin-vadakkeel_cybersecurity-diy-opensource-activity-7283806951489028096-0cCi" target="_blank" class="card block">
-<h3 class="text-cyan-300">Research Impact</h3>
-<p class="mt-2 text-sm text-slate-300">2.1M+ impressions research demo →</p>
-</a>
-
-</div>
-</section>
-
-<!-- EXPERIENCE -->
-<section class="container py-12">
-<h2 class="cyber text-2xl mb-6">EXPERIENCE</h2>
-<div class="card max-w-3xl">
-<h3 class="text-cyan-300 text-lg">Cybersecurity Analyst — Hazercloud Infotech</h3>
-<p class="text-slate-400 text-xs mt-1">Sep 2024 – Present • Kannur</p>
-<ul class="mt-4 text-sm space-y-2 text-slate-300">
-<li>• Perform web application pentesting across authentication, APIs and sessions.</li>
-<li>• Identify access control flaws, validation issues and misconfigurations.</li>
-<li>• Produce structured vulnerability reports with CVSS scoring.</li>
-<li>• Collaborate with developers to verify fixes.</li>
-</ul>
-</div>
-</section>
-
-<!-- MENTORSHIP -->
-<section class="container py-12">
-<h2 class="cyber text-2xl mb-6">MENTORSHIP & COMMUNITY</h2>
-<div class="grid md:grid-cols-2 gap-6">
-
-<a href="https://www.linkedin.com/posts/ashwin-vadakkeel_futuresummit-cybersecurity-realtimeattacks-activity-7289909800564359168-nA_n" target="_blank" class="card block">
-<h3 class="text-cyan-300">Lead Mentor — Cybersecurity War Room</h3>
-<p class="mt-3 text-sm text-slate-300">
-Demonstrated hardware attack simulations using Flipper Zero, Wi-Fi Deauther, BadUSB devices, Kali NetHunter setups, M5Stick tools and embedded hardware platforms.
-</p>
-</a>
-
-<a href="https://www.linkedin.com/posts/ashwin-vadakkeel_cybersecurity-hardwarehacking-iedcsummit-activity-7421250049134895104-FEGH" target="_blank" class="card block">
-<h3 class="text-cyan-300">IEDC Summit — Hardware Security Demo</h3>
-<p class="mt-3 text-sm text-slate-300">
-Conducted hands-on demonstrations showcasing real-time attack simulations and embedded cybersecurity research tools.
-</p>
-</a>
-
-<a href="https://www.linkedin.com/posts/ashwin-vadakkeel_cybersecurity-guestlecture-alumnipride-activity-7407760075827609600-casR" target="_blank" class="card block md:col-span-2">
-<h3 class="text-cyan-300">Guest Lectures & College Cybersecurity Sessions</h3>
-<p class="mt-3 text-sm text-slate-300">
-Conducted multiple cybersecurity awareness sessions and guest lectures for college students covering ethical hacking, web security risks, hardware attacks, and cybersecurity career guidance.
-</p>
-</a>
-
-</div>
-</section>
-
-<!-- PROJECTS -->
-<section class="container py-12">
-<h2 class="cyber text-2xl mb-6">GITHUB PROJECTS</h2>
-<div id="repos" class="grid md:grid-cols-3 gap-6"></div>
-</section>
-
-<footer class="py-6 text-center text-slate-500 text-sm">
-SYSTEM STATUS: ONLINE<br>
-<span class="text-xs">Last updated: 2026</span>
-</footer>
-
-<script>
-
-/* typing hero */
-const words=[
-"Web Application Pentester",
-"API Security Analyst",
-"Hardware Security Researcher",
-"Cybersecurity Mentor"
-];
-let w=0,c=0,del=false;
-function type(){
-const el=document.getElementById("typing");
-const t=words[w];
-if(!del){
-el.textContent=t.slice(0,++c);
-if(c===t.length){del=true;setTimeout(type,1200);return;}
-}else{
-el.textContent=t.slice(0,--c);
-if(c===0){del=false;w=(w+1)%words.length;}
-}
-setTimeout(type,del?30:60);
-}
-type();
-
-/* scroll reveal */
-const obs=new IntersectionObserver(entries=>{
-entries.forEach(e=>{
-if(e.isIntersecting)e.target.classList.add("visible");
-});
-},{threshold:.15});
-document.querySelectorAll(".card").forEach(el=>obs.observe(el));
-
-/* github */
-fetch("https://api.github.com/users/hermit148/repos?per_page=100")
-.then(r=>r.json())
-.then(data=>{
-data=data.filter(repo=>!repo.fork);
-data.sort((a,b)=>new Date(b.updated_at)-new Date(a.updated_at));
-data.forEach(d=>{
-const a=document.createElement("a");
-a.href=d.html_url;
-a.target="_blank";
-a.className="card block";
-a.innerHTML=`<h3 class='text-cyan-300 text-lg'>${d.name.replaceAll("-"," ")}</h3>
-<p class='mt-2 text-sm text-slate-300'>${d.description||"Security repository"}</p>
-<p class='text-cyan-300 mt-3 text-sm'>★ ${d.stargazers_count} | 🍴 ${d.forks_count}</p>`;
-document.getElementById("repos").appendChild(a);
-});
-});
-
-</script>
+        repos.forEach(r => {
+            fetch(`https://api.github.com/repos/hermit148/${r}`)
+                .then(res => res.json())
+                .then(data => {
+                    const a = document.createElement("a");
+                    a.href = data.html_url;
+                    a.className = "card";
+                    a.target = "_blank";
+                    a.rel = "noopener noreferrer";
+                    a.innerHTML = `
+          <h3>${data.name}</h3>
+          <p>${data.description || "Security research repository"}</p>
+          <p class="repo-meta">★ ${data.stargazers_count} &nbsp;|&nbsp; 🍴 ${data.forks_count}</p>`;
+                    container.appendChild(a);
+                })
+                .catch(() => {
+                    const a = document.createElement("a");
+                    a.href = `https://github.com/hermit148/${r}`;
+                    a.className = "card";
+                    a.target = "_blank";
+                    a.rel = "noopener noreferrer";
+                    a.innerHTML = `<h3>${r}</h3><p>Security research repository</p>`;
+                    container.appendChild(a);
+                });
+        });
+    </script>
 
 </body>
+
 </html>
