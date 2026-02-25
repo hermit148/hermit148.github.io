@@ -7,11 +7,7 @@
 
 <title>Ashwin Vadakkeel | Cybersecurity Analyst</title>
 
-<meta name="description" content="Ashwin Vadakkeel - Cybersecurity Analyst specializing in web application penetration testing, API security, hardware research, and responsible disclosure. Recognized by NCIIPC and Broadcom PSIRT.">
-
-<meta property="og:title" content="Ashwin Vadakkeel | Cybersecurity Analyst">
-<meta property="og:description" content="Web & API Pentester • Hardware Security Researcher • NCIIPC Acknowledged • Broadcom Hall of Fame">
-<meta property="og:image" content="logo.png">
+<meta name="description" content="Cybersecurity Analyst specializing in web pentesting, API security, hardware research, and responsible disclosure. Recognized by NCIIPC and Broadcom PSIRT.">
 
 <link rel="icon" href="logo.png">
 <link rel="apple-touch-icon" href="logo.png">
@@ -21,13 +17,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
 
 <style>
+
 html{scroll-behavior:smooth}
+
 body{
 background: radial-gradient(circle at 20% 20%, #07111a, #02050a 60%);
 color:#e6f1ff;
 font-family:'JetBrains Mono',monospace;
 overflow-x:hidden;
 }
+
 body:before{
 content:"";
 position:fixed;
@@ -38,11 +37,19 @@ linear-gradient(90deg, rgba(0,255,255,.05) 1px, transparent 1px);
 background-size:40px 40px;
 pointer-events:none;
 }
+
+.container{
+max-width:1100px;
+margin:auto;
+padding:0 18px;
+}
+
 .cyber{
 font-family:'Orbitron',sans-serif;
 color:#00f7ff;
 text-shadow:0 0 12px #00f7ff,0 0 30px #00f7ff55;
 }
+
 .badge{
 border:1px solid rgba(255,43,214,.4);
 background:rgba(255,43,214,.08);
@@ -51,74 +58,130 @@ margin:4px;
 display:inline-block;
 border-radius:999px;
 color:#ff7af3;
-font-size:13px;
+font-size:12px;
 }
-.terminal{height:1.4em;width:30ch;position:relative;overflow:hidden;}
-.terminal span{position:absolute;white-space:nowrap;color:#ff2bd6;text-shadow:0 0 12px #ff2bd6aa;}
-.terminal span:after{content:"_";margin-left:6px;animation:blink 1s infinite;}
+
+.terminal{
+height:1.4em;
+width:100%;
+max-width:26ch;
+position:relative;
+overflow:hidden;
+}
+.terminal span{
+position:absolute;
+white-space:nowrap;
+color:#ff2bd6;
+text-shadow:0 0 12px #ff2bd6aa;
+}
+.terminal span:after{
+content:"_";
+margin-left:6px;
+animation:blink 1s infinite;
+}
 @keyframes blink{0%,50%,100%{opacity:1}25%,75%{opacity:0}}
-.hero-box{width:560px;max-width:100%;aspect-ratio:1/1;position:relative;}
-.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;z-index:2;animation:float 8s ease-in-out infinite;}
-.hero-glow{position:absolute;inset:0;background:url('logo.png') center/contain no-repeat;filter:drop-shadow(0 0 60px rgba(0,247,255,.45));z-index:1;animation:floatGlow 9s ease-in-out infinite;}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-@keyframes floatGlow{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
+
+.hero-box{
+width:100%;
+max-width:480px;
+aspect-ratio:1/1;
+position:relative;
+}
+
+.hero-img{
+position:absolute;
+inset:0;
+width:100%;
+height:100%;
+object-fit:contain;
+z-index:2;
+animation:float 8s ease-in-out infinite;
+}
+
+.hero-glow{
+position:absolute;
+inset:0;
+background:url('logo.png') center/contain no-repeat;
+filter:drop-shadow(0 0 50px rgba(0,247,255,.45));
+z-index:1;
+animation:floatGlow 9s ease-in-out infinite;
+}
+
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes floatGlow{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+
 .card{
 background:rgba(3,10,18,.92);
 border:1px solid rgba(0,255,255,.25);
-padding:1.5rem;
+padding:1.3rem;
 border-radius:14px;
 transition:.3s;
 }
-.card:hover{border-color:#00f7ff;box-shadow:0 0 25px rgba(0,247,255,.25);transform:translateY(-6px);}
+
+.card:hover{
+border-color:#00f7ff;
+box-shadow:0 0 20px rgba(0,247,255,.25);
+transform:translateY(-4px);
+}
+
 .btn{
-padding:10px 22px;
+padding:10px 20px;
 border:1px solid #00f7ff;
 color:#00f7ff;
 border-radius:999px;
 transition:.25s;
 font-size:14px;
 }
-.btn:hover{background:#00f7ff;color:black;box-shadow:0 0 20px #00f7ff;}
+
+.btn:hover{
+background:#00f7ff;
+color:black;
+box-shadow:0 0 18px #00f7ff;
+}
+
 .masked{letter-spacing:1px;color:#9ca3af}
-section{border-top:1px solid rgba(0,255,255,.08)}
-.container{max-width:1100px;margin:auto;padding:0 18px}
+
+section{
+border-top:1px solid rgba(0,255,255,.08);
+}
+
 </style>
 </head>
 
 <body>
 
-<header class="container flex justify-between items-center py-6">
+<header class="container flex justify-between items-center py-5">
 <div class="flex items-center gap-3">
-<img src="logo.png" class="w-10">
-<div class="cyber text-lg md:text-xl">ASHWIN VADAKKEEL</div>
+<img src="logo.png" class="w-9 md:w-10">
+<div class="cyber text-base md:text-xl">ASHWIN VADAKKEEL</div>
 </div>
 </header>
 
 <!-- HERO -->
-<section class="container flex flex-wrap items-center gap-12 py-16">
+<section class="container flex flex-col-reverse md:flex-row items-center gap-12 py-14">
 
-<div class="flex-1 min-w-[300px]">
+<div class="w-full md:flex-1">
 
-<h1 class="text-4xl md:text-6xl cyber leading-tight">
+<h1 class="text-3xl sm:text-4xl md:text-6xl cyber leading-tight">
 CYBERSECURITY ANALYST
 </h1>
 
-<div class="terminal mt-2 text-2xl md:text-3xl">
+<div class="terminal mt-2 text-xl md:text-2xl">
 <span id="typing"></span>
 </div>
 
-<div class="mt-4">
+<div class="mt-4 flex flex-wrap">
 <span class="badge">🇮🇳 NCIIPC Acknowledged</span>
 <span class="badge">🏆 Broadcom Hall of Fame 2025</span>
 <span class="badge">👥 12K+ LinkedIn Followers</span>
 </div>
 
-<p class="mt-6 text-slate-300 text-lg max-w-xl">
-Cybersecurity Analyst specializing in Web Application Penetration Testing (VAPT),
+<p class="mt-6 text-slate-300 text-base md:text-lg max-w-xl">
+Cybersecurity Analyst specializing in Web Application Penetration Testing,
 API security, and vulnerability validation. Currently working at Hazercloud Infotech.
 </p>
 
-<div class="mt-8 flex gap-3 flex-wrap">
+<div class="mt-8 flex flex-wrap gap-3">
 <a href="resume.pdf" download class="btn">⬇ Resume</a>
 <a href="https://github.com/hermit148" target="_blank" class="btn">GitHub</a>
 <a href="https://linkedin.com/in/ashwin-vadakkeel" target="_blank" class="btn">LinkedIn</a>
@@ -126,7 +189,7 @@ API security, and vulnerability validation. Currently working at Hazercloud Info
 
 </div>
 
-<div class="flex-1 min-w-[260px] flex justify-center">
+<div class="w-full md:flex-1 flex justify-center">
 <div class="hero-box">
 <img src="logo.png" class="hero-img">
 <div class="hero-glow"></div>
@@ -136,8 +199,8 @@ API security, and vulnerability validation. Currently working at Hazercloud Info
 </section>
 
 <!-- ABOUT -->
-<section class="container py-20">
-<h2 class="cyber text-3xl mb-8">ABOUT</h2>
+<section class="container py-16">
+<h2 class="cyber text-2xl md:text-3xl mb-6">ABOUT</h2>
 
 <div class="card max-w-2xl">
 <p>
@@ -145,7 +208,7 @@ Cybersecurity Analyst focused on web pentesting, API validation,
 hardware security research, and responsible disclosure.
 </p>
 
-<div class="mt-6 space-y-2 text-sm">
+<div class="mt-5 space-y-2 text-sm">
 <p><strong>Location:</strong> Kannur, Kerala, India</p>
 <p><strong>Email:</strong> <span class="masked">ashwi************@gmail.com</span></p>
 <p><strong>Phone:</strong> <span class="masked">9*6*5*****</span></p>
@@ -158,85 +221,43 @@ LinkedIn community: 12K+ followers • Research demo reached 2.1M+ impressions
 </div>
 </section>
 
-<!-- RECOGNITIONS -->
-<section class="container py-20">
-<h2 class="cyber text-3xl mb-8">RECOGNITIONS</h2>
-
-<div class="grid md:grid-cols-3 gap-8">
-
-<a href="https://www.broadcom.com/support/security-center/security-thanks" target="_blank" class="card block">
-<h3 class="text-cyan-300">Broadcom PSIRT Hall of Fame</h3>
-<p class="mt-2 text-sm text-slate-300">Official listing for responsible disclosure →</p>
-</a>
-
-<a href="https://www.linkedin.com/posts/ashwin-vadakkeel_cybersecurity-responsibledisclosure-ethicalhacking-activity-7273920968874426369-vrK7" target="_blank" class="card block">
-<h3 class="text-cyan-300">NCIIPC Acknowledgement</h3>
-<p class="mt-2 text-sm text-slate-300">Government acknowledgement proof →</p>
-</a>
-
-<a href="https://www.linkedin.com/posts/ashwin-vadakkeel_cybersecurity-diy-opensource-activity-7283806951489028096-0cCi" target="_blank" class="card block">
-<h3 class="text-cyan-300">Research Impact</h3>
-<p class="mt-2 text-sm text-slate-300">2.1M+ impressions research demo →</p>
-</a>
-
-</div>
-</section>
-
 <!-- EXPERIENCE -->
-<section class="container py-20">
-<h2 class="cyber text-3xl mb-8">EXPERIENCE</h2>
+<section class="container py-16">
+<h2 class="cyber text-2xl md:text-3xl mb-6">EXPERIENCE</h2>
 
 <div class="card max-w-3xl">
-<h3 class="text-cyan-300 text-xl">Cybersecurity Analyst — Hazercloud Infotech</h3>
-<p class="text-slate-400 text-sm mt-1">Sep 2024 – Present • Kannur</p>
+<h3 class="text-cyan-300 text-lg md:text-xl">Cybersecurity Analyst — Hazercloud Infotech</h3>
+<p class="text-slate-400 text-xs md:text-sm mt-1">Sep 2024 – Present • Kannur</p>
+
 <ul class="mt-4 text-sm text-slate-300 space-y-2">
 <li>• Perform web application pentesting across authentication, APIs and sessions.</li>
 <li>• Identify access control flaws, validation issues and misconfigurations.</li>
 <li>• Produce structured vulnerability reports with CVSS scoring.</li>
 <li>• Collaborate with developers to verify fixes.</li>
 </ul>
+
 </div>
 </section>
 
 <!-- MENTORSHIP -->
-<section class="container py-20">
-<h2 class="cyber text-3xl mb-8">MENTORSHIP & COMMUNITY</h2>
+<section class="container py-16">
+<h2 class="cyber text-2xl md:text-3xl mb-6">MENTORSHIP & COMMUNITY</h2>
 
-<div class="grid md:grid-cols-2 gap-8">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
 <div class="card">
 <h3 class="text-cyan-300">Lead Mentor — Cybersecurity War Room</h3>
-<p class="text-slate-400 text-sm mt-1">IEDC Summit 2026</p>
+<p class="text-slate-400 text-xs mt-1">IEDC Summit 2026</p>
 <p class="mt-3 text-sm text-slate-300">
-Mentored participants while demonstrating real-world hardware-based attack scenarios using Flipper Zero,
-Wi-Fi Deauther, jammer research setups, BadUSB devices, Kali NetHunter environments,
-M5Stick-based tools, and embedded hardware platforms. Guided attendees through practical
-attack simulations and defensive concepts.
+Demonstrated hardware-based attack simulations using Flipper Zero, Deauther,
+BadUSB, NetHunter setups, M5Stick tools and embedded platforms while guiding participants.
 </p>
 </div>
 
 <div class="card">
-<h3 class="text-cyan-300">Lead Mentor — Future Summit Cybersecurity War Room</h3>
-<p class="text-slate-400 text-sm mt-1">Jain University, Kochi</p>
+<h3 class="text-cyan-300">Future Summit Cybersecurity War Room</h3>
 <p class="mt-3 text-sm text-slate-300">
-Conducted live hardware demonstrations and guided participants through real-world
-attack scenarios and defensive practices.
-</p>
-</div>
-
-<div class="card">
-<h3 class="text-cyan-300">Cybersecurity Workshops & Training</h3>
-<p class="mt-3 text-sm text-slate-300">
-Delivered hands-on cybersecurity workshops demonstrating web attacks, hardware security
-research setups, and real-world penetration testing methodologies.
-</p>
-</div>
-
-<div class="card">
-<h3 class="text-cyan-300">Community Impact</h3>
-<p class="mt-3 text-sm text-slate-300">
-Security research demonstrations and technical content reached over
-<strong>2.1M+ impressions</strong> with strong engagement across the cybersecurity community.
+Conducted live hardware demonstrations and guided participants through real attack scenarios.
 </p>
 </div>
 
@@ -244,20 +265,27 @@ Security research demonstrations and technical content reached over
 </section>
 
 <!-- PROJECTS -->
-<section class="container py-20">
-<h2 class="cyber text-3xl mb-8">GITHUB PROJECTS</h2>
-<div id="repos" class="grid md:grid-cols-3 gap-8"></div>
+<section class="container py-16">
+<h2 class="cyber text-2xl md:text-3xl mb-6">GITHUB PROJECTS</h2>
+<div id="repos" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"></div>
 </section>
 
-<footer class="py-10 text-center text-slate-500">
-<p>SYSTEM STATUS: ONLINE</p>
-<p class="text-xs mt-2">Last updated: Aug 2026</p>
+<footer class="py-8 text-center text-slate-500 text-sm">
+SYSTEM STATUS: ONLINE<br>
+<span class="text-xs">Last updated: Aug 2026</span>
 </footer>
 
 <script>
 
-const words=["Web Application Pentester","API Security Analyst","Hardware Security Researcher","Cybersecurity Mentor"];
+const words=[
+"Web Application Pentester",
+"API Security Analyst",
+"Hardware Security Researcher",
+"Cybersecurity Mentor"
+];
+
 let w=0,c=0,del=false;
+
 function type(){
 const el=document.getElementById("typing");
 const t=words[w];
