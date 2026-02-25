@@ -7,7 +7,6 @@
 
 <link rel="icon" href="logo.png">
 <script src="https://cdn.tailwindcss.com"></script>
-
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
 
 <style>
@@ -28,13 +27,11 @@ linear-gradient(90deg, rgba(0,255,255,.05) 1px, transparent 1px);
 background-size:40px 40px;
 pointer-events:none;
 }
-
 .cyber{
 font-family:'Orbitron',sans-serif;
 color:#00f7ff;
 text-shadow:0 0 12px #00f7ff,0 0 30px #00f7ff55;
 }
-
 .badge{
 border:1px solid rgba(255,43,214,.4);
 background:rgba(255,43,214,.08);
@@ -44,92 +41,25 @@ display:inline-block;
 border-radius:999px;
 color:#ff7af3;
 }
-
-.terminal{
-height:1.4em;
-width:28ch;
-position:relative;
-overflow:hidden;
-}
-.terminal span{
-position:absolute;
-white-space:nowrap;
-color:#ff2bd6;
-text-shadow:0 0 12px #ff2bd6aa;
-}
-.terminal span:after{
-content:"_";
-margin-left:6px;
-animation:blink 1s infinite;
-}
+.terminal{height:1.4em;width:28ch;position:relative;overflow:hidden;}
+.terminal span{position:absolute;white-space:nowrap;color:#ff2bd6;text-shadow:0 0 12px #ff2bd6aa;}
+.terminal span:after{content:"_";margin-left:6px;animation:blink 1s infinite;}
 @keyframes blink{0%,50%,100%{opacity:1}25%,75%{opacity:0}}
 
-.hero-box{
-width:620px;
-max-width:100%;
-aspect-ratio:1/1;
-position:relative;
-contain:layout paint size style;
-}
-.hero-img{
-position:absolute;
-inset:0;
-width:100%;
-height:100%;
-object-fit:contain;
-z-index:2;
-animation:imgFloat 8s cubic-bezier(.45,.05,.55,.95) infinite;
-}
-.hero-glow{
-position:absolute;
-inset:0;
-background:url('logo.png') center/contain no-repeat;
-filter:drop-shadow(0 0 70px rgba(0,247,255,.45));
-z-index:1;
-animation:glowFloat 9s ease-in-out infinite;
-}
-@keyframes imgFloat{
-0%{transform:translateY(0) rotate(0)}
-25%{transform:translateY(-6px) rotate(-.5deg)}
-50%{transform:translateY(-10px) rotate(0)}
-75%{transform:translateY(-4px) rotate(.5deg)}
-100%{transform:translateY(0) rotate(0)}
-}
-@keyframes glowFloat{
-0%{transform:translateY(0)}
-50%{transform:translateY(-16px)}
-100%{transform:translateY(0)}
-}
+.hero-box{width:620px;max-width:100%;aspect-ratio:1/1;position:relative;contain:layout paint size style;}
+.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;z-index:2;animation:imgFloat 8s cubic-bezier(.45,.05,.55,.95) infinite;}
+.hero-glow{position:absolute;inset:0;background:url('logo.png') center/contain no-repeat;filter:drop-shadow(0 0 70px rgba(0,247,255,.45));z-index:1;animation:glowFloat 9s ease-in-out infinite;}
+@keyframes imgFloat{0%{transform:translateY(0)}25%{transform:translateY(-6px)}50%{transform:translateY(-10px)}75%{transform:translateY(-4px)}100%{transform:translateY(0)}}
+@keyframes glowFloat{0%{transform:translateY(0)}50%{transform:translateY(-16px)}100%{transform:translateY(0)}}
 
-.card{
-background:rgba(3,10,18,.92);
-border:1px solid rgba(0,255,255,.25);
-padding:1.4rem;
-border-radius:14px;
-transition:.3s;
-}
-.card:hover{
-border-color:#00f7ff;
-box-shadow:0 0 25px rgba(0,247,255,.25);
-transform:translateY(-6px);
-}
+.card{background:rgba(3,10,18,.92);border:1px solid rgba(0,255,255,.25);padding:1.4rem;border-radius:14px;transition:.3s;}
+.card:hover{border-color:#00f7ff;box-shadow:0 0 25px rgba(0,247,255,.25);transform:translateY(-6px);}
 
-.btn{
-padding:10px 22px;
-border:1px solid #00f7ff;
-color:#00f7ff;
-border-radius:999px;
-transition:.25s;
-}
-.btn:hover{
-background:#00f7ff;
-color:black;
-box-shadow:0 0 20px #00f7ff;
-}
+.btn{padding:10px 22px;border:1px solid #00f7ff;color:#00f7ff;border-radius:999px;transition:.25s;}
+.btn:hover{background:#00f7ff;color:black;box-shadow:0 0 20px #00f7ff;}
 
-section{
-border-top:1px solid rgba(0,255,255,.08);
-}
+section{border-top:1px solid rgba(0,255,255,.08);}
+.masked{letter-spacing:1px;color:#9ca3af}
 </style>
 </head>
 
@@ -140,12 +70,6 @@ border-top:1px solid rgba(0,255,255,.08);
 <div class="flex items-center gap-3">
 <img src="logo.png" class="w-10">
 <div class="cyber text-lg md:text-xl">ASHWIN VADAKKEEL</div>
-</div>
-<div class="hidden md:flex gap-6 text-cyan-200">
-<a href="#recognitions">recognitions</a>
-<a href="#experience">experience</a>
-<a href="#projects">projects</a>
-<a href="#skills">skills</a>
 </div>
 </header>
 
@@ -176,6 +100,7 @@ and support remediation.
 </p>
 
 <div class="mt-8 flex gap-3 flex-wrap">
+<a href="resume.pdf" download class="btn">⬇ Resume</a>
 <a href="https://github.com/hermit148" target="_blank" class="btn">GitHub</a>
 <a href="https://linkedin.com/in/ashwin-vadakkeel" target="_blank" class="btn">LinkedIn</a>
 </div>
@@ -191,38 +116,38 @@ and support remediation.
 
 </section>
 
-<!-- RECOGNITIONS -->
-<section id="recognitions" class="max-w-6xl mx-auto py-20 px-4">
-<h2 class="cyber text-3xl mb-8">RECOGNITIONS</h2>
-<div class="grid md:grid-cols-3 gap-8">
+<!-- ABOUT -->
+<section class="max-w-6xl mx-auto py-20 px-4">
 
-<div class="card">
-<h3 class="text-cyan-300">NCIIPC Acknowledgement</h3>
-<p class="mt-2 text-slate-300 text-sm">
-Acknowledged by India's National Critical Information Infrastructure Protection Centre
-for responsible vulnerability disclosures.
+<h2 class="cyber text-3xl mb-8">ABOUT</h2>
+
+<div class="card max-w-2xl text-slate-300">
+
+<p>
+Cybersecurity Analyst focused on web pentesting, API validation,
+hardware security research, and responsible disclosure.
 </p>
-</div>
 
-<div class="card">
-<h3 class="text-cyan-300">Broadcom PSIRT Hall of Fame</h3>
-<p class="mt-2 text-slate-300 text-sm">
-Listed in Broadcom Security Hall of Fame for reporting real-world security vulnerabilities.
+<div class="mt-6 space-y-2 text-sm">
+
+<p><strong>Location:</strong> Kannur, Kerala, India</p>
+
+<p><strong>Email:</strong>
+<span class="masked">ashwi************@gmail.com</span>
 </p>
-</div>
 
-<div class="card">
-<h3 class="text-cyan-300">Cybersecurity Mentor & Speaker</h3>
-<p class="mt-2 text-slate-300 text-sm">
-Invited resource person and lead mentor conducting live cybersecurity demonstrations and workshops.
+<p><strong>Phone:</strong>
+<span class="masked">99615*****</span>
 </p>
+
 </div>
 
 </div>
+
 </section>
 
 <!-- EXPERIENCE -->
-<section id="experience" class="max-w-6xl mx-auto py-20 px-4">
+<section class="max-w-6xl mx-auto py-20 px-4">
 <h2 class="cyber text-3xl mb-8">EXPERIENCE</h2>
 
 <div class="card max-w-3xl">
@@ -230,45 +155,24 @@ Invited resource person and lead mentor conducting live cybersecurity demonstrat
 <p class="text-slate-400 text-sm mt-1">Sep 2024 – Present • Kannur, Kerala</p>
 
 <ul class="mt-4 space-y-2 text-slate-300 text-sm">
-<li>• Perform web application penetration testing across authentication flows, APIs, session management, and file uploads.</li>
-<li>• Identify access-control flaws, input validation issues, and misconfigurations.</li>
-<li>• Produce structured vulnerability reports with CVSS scoring and remediation guidance.</li>
-<li>• Collaborate with developers to verify fixes and reduce exposure to risks.</li>
-<li>• Tested production education platforms, WooCommerce stores, and custom e-commerce systems.</li>
+<li>• Perform web app pentesting across authentication, APIs, sessions and uploads.</li>
+<li>• Identify access-control flaws, input validation issues and misconfigurations.</li>
+<li>• Produce structured reports with CVSS scoring and remediation guidance.</li>
+<li>• Collaborate with developers to verify fixes.</li>
+<li>• Tested production education platforms, WooCommerce stores and custom systems.</li>
 </ul>
 </div>
 
 </section>
 
-<!-- FEATURED PROJECTS -->
-<section id="projects" class="max-w-6xl mx-auto py-20 px-4">
-<h2 class="cyber text-3xl mb-8">FEATURED SECURITY RESEARCH</h2>
-
-<div class="grid md:grid-cols-2 gap-8">
-
-<div class="card">
-<h3 class="text-cyan-300">Covert BadUSB HID Device</h3>
-<p class="mt-2 text-slate-300 text-sm">
-Digispark embedded inside a functional USB mouse enabling normal use with switch-triggered payload execution for physical access attack simulations.
-</p>
-</div>
-
-<div class="card">
-<h3 class="text-cyan-300">ESP8266 Wireless Security Platform</h3>
-<p class="mt-2 text-slate-300 text-sm">
-Wi-Fi attack simulation lab setup; demo reached 2.1M+ impressions and 47K+ reactions on LinkedIn.
-</p>
-</div>
-
-</div>
-
-<h2 class="cyber text-3xl mt-16 mb-8">GITHUB PROJECTS</h2>
+<!-- PROJECTS -->
+<section class="max-w-6xl mx-auto py-20 px-4">
+<h2 class="cyber text-3xl mb-8">GITHUB PROJECTS</h2>
 <div id="repos" class="grid md:grid-cols-3 gap-8"></div>
-
 </section>
 
 <!-- SKILLS -->
-<section id="skills" class="max-w-6xl mx-auto py-20 px-4">
+<section class="max-w-6xl mx-auto py-20 px-4">
 <h2 class="cyber text-3xl mb-8">TECHNICAL SKILLS</h2>
 
 <div class="grid md:grid-cols-2 gap-8">
@@ -276,18 +180,16 @@ Wi-Fi attack simulation lab setup; demo reached 2.1M+ impressions and 47K+ react
 <div class="card">
 <h3 class="text-cyan-300 mb-2">Security Testing</h3>
 <p class="text-slate-300 text-sm">
-Web App Pentesting (OWASP Top 10), API Security Testing,
-Access Control Validation, Network Enumeration,
-Security Misconfiguration Analysis, Password Cracking.
+Web App Pentesting, API Security Testing, Access Control Validation,
+Network Enumeration, Security Misconfiguration Analysis.
 </p>
 </div>
 
 <div class="card">
-<h3 class="text-cyan-300 mb-2">Tools & Platforms</h3>
+<h3 class="text-cyan-300 mb-2">Tools</h3>
 <p class="text-slate-300 text-sm">
 Burp Suite, Nmap, Metasploit, SQLMap, Nikto, Nuclei,
-Gobuster, Hashcat, John the Ripper, OWASP ZAP,
-Postman, Kali Linux, Git.
+Hashcat, OWASP ZAP, Postman, Kali Linux, Git.
 </p>
 </div>
 
@@ -297,7 +199,7 @@ Postman, Kali Linux, Git.
 
 <footer class="py-10 text-center text-slate-500">
 <p>SYSTEM STATUS: ONLINE</p>
-<p class="text-xs mt-2">© 2026 Ashwin Vadakkeel • Cybersecurity Portfolio</p>
+<p class="text-xs mt-2">© 2026 Ashwin Vadakkeel</p>
 </footer>
 
 <script>
@@ -311,13 +213,8 @@ let w=0,c=0,del=false;
 function type(){
 const el=document.getElementById("typing");
 const t=words[w];
-if(!del){
-el.textContent=t.slice(0,++c);
-if(c===t.length){del=true;setTimeout(type,1200);return;}
-}else{
-el.textContent=t.slice(0,--c);
-if(c===0){del=false;w=(w+1)%words.length;}
-}
+if(!del){el.textContent=t.slice(0,++c);if(c===t.length){del=true;setTimeout(type,1200);return}}
+else{el.textContent=t.slice(0,--c);if(c===0){del=false;w=(w+1)%words.length}}
 setTimeout(type,del?30:60);
 }
 type();
@@ -331,7 +228,7 @@ a.href=d.html_url;
 a.target="_blank";
 a.className="card block";
 a.innerHTML=`
-<h3 class='text-cyan-300 text-lg'>${d.name}</h3>
+<h3 class='text-cyan-300 text-lg font-semibold'>${d.name.replaceAll("-"," ")}</h3>
 <p class='mt-2 text-slate-300 text-sm'>${d.description||"Security repository"}</p>
 <p class='text-cyan-300 mt-3 text-sm'>★ ${d.stargazers_count} | 🍴 ${d.forks_count}</p>`;
 repos.appendChild(a);
