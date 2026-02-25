@@ -19,7 +19,7 @@
 
 <style>
 
-/* ---------- INTRO SCREEN ---------- */
+/* ===== INTRO BOOT ===== */
 
 #boot{
 position:fixed;
@@ -28,23 +28,16 @@ background:#02050a;
 display:flex;
 align-items:center;
 justify-content:center;
-z-index:9999;
 flex-direction:column;
+z-index:9999;
 font-family:'JetBrains Mono',monospace;
 color:#00f7ff;
 }
 
-#boot span{
-opacity:.8;
-animation:blink 1s infinite;
-}
+#boot span{animation:blink 1s infinite}
+@keyframes blink{0%,50%,100%{opacity:1}25%,75%{opacity:.2}}
 
-@keyframes blink{
-0%,50%,100%{opacity:1}
-25%,75%{opacity:.2}
-}
-
-/* ---------- BASE ---------- */
+/* ===== BASE ===== */
 
 body{
 background:
@@ -57,7 +50,7 @@ font-family:'JetBrains Mono',monospace;
 overflow-x:hidden;
 }
 
-.container{max-width:1150px;margin:auto;padding:0 18px;}
+.container{max-width:1150px;margin:auto;padding:0 20px;}
 
 .cyber{
 font-family:'Orbitron',sans-serif;
@@ -105,6 +98,8 @@ color:#ff7af3;
 font-size:12px;
 }
 
+/* HERO */
+
 .hero-box{
 position:relative;
 width:100%;
@@ -142,7 +137,7 @@ section{border-top:1px solid rgba(0,255,255,.08)}
 
 img{max-width:100%;height:auto;display:block;}
 
-/* ---------- MOBILE PERFECT ---------- */
+/* ===== MOBILE REAL FIX ===== */
 
 @media(max-width:768px){
 
@@ -185,17 +180,21 @@ h1{font-size:28px !important;}
 
 <body>
 
-<!-- INTRO BOOT -->
+<!-- INTRO -->
 
 <div id="boot">
 <div class="cyber text-2xl">INITIALIZING SYSTEM...</div>
 <div class="mt-3 text-sm">Loading Portfolio<span>_</span></div>
 </div>
 
+<!-- HEADER -->
+
 <header class="container py-5 flex items-center justify-between gap-3">
 <img src="logo.png" class="w-10 h-10 object-contain">
 <div class="cyber text-xl">ASHWIN VADAKKEEL</div>
 </header>
+
+<!-- HERO -->
 
 <section class="container flex flex-col md:flex-row items-center gap-10 py-10">
 
@@ -237,12 +236,24 @@ Cybersecurity Analyst specializing in Web Application Penetration Testing, API s
 
 </section>
 
+<!-- ABOUT -->
+
 <section class="container py-12">
 <h2 class="cyber text-2xl mb-6">ABOUT</h2>
 <div class="card max-w-2xl">
 <p>Cybersecurity Analyst focused on web pentesting, API Pentesting, hardware security research, and responsible disclosure.</p>
+<div class="mt-4 text-sm space-y-2">
+<p><strong>Location:</strong> Kannur, Kerala, India</p>
+<p><strong>Email:</strong> ashwi************@gmail.com</p>
+<p><strong>Phone:</strong> 9*6*5*****</p>
+</div>
+<p class="mt-4 text-xs text-slate-400">
+“It scratched that part of my mind — the part that doesn’t allow good to exist without condition.” — Mr. Robot
+</p>
 </div>
 </section>
+
+<!-- RECOGNITIONS -->
 
 <section class="container py-12">
 <h2 class="cyber text-2xl mb-6">RECOGNITIONS</h2>
@@ -250,18 +261,69 @@ Cybersecurity Analyst specializing in Web Application Penetration Testing, API s
 
 <a href="https://www.broadcom.com/support/security-center/security-thanks" target="_blank" class="card block">
 <h3 class="text-cyan-300">Broadcom PSIRT Hall of Fame</h3>
+<p class="mt-2 text-sm text-slate-300">Official responsible disclosure listing →</p>
 </a>
 
 <a href="https://www.linkedin.com/posts/ashwin-vadakkeel_cybersecurity-responsibledisclosure-ethicalhacking-activity-7273920968874426369-vrK7" target="_blank" class="card block">
 <h3 class="text-cyan-300">NCIIPC Acknowledgement</h3>
+<p class="mt-2 text-sm text-slate-300">Government acknowledgement proof →</p>
 </a>
 
 <a href="https://www.linkedin.com/posts/ashwin-vadakkeel_cybersecurity-diy-opensource-activity-7283806951489028096-0cCi" target="_blank" class="card block">
 <h3 class="text-cyan-300">Research Impact</h3>
+<p class="mt-2 text-sm text-slate-300">2.1M+ impressions research demo →</p>
 </a>
 
 </div>
 </section>
+
+<!-- EXPERIENCE -->
+
+<section class="container py-12">
+<h2 class="cyber text-2xl mb-6">EXPERIENCE</h2>
+<div class="card max-w-3xl">
+<h3 class="text-cyan-300 text-lg">Cybersecurity Analyst — Hazercloud Infotech</h3>
+<p class="text-slate-400 text-xs mt-1">Sep 2024 – Present • Kannur</p>
+<ul class="mt-4 text-sm space-y-2 text-slate-300">
+<li>• Perform web application pentesting across authentication, APIs and sessions.</li>
+<li>• Identify access control flaws, validation issues and misconfigurations.</li>
+<li>• Produce structured vulnerability reports with CVSS scoring.</li>
+<li>• Collaborate with developers to verify fixes.</li>
+</ul>
+</div>
+</section>
+
+<!-- MENTORSHIP -->
+
+<section class="container py-12">
+<h2 class="cyber text-2xl mb-6">MENTORSHIP & COMMUNITY</h2>
+<div class="grid md:grid-cols-2 gap-6">
+
+<a href="https://www.linkedin.com/posts/ashwin-vadakkeel_futuresummit-cybersecurity-realtimeattacks-activity-7289909800564359168-nA_n" target="_blank" class="card block">
+<h3 class="text-cyan-300">Lead Mentor — Cybersecurity War Room</h3>
+<p class="mt-3 text-sm text-slate-300">
+Demonstrated hardware attack simulations using Flipper Zero, Wi-Fi Deauther, BadUSB devices, Kali NetHunter setups, M5Stick tools and embedded hardware platforms.
+</p>
+</a>
+
+<a href="https://www.linkedin.com/posts/ashwin-vadakkeel_cybersecurity-hardwarehacking-iedcsummit-activity-7421250049134895104-FEGH" target="_blank" class="card block">
+<h3 class="text-cyan-300">IEDC Summit — Hardware Security Demo</h3>
+<p class="mt-3 text-sm text-slate-300">
+Conducted hands-on demonstrations showcasing real-time attack simulations and embedded cybersecurity research tools.
+</p>
+</a>
+
+<a href="https://www.linkedin.com/posts/ashwin-vadakkeel_cybersecurity-guestlecture-alumnipride-activity-7407760075827609600-casR" target="_blank" class="card block md:col-span-2">
+<h3 class="text-cyan-300">Guest Lectures & College Cybersecurity Sessions</h3>
+<p class="mt-3 text-sm text-slate-300">
+Conducted multiple cybersecurity awareness sessions and guest lectures for college students covering ethical hacking, web security risks, hardware attacks, and cybersecurity career guidance.
+</p>
+</a>
+
+</div>
+</section>
+
+<!-- GITHUB -->
 
 <section class="container py-12">
 <h2 class="cyber text-2xl mb-6">GITHUB PROJECTS</h2>
@@ -275,11 +337,9 @@ SYSTEM STATUS: ONLINE<br>
 
 <script>
 
-/* intro hide */
+/* intro */
 window.addEventListener("load",()=>{
-setTimeout(()=>{
-document.getElementById("boot").style.display="none";
-},1200);
+setTimeout(()=>{document.getElementById("boot").style.display="none";},1200);
 });
 
 /* typing */
