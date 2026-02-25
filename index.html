@@ -21,7 +21,7 @@ background: radial-gradient(circle at 20% 20%, #07111a, #02050a 60%);
 color:#e6f1ff;
 font-family:'JetBrains Mono',monospace;
 overflow-x:hidden;
-opacity:1; /* FIX: never hide body completely */
+opacity:1;
 }
 
 body.reveal{animation:pageReveal 1s ease forwards;}
@@ -62,25 +62,45 @@ color:#ff7af3;font-size:12px;
 
 /* ---------- HERO IMAGE ---------- */
 
-.hero-box{width:100%;max-width:520px;aspect-ratio:1/1;position:relative;border-radius:22px;overflow:hidden;}
+.hero-box{
+width:100%;
+max-width:520px;
+aspect-ratio:1/1;
+position:relative;
+border-radius:22px;
+overflow:hidden;
+z-index:2;
+}
+
 .hero-img{
-position:absolute;inset:0;width:100%;height:100%;
-object-fit:cover;border-radius:22px;
+position:absolute;
+inset:0;
+width:100%;
+height:100%;
+object-fit:cover;
+border-radius:22px;
 animation:floatHero 7s ease-in-out infinite;
-mix-blend-mode:lighten;
+mix-blend-mode:normal;
 box-shadow:0 0 50px rgba(0,247,255,.15);
 transition:.3s;
 }
+
 @keyframes floatHero{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
 
 /* ---------- PARTICLES ---------- */
 
 #heroParticles{
-position:absolute;top:0;left:0;width:100%;height:100%;
-pointer-events:none;opacity:.35;
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+pointer-events:none;
+opacity:.25;
+z-index:0;
 }
 
-/* ---------- INTRO FIXED ---------- */
+/* ---------- INTRO ---------- */
 
 #boot{
 position:fixed;inset:0;background:#02050a;
@@ -123,11 +143,45 @@ height:100%;width:0%;background:#00f7ff;transition:.3s;
 
 section{border-top:1px solid rgba(0,255,255,.08)}
 
-/* HERO typing */
-
 .terminal{height:1.4em;max-width:28ch;overflow:hidden;position:relative;}
 .terminal span{position:absolute;white-space:nowrap;color:#ff2bd6;text-shadow:0 0 12px #ff2bd6aa;}
 .terminal span:after{content:"_";margin-left:6px;animation:blink 1s infinite;}
+
+/* ---------- MOBILE FIXES ---------- */
+
+@media(max-width:768px){
+
+.container{padding:0 16px;}
+
+header{justify-content:center;text-align:center;}
+
+.container.flex{flex-direction:column;}
+
+h1{font-size:32px !important;text-align:center;}
+
+.terminal{text-align:center;margin:auto;}
+
+.flex-1 p{text-align:center;margin:auto;}
+
+.flex-1 .flex{justify-content:center;}
+
+.hero-box{max-width:260px;margin:20px auto 0;}
+
+.grid{gap:18px;}
+
+.md\:grid-cols-2,
+.md\:grid-cols-3{grid-template-columns:1fr !important;}
+
+.card p, ul li{font-size:14px;}
+
+footer{padding-bottom:40px;font-size:12px;}
+}
+
+@media(max-width:420px){
+h1{font-size:26px !important;}
+.hero-box{max-width:220px;}
+.badge{font-size:10px;}
+}
 
 </style>
 </head>
@@ -147,10 +201,10 @@ section{border-top:1px solid rgba(0,255,255,.08)}
 </header>
 
 <!-- HERO -->
-<section class="container flex flex-col md:flex-row items-center gap-10 py-10">
+<section class="container flex flex-col md:flex-row items-center gap-10 py-10 relative">
 <canvas id="heroParticles"></canvas>
 
-<div class="flex-1">
+<div class="flex-1 relative z-10">
 
 <h1 class="text-4xl md:text-6xl cyber">CYBERSECURITY ANALYST</h1>
 
@@ -178,7 +232,7 @@ Cybersecurity Analyst specializing in Web Application Penetration Testing, API s
 
 </div>
 
-<div class="flex-1 flex justify-center">
+<div class="flex-1 flex justify-center relative z-10">
 <div class="hero-box" id="heroBox">
 <img src="profile.png" class="hero-img" id="heroImg">
 </div>
@@ -282,8 +336,7 @@ SYSTEM STATUS: ONLINE<br>
 
 <script>
 
-/* ---------- INTRO FIX ---------- */
-
+/* INTRO */
 const bootLines=[
 "Booting secure portfolio...",
 "Loading cybersecurity modules...",
@@ -296,23 +349,16 @@ const el=document.getElementById("boot-text");
 const prog=document.getElementById("boot-progress");
 
 function typeBoot(){
-
 if(li<bootLines.length){
-
 if(ch<bootLines[li].length){
 el.textContent+=bootLines[li][ch++];
 setTimeout(typeBoot,20);
 }else{
-el.textContent+="\n";
-li++;ch=0;
+el.textContent+="\n";li++;ch=0;
 prog.style.width=((li/bootLines.length)*100)+"%";
 setTimeout(typeBoot,250);
 }
-
-}else{
-setTimeout(endBoot,600);
-}
-
+}else{setTimeout(endBoot,600);}
 }
 
 function endBoot(){
@@ -322,10 +368,7 @@ setTimeout(typeHero,400);
 }
 
 typeBoot();
-
-/* safety fallback */
 setTimeout(endBoot,6000);
-
 
 /* HERO typing */
 const words=[
@@ -334,13 +377,10 @@ const words=[
 "Hardware Security Researcher",
 "Cybersecurity Mentor"
 ];
-
 let w=0,cc=0,del=false;
-
 function typeHero(){
 const el=document.getElementById("typing");
 const t=words[w];
-
 if(!del){
 el.textContent=t.slice(0,++cc);
 if(cc===t.length){del=true;setTimeout(typeHero,1200);return;}
@@ -348,15 +388,12 @@ if(cc===t.length){del=true;setTimeout(typeHero,1200);return;}
 el.textContent=t.slice(0,--cc);
 if(cc===0){del=false;w=(w+1)%words.length;}
 }
-
 setTimeout(typeHero,del?30:60);
 }
-
 
 /* HERO glow */
 const heroBox=document.getElementById("heroBox");
 const heroImg=document.getElementById("heroImg");
-
 heroBox.addEventListener("mousemove",(e)=>{
 const r=heroBox.getBoundingClientRect();
 const x=(e.clientX-r.left)/r.width;
@@ -367,19 +404,15 @@ heroImg.style.filter=`drop-shadow(${mx*2}px ${my*2}px 60px rgba(0,247,255,.35))`
 });
 heroBox.addEventListener("mouseleave",()=>{heroImg.style.transform="";heroImg.style.filter="";});
 
-
 /* PARTICLES */
 const canvas=document.getElementById("heroParticles");
 const ctx=canvas.getContext("2d");
-
 function resize(){canvas.width=canvas.offsetWidth;canvas.height=canvas.offsetHeight;}
 resize();window.addEventListener("resize",resize);
-
 const particles=[];
 for(let i=0;i<40;i++){
 particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*1.8+.6,vx:(Math.random()-.5)*.25,vy:(Math.random()-.5)*.25});
 }
-
 function draw(){
 ctx.clearRect(0,0,canvas.width,canvas.height);
 particles.forEach(p=>{
@@ -393,7 +426,6 @@ ctx.fill();
 requestAnimationFrame(draw);
 }
 draw();
-
 
 /* AUTO GITHUB */
 fetch("https://api.github.com/users/hermit148/repos?per_page=100")
