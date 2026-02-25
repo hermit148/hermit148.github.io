@@ -19,6 +19,15 @@ background: radial-gradient(circle at 20% 20%, #07111a, #02050a 60%);
 color:#e6f1ff;
 font-family:'JetBrains Mono',monospace;
 overflow-x:hidden;
+opacity:0;
+}
+
+body.reveal{
+animation:pageReveal 1s ease forwards;
+}
+
+@keyframes pageReveal{
+to{opacity:1}
 }
 
 .container{max-width:1150px;margin:auto;padding:0 20px;}
@@ -49,42 +58,58 @@ border-radius:999px;transition:.25s;font-size:14px;
 .badge{
 border:1px solid rgba(255,43,214,.4);
 background:rgba(255,43,214,.08);
-padding:6px 12px;
-margin:4px;
-display:inline-block;
-border-radius:999px;
-color:#ff7af3;
-font-size:12px;
+padding:6px 12px;margin:4px;
+display:inline-block;border-radius:999px;
+color:#ff7af3;font-size:12px;
 }
 
-/* hero image FIX */
+/* HERO IMAGE */
 .hero-box{
-width:100%;
-max-width:520px;
-aspect-ratio:1/1;
-position:relative;
+width:100%;max-width:520px;aspect-ratio:1/1;
+position:relative;border-radius:22px;overflow:hidden;
 }
 .hero-img{
-position:absolute;
-inset:0;
-width:100%;
-height:100%;
-object-fit:cover;
-border-radius:22px;
-transition:.15s;
-filter:contrast(1.05) brightness(.95);
+position:absolute;inset:0;width:100%;height:100%;
+object-fit:cover;border-radius:22px;
+animation:floatHero 7s ease-in-out infinite;
+mix-blend-mode:lighten;
+box-shadow:0 0 50px rgba(0,247,255,.15);
+transition:.3s;
+}
+@keyframes floatHero{
+0%,100%{transform:translateY(0)}
+50%{transform:translateY(-10px)}
 }
 
-/* intro */
+/* PARTICLES */
+#heroParticles{
+position:absolute;top:0;left:0;width:100%;height:100%;
+pointer-events:none;opacity:.35;
+}
+
+/* HEADER LOGO */
+header img{
+transition:.3s;
+}
+header img:hover{
+transform:rotate(-6deg) scale(1.08);
+filter:drop-shadow(0 0 12px #00f7ff);
+}
+
+/* INTRO */
 #boot{
 position:fixed;inset:0;background:#02050a;
 display:flex;flex-direction:column;align-items:center;justify-content:center;
 z-index:9999;
 }
 #boot img{
-width:130px;
-margin-bottom:25px;
+width:130px;margin-bottom:25px;
 filter:drop-shadow(0 0 25px #00f7ff);
+animation:bootPulse 2s infinite;
+}
+@keyframes bootPulse{
+0%,100%{transform:scale(1)}
+50%{transform:scale(1.08)}
 }
 #boot-text{color:#00f7ff;white-space:pre}
 .fade-out{animation:fade 1s forwards}
@@ -110,6 +135,8 @@ section{border-top:1px solid rgba(0,255,255,.08)}
 
 <!-- HERO -->
 <section class="container flex flex-col md:flex-row items-center gap-10 py-10">
+
+<canvas id="heroParticles"></canvas>
 
 <div class="flex-1">
 
@@ -147,10 +174,7 @@ Cybersecurity Analyst specializing in Web Application Penetration Testing, API s
 <h2 class="cyber text-2xl mb-6">ABOUT</h2>
 
 <div class="card max-w-2xl">
-
-<p>
-Cybersecurity Analyst focused on web pentesting, API validation, hardware security research, and responsible disclosure.
-</p>
+<p>Cybersecurity Analyst focused on web pentesting, API validation, hardware security research, and responsible disclosure.</p>
 
 <div class="mt-4 text-sm space-y-2">
 <p><strong>Location:</strong> Kannur, Kerala, India</p>
@@ -161,7 +185,6 @@ Cybersecurity Analyst focused on web pentesting, API validation, hardware securi
 <p class="mt-4 text-xs text-slate-400">
 LinkedIn community: 12K+ followers • Research demo reached 2.1M+ impressions
 </p>
-
 </div>
 </section>
 
@@ -186,6 +209,23 @@ LinkedIn community: 12K+ followers • Research demo reached 2.1M+ impressions
 <p class="mt-2 text-sm text-slate-300">2.1M+ impressions research demo →</p>
 </a>
 
+</div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="container py-12">
+<h2 class="cyber text-2xl mb-6">EXPERIENCE</h2>
+
+<div class="card max-w-3xl">
+<h3 class="text-cyan-300 text-lg">Cybersecurity Analyst — Hazercloud Infotech</h3>
+<p class="text-slate-400 text-xs mt-1">Sep 2024 – Present • Kannur</p>
+
+<ul class="mt-4 text-sm space-y-2 text-slate-300">
+<li>• Perform web application pentesting across authentication, APIs and sessions.</li>
+<li>• Identify access control flaws, validation issues and misconfigurations.</li>
+<li>• Produce structured vulnerability reports with CVSS scoring.</li>
+<li>• Collaborate with developers to verify fixes.</li>
+</ul>
 </div>
 </section>
 
@@ -235,23 +275,22 @@ SYSTEM STATUS: ONLINE<br>
 
 <script>
 
-/* intro typing */
-const lines=[
-"Booting secure portfolio...",
-"Loading Ashwin Vadakkeel modules...",
-"Access granted."
-];
+/* INTRO */
+const lines=["Booting secure portfolio...","Loading modules...","Access granted."];
 let i=0,c=0,el=document.getElementById("boot-text");
 function type(){
 if(i<lines.length){
 if(c<lines[i].length){el.textContent+=lines[i][c++];setTimeout(type,20);}
 else{el.textContent+="\n";i++;c=0;setTimeout(type,300);}
 }else{
-setTimeout(()=>document.getElementById("boot").classList.add("fade-out"),500);
+setTimeout(()=>{
+document.getElementById("boot").classList.add("fade-out");
+document.body.classList.add("reveal");
+},500);
 }}
 type();
 
-/* hero glow */
+/* HERO GLOW */
 const heroBox=document.getElementById("heroBox");
 const heroImg=document.getElementById("heroImg");
 
@@ -259,11 +298,49 @@ heroBox.addEventListener("mousemove",(e)=>{
 const r=heroBox.getBoundingClientRect();
 const x=(e.clientX-r.left)/r.width;
 const y=(e.clientY-r.top)/r.height;
-heroImg.style.filter=`drop-shadow(${(x-.5)*40}px ${(y-.5)*40}px 60px rgba(0,247,255,.35))`;
+const moveX=(x-.5)*18;
+const moveY=(y-.5)*18;
+heroImg.style.transform=`translate(${moveX}px,${moveY}px) scale(1.03)`;
+heroImg.style.filter=`drop-shadow(${moveX*2}px ${moveY*2}px 60px rgba(0,247,255,.35))`;
 });
-heroBox.addEventListener("mouseleave",()=>heroImg.style.filter="");
+heroBox.addEventListener("mouseleave",()=>{
+heroImg.style.transform="";
+heroImg.style.filter="";
+});
 
-/* auto github repos */
+/* PARTICLES */
+const canvas=document.getElementById("heroParticles");
+const ctx=canvas.getContext("2d");
+function resize(){canvas.width=canvas.offsetWidth;canvas.height=canvas.offsetHeight;}
+resize();window.addEventListener("resize",resize);
+
+const particles=[];
+for(let i=0;i<40;i++){
+particles.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+r:Math.random()*1.8+0.6,
+vx:(Math.random()-.5)*0.25,
+vy:(Math.random()-.5)*0.25
+});
+}
+
+function draw(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+particles.forEach(p=>{
+p.x+=p.vx;p.y+=p.vy;
+if(p.x<0||p.x>canvas.width)p.vx*=-1;
+if(p.y<0||p.y>canvas.height)p.vy*=-1;
+ctx.beginPath();
+ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+ctx.fillStyle="rgba(0,247,255,.7)";
+ctx.fill();
+});
+requestAnimationFrame(draw);
+}
+draw();
+
+/* AUTO GITHUB */
 fetch("https://api.github.com/users/hermit148/repos?per_page=100")
 .then(r=>r.json())
 .then(data=>{
