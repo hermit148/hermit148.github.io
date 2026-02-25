@@ -13,17 +13,34 @@
 
 <style>
 
-/* BASE */
+/* ===== BACKGROUND GRID ===== */
 
 body{
-background: radial-gradient(circle at 20% 20%, #07111a, #02050a 60%);
+background:
+linear-gradient(rgba(0,247,255,.05) 1px, transparent 1px),
+linear-gradient(90deg, rgba(0,247,255,.05) 1px, transparent 1px),
+radial-gradient(circle at 20% 20%, #07111a, #02050a 60%);
+background-size:40px 40px,40px 40px,cover;
 color:#e6f1ff;
 font-family:'JetBrains Mono',monospace;
 overflow-x:hidden;
-opacity:1;
 }
 
-.container{max-width:1150px;margin:auto;padding:0 20px}
+/* animated grid glow */
+body::before{
+content:"";
+position:fixed;
+inset:0;
+background:radial-gradient(circle at center, rgba(0,247,255,.12), transparent 70%);
+animation:gridPulse 6s ease-in-out infinite;
+pointer-events:none;
+}
+@keyframes gridPulse{
+0%,100%{opacity:.3}
+50%{opacity:.6}
+}
+
+.container{max-width:1150px;margin:auto;padding:0 20px;}
 
 .cyber{
 font-family:'Orbitron',sans-serif;
@@ -31,11 +48,17 @@ color:#00f7ff;
 text-shadow:0 0 12px #00f7ff,0 0 30px #00f7ff55;
 }
 
+/* ===== CARDS / BUTTONS ===== */
+
 .card{
 background:rgba(3,10,18,.92);
 border:1px solid rgba(0,255,255,.25);
-padding:1.4rem;border-radius:14px;transition:.3s;
+padding:1.4rem;border-radius:14px;
+transition:.35s;
+opacity:0;transform:translateY(30px);
 }
+.card.visible{opacity:1;transform:none;}
+
 .card:hover{
 border-color:#00f7ff;
 box-shadow:0 0 25px rgba(0,247,255,.25);
@@ -57,115 +80,74 @@ display:inline-block;border-radius:999px;
 color:#ff7af3;font-size:12px;
 }
 
-/* HERO IMAGE */
+/* ===== PROFILE WITH CYBER RING ===== */
 
 .hero-box{
-width:100%;
-max-width:520px;
-aspect-ratio:1/1;
 position:relative;
-border-radius:22px;
-overflow:hidden;
-z-index:2;
+width:100%;
+max-width:420px;
+aspect-ratio:1/1;
+margin:auto;
+border-radius:24px;
+}
+
+.hero-box::before{
+content:"";
+position:absolute;
+inset:-6px;
+border-radius:30px;
+background:conic-gradient(
+from 0deg,
+#00f7ff,
+#00f7ff00,
+#ff2bd6,
+#00f7ff
+);
+filter:blur(12px);
+opacity:.7;
+animation:ringSpin 8s linear infinite;
+}
+
+@keyframes ringSpin{
+from{transform:rotate(0)}
+to{transform:rotate(360deg)}
 }
 
 .hero-img{
-position:absolute;
-inset:0;
+position:relative;
 width:100%;
 height:100%;
 object-fit:cover;
 border-radius:22px;
-animation:floatHero 7s ease-in-out infinite;
-box-shadow:0 0 50px rgba(0,247,255,.15);
-transition:.3s;
+box-shadow:0 0 50px rgba(0,247,255,.2);
 }
 
-@keyframes floatHero{
-0%,100%{transform:translateY(0)}
-50%{transform:translateY(-10px)}
-}
-
-/* PARTICLES */
-
-#heroParticles{
-position:absolute;
-top:0;
-left:0;
-width:100%;
-height:100%;
-pointer-events:none;
-opacity:.25;
-z-index:0;
-}
-
-/* INTRO */
-
-#boot{
-position:fixed;inset:0;background:#02050a;
-display:flex;flex-direction:column;align-items:center;justify-content:center;
-z-index:9999;
-}
-
-#boot img{
-width:130px;margin-bottom:25px;
-filter:drop-shadow(0 0 25px #00f7ff);
-animation:bootPulse 2s infinite;
-}
-
-@keyframes bootPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
-
-#boot-text{
-color:#00ff9c;
-white-space:pre-line;
-min-height:120px;
-font-size:14px;
-}
-
-#boot-text::after{
-content:"_";
-margin-left:6px;
-animation:blink 1s infinite;
-}
-
-@keyframes blink{0%,50%,100%{opacity:1}25%,75%{opacity:0}}
-
-.boot-bar{
-width:240px;height:5px;background:#07111a;border-radius:999px;margin-top:20px;overflow:hidden;
-}
-#boot-progress{height:100%;width:0%;background:#00f7ff;transition:.3s;}
+/* ===== SECTIONS ===== */
 
 section{border-top:1px solid rgba(0,255,255,.08)}
 
+/* typing */
 .terminal{height:1.4em;max-width:28ch;overflow:hidden;position:relative}
 .terminal span{position:absolute;white-space:nowrap;color:#ff2bd6;text-shadow:0 0 12px #ff2bd6aa;}
 .terminal span:after{content:"_";margin-left:6px;animation:blink 1s infinite;}
+@keyframes blink{0%,50%,100%{opacity:1}25%,75%{opacity:0}}
 
-/* ===== MOBILE FIX ===== */
+/* ===== MOBILE ===== */
 
 @media(max-width:768px){
 
-header{flex-direction:column;text-align:center;gap:10px;}
+header{flex-direction:column;text-align:center}
 
 section.container.flex{
 flex-direction:column !important;
 text-align:center;
-gap:30px;
+gap:35px;
 }
 
 .hero-box{
-max-width:260px;
-margin:20px auto 0;
+max-width:clamp(180px,55vw,260px);
+margin:25px auto 0;
 }
-
-.hero-img{
-position:relative !important;
-animation:none !important;
-transform:none !important;
-filter:none !important;
-}
-
-#heroParticles{display:none !important;}
 
 .md\:grid-cols-2,
 .md\:grid-cols-3{
@@ -181,23 +163,16 @@ grid-template-columns:1fr !important;
 
 <body>
 
-<!-- INTRO -->
-<div id="boot">
-<img src="logo.png">
-<div id="boot-text"></div>
-<div class="boot-bar"><div id="boot-progress"></div></div>
-</div>
-
+<!-- HEADER -->
 <header class="container py-5 flex items-center gap-3">
 <img src="logo.png" class="w-10 h-10 object-contain">
 <div class="cyber text-xl">ASHWIN VADAKKEEL</div>
 </header>
 
 <!-- HERO -->
-<section class="container flex flex-col md:flex-row items-center gap-10 py-10 relative">
-<canvas id="heroParticles"></canvas>
+<section class="container flex flex-col md:flex-row items-center gap-10 py-10">
 
-<div class="flex-1 relative z-10">
+<div class="flex-1">
 
 <h1 class="text-4xl md:text-6xl cyber">CYBERSECURITY ANALYST</h1>
 
@@ -225,9 +200,9 @@ Cybersecurity Analyst specializing in Web Application Penetration Testing, API s
 
 </div>
 
-<div class="flex-1 flex justify-center relative z-10">
-<div class="hero-box" id="heroBox">
-<img src="profile.png" class="hero-img" id="heroImg">
+<div class="flex-1 flex justify-center">
+<div class="hero-box">
+<img src="profile.png" class="hero-img">
 </div>
 </div>
 
@@ -329,89 +304,37 @@ SYSTEM STATUS: ONLINE<br>
 
 <script>
 
-document.addEventListener("DOMContentLoaded", function(){
-
-/* BOOT */
-
-const bootLines=[
-"Booting secure portfolio...",
-"Loading cybersecurity modules...",
-"Establishing encrypted session...",
-"Access granted ✔"
-];
-
-let li=0,ch=0;
-const el=document.getElementById("boot-text");
-const prog=document.getElementById("boot-progress");
-
-function typeBoot(){
-if(li<bootLines.length){
-if(ch<bootLines[li].length){
-el.textContent+=bootLines[li][ch++];
-setTimeout(typeBoot,20);
-}else{
-el.textContent+="\n";li++;ch=0;
-prog.style.width=((li/bootLines.length)*100)+"%";
-setTimeout(typeBoot,250);
-}
-}else{setTimeout(()=>document.getElementById("boot").style.display="none",600);}
-}
-
-typeBoot();
-
-/* HERO typing */
-
+/* typing hero */
 const words=[
 "Web Application Pentester",
 "API Security Analyst",
 "Hardware Security Researcher",
 "Cybersecurity Mentor"
 ];
-
-let w=0,cc=0,del=false;
-
-function typeHero(){
+let w=0,c=0,del=false;
+function type(){
 const el=document.getElementById("typing");
 const t=words[w];
 if(!del){
-el.textContent=t.slice(0,++cc);
-if(cc===t.length){del=true;setTimeout(typeHero,1200);return;}
+el.textContent=t.slice(0,++c);
+if(c===t.length){del=true;setTimeout(type,1200);return;}
 }else{
-el.textContent=t.slice(0,--cc);
-if(cc===0){del=false;w=(w+1)%words.length;}
+el.textContent=t.slice(0,--c);
+if(c===0){del=false;w=(w+1)%words.length;}
 }
-setTimeout(typeHero,del?30:60);
+setTimeout(type,del?30:60);
 }
+type();
 
-typeHero();
-
-/* PARTICLES desktop only */
-
-if(window.innerWidth>768){
-const canvas=document.getElementById("heroParticles");
-const ctx=canvas.getContext("2d");
-canvas.width=canvas.offsetWidth;
-canvas.height=canvas.offsetHeight;
-
-const particles=[];
-for(let i=0;i<40;i++){
-particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*2});
-}
-
-(function draw(){
-ctx.clearRect(0,0,canvas.width,canvas.height);
-particles.forEach(p=>{
-ctx.beginPath();
-ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-ctx.fillStyle="rgba(0,247,255,.7)";
-ctx.fill();
+/* scroll reveal */
+const obs=new IntersectionObserver(entries=>{
+entries.forEach(e=>{
+if(e.isIntersecting)e.target.classList.add("visible");
 });
-requestAnimationFrame(draw);
-})();
-}
+},{threshold:.15});
+document.querySelectorAll(".card").forEach(el=>obs.observe(el));
 
-/* GITHUB */
-
+/* github */
 fetch("https://api.github.com/users/hermit148/repos?per_page=100")
 .then(r=>r.json())
 .then(data=>{
@@ -427,8 +350,6 @@ a.innerHTML=`<h3 class='text-cyan-300 text-lg'>${d.name.replaceAll("-"," ")}</h3
 <p class='text-cyan-300 mt-3 text-sm'>★ ${d.stargazers_count} | 🍴 ${d.forks_count}</p>`;
 document.getElementById("repos").appendChild(a);
 });
-});
-
 });
 
 </script>
