@@ -21,7 +21,6 @@ font-family:'JetBrains Mono',monospace;
 overflow-x:hidden;
 }
 
-/* cyber grid */
 body:before{
 content:"";
 position:fixed;
@@ -33,14 +32,23 @@ background-size:40px 40px;
 pointer-events:none;
 }
 
-/* titles */
 .cyber{
 font-family:'Orbitron',sans-serif;
 color:#00f7ff;
 text-shadow:0 0 12px #00f7ff,0 0 30px #00f7ff55;
 }
 
-/* terminal typing */
+.badge{
+border:1px solid rgba(255,43,214,.4);
+background:rgba(255,43,214,.08);
+padding:5px 12px;
+display:inline-block;
+margin:4px;
+color:#ff7af3;
+border-radius:999px;
+}
+
+/* TERMINAL TYPING (stable) */
 .terminal{
 height:1.4em;
 width:28ch;
@@ -65,11 +73,7 @@ animation:blink 1s infinite;
 25%,75%{opacity:0}
 }
 
-/* HERO ART (NUCLEAR STABLE) */
-.hero-art{
-display:flex;
-justify-content:center;
-}
+/* HERO IMAGE (smooth premium motion) */
 .hero-box{
 width:650px;
 max-width:100%;
@@ -77,6 +81,7 @@ aspect-ratio:1/1;
 position:relative;
 contain:layout paint size style;
 }
+
 .hero-img{
 position:absolute;
 inset:0;
@@ -84,22 +89,32 @@ width:100%;
 height:100%;
 object-fit:contain;
 z-index:2;
+animation:imgFloat 8s cubic-bezier(.45,.05,.55,.95) infinite;
 }
+
 .hero-glow{
 position:absolute;
 inset:0;
 background:url('logo.png') center/contain no-repeat;
-filter:drop-shadow(0 0 60px rgba(0,247,255,.45));
-animation:float 6s ease-in-out infinite;
-will-change:transform;
-transform:translate3d(0,0,0);
-}
-@keyframes float{
-0%,100%{transform:translate3d(0,0,0)}
-50%{transform:translate3d(0,-18px,0)}
+filter:drop-shadow(0 0 70px rgba(0,247,255,.45));
+z-index:1;
+animation:glowFloat 9s ease-in-out infinite;
 }
 
-/* cards */
+@keyframes imgFloat{
+0%{transform:translateY(0) rotate(0)}
+25%{transform:translateY(-6px) rotate(-.6deg)}
+50%{transform:translateY(-10px) rotate(0)}
+75%{transform:translateY(-4px) rotate(.6deg)}
+100%{transform:translateY(0) rotate(0)}
+}
+
+@keyframes glowFloat{
+0%{transform:translateY(0)}
+50%{transform:translateY(-16px)}
+100%{transform:translateY(0)}
+}
+
 .card{
 background:rgba(3,10,18,.9);
 border:1px solid rgba(0,255,255,.25);
@@ -113,7 +128,6 @@ box-shadow:0 0 25px rgba(0,247,255,.25);
 transform:translateY(-6px);
 }
 
-/* buttons */
 .btn{
 padding:10px 22px;
 border:1px solid #00f7ff;
@@ -127,7 +141,10 @@ color:black;
 box-shadow:0 0 20px #00f7ff;
 }
 
-/* boot screen */
+section{
+border-top:1px solid rgba(0,255,255,.08);
+}
+
 #boot{
 position:fixed;
 inset:0;
@@ -136,17 +153,6 @@ display:flex;
 align-items:center;
 justify-content:center;
 z-index:9999;
-}
-
-/* reveal animation */
-.reveal{
-opacity:0;
-transform:translateY(30px);
-transition:all .8s ease;
-}
-.reveal.show{
-opacity:1;
-transform:none;
 }
 
 </style>
@@ -170,10 +176,9 @@ INITIALIZING HERMIT SECURITY INTERFACE
 <img src="logo.png" class="w-10">
 <div class="cyber text-lg md:text-xl">ASHWIN // HERMIT</div>
 </div>
-
 <div class="hidden md:flex gap-6 text-cyan-200">
+<a href="#recognitions">recognitions</a>
 <a href="#projects">projects</a>
-<a href="#about">about</a>
 <a href="#contact">contact</a>
 </div>
 </header>
@@ -192,11 +197,18 @@ OFFENSIVE SECURITY
 </div>
 
 <p class="mt-4 text-cyan-300">
-Broadcom Hall of Fame • Govt Acknowledged • Cybersecurity Mentor • LinkedIn 10K+
+Cybersecurity Researcher • Offensive Security • Hardware & Web Pentesting
 </p>
 
+<div class="mt-4">
+<span class="badge">🇮🇳 NCIIPC Acknowledged</span>
+<span class="badge">🏆 Broadcom Hall of Fame</span>
+<span class="badge">🛡 Responsible Disclosure</span>
+</div>
+
 <p class="mt-6 text-slate-300 text-lg">
-Cybersecurity analyst specializing in Web & API pentesting, hardware hacking research, and offensive security tooling.
+Cybersecurity analyst specializing in Web & API pentesting, hardware hacking research,
+NetHunter demonstrations, and offensive security tooling.
 </p>
 
 <div class="mt-8 flex gap-3 flex-wrap">
@@ -206,7 +218,7 @@ Cybersecurity analyst specializing in Web & API pentesting, hardware hacking res
 
 </div>
 
-<div class="hero-art flex-1 min-w-[300px]">
+<div class="flex-1 min-w-[300px] flex justify-center">
 <div class="hero-box">
 <img src="logo.png" class="hero-img">
 <div class="hero-glow"></div>
@@ -215,52 +227,79 @@ Cybersecurity analyst specializing in Web & API pentesting, hardware hacking res
 
 </section>
 
-<!-- PROJECTS -->
-<section id="projects" class="max-w-6xl mx-auto py-20 px-4 reveal">
-<h2 class="cyber text-3xl mb-10">TOOLS & RESEARCH</h2>
-<div id="repos" class="grid md:grid-cols-3 gap-8"></div>
-</section>
+<!-- RECOGNITIONS -->
+<section id="recognitions" class="max-w-6xl mx-auto py-20 px-4">
 
-<!-- ABOUT -->
-<section id="about" class="max-w-6xl mx-auto py-20 px-4 reveal">
-<h2 class="cyber text-3xl mb-6">ABOUT</h2>
-<div class="card max-w-3xl">
-<p>
-Cybersecurity trainee and offensive security researcher experienced in
-web pentesting, API validation, hardware attack simulations,
-NetHunter demonstrations, and cybersecurity workshops.
+<h2 class="cyber text-3xl mb-8">RECOGNITIONS</h2>
+
+<div class="grid md:grid-cols-3 gap-8">
+
+<div class="card">
+<h3 class="text-cyan-300 text-lg">NCIIPC Acknowledgement</h3>
+<p class="mt-2 text-slate-300 text-sm">
+Recognized by India’s National Critical Information Infrastructure Protection Centre
+for responsible vulnerability disclosure.
 </p>
 </div>
+
+<div class="card">
+<h3 class="text-cyan-300 text-lg">Broadcom Hall of Fame</h3>
+<p class="mt-2 text-slate-300 text-sm">
+Listed in Broadcom Security Hall of Fame for reporting security vulnerabilities.
+</p>
+</div>
+
+<div class="card">
+<h3 class="text-cyan-300 text-lg">Government Responsible Disclosure</h3>
+<p class="mt-2 text-slate-300 text-sm">
+Acknowledged by government platforms for identifying and responsibly reporting security issues.
+</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="max-w-6xl mx-auto py-20 px-4">
+
+<h2 class="cyber text-3xl mb-10">TOOLS & RESEARCH</h2>
+<div id="repos" class="grid md:grid-cols-3 gap-8"></div>
+
 </section>
 
 <!-- CONTACT -->
-<section id="contact" class="max-w-6xl mx-auto py-20 px-4 reveal">
+<section id="contact" class="max-w-6xl mx-auto py-20 px-4">
+
 <h2 class="cyber text-3xl mb-6">CONTACT</h2>
+
 <div class="card max-w-xl">
 <p>Kerala, India</p>
 <p>GitHub: hermit148</p>
 <p>LinkedIn: ashwin-vadakkeel</p>
 </div>
+
 </section>
 
 <footer class="py-10 text-center text-slate-500">
-SYSTEM STATUS: ONLINE
+<p>SYSTEM STATUS: ONLINE</p>
+<p class="text-xs mt-2">© 2026 Ashwin Vadakkeel • Offensive Security Portfolio</p>
 </footer>
 
 <script>
 
 /* boot */
-const bootLines=[
+const lines=[
 "[ OK ] Loading modules...",
 "[ OK ] Initializing network...",
 "[ OK ] Mounting toolkit...",
 "[ OK ] Access granted"
 ];
-let bi=0;
+let i=0;
 function bootRun(){
-if(bi<bootLines.length){
-bootText.innerHTML+=bootLines[bi]+"<br>";
-bi++;setTimeout(bootRun,450);
+if(i<lines.length){
+bootText.innerHTML+=lines[i]+"<br>";
+i++;setTimeout(bootRun,450);
 }}
 bootRun();
 window.addEventListener("load",()=>setTimeout(()=>boot.remove(),3000));
@@ -286,7 +325,7 @@ setTimeout(type,del?30:60);
 }
 type();
 
-/* auto github repos */
+/* github repos */
 fetch("https://api.github.com/users/hermit148/repos?sort=updated")
 .then(r=>r.json())
 .then(data=>{
@@ -302,14 +341,6 @@ a.innerHTML=`
 repos.appendChild(a);
 });
 });
-
-/* reveal on scroll */
-const obs=new IntersectionObserver(entries=>{
-entries.forEach(e=>{
-if(e.isIntersecting)e.target.classList.add("show");
-});
-});
-document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
 
 </script>
 
