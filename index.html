@@ -14,15 +14,18 @@
 
 <style>
 
+/* ---------- BASE ---------- */
+
 body{
 background: radial-gradient(circle at 20% 20%, #07111a, #02050a 60%);
 color:#e6f1ff;
 font-family:'JetBrains Mono',monospace;
 overflow-x:hidden;
-opacity:0;
+opacity:1; /* FIX: never hide body completely */
 }
+
 body.reveal{animation:pageReveal 1s ease forwards;}
-@keyframes pageReveal{to{opacity:1}}
+@keyframes pageReveal{from{opacity:.6}to{opacity:1}}
 
 .container{max-width:1150px;margin:auto;padding:0 20px;}
 
@@ -57,7 +60,8 @@ display:inline-block;border-radius:999px;
 color:#ff7af3;font-size:12px;
 }
 
-/* HERO IMAGE */
+/* ---------- HERO IMAGE ---------- */
+
 .hero-box{width:100%;max-width:520px;aspect-ratio:1/1;position:relative;border-radius:22px;overflow:hidden;}
 .hero-img{
 position:absolute;inset:0;width:100%;height:100%;
@@ -69,39 +73,61 @@ transition:.3s;
 }
 @keyframes floatHero{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
 
-/* PARTICLES */
+/* ---------- PARTICLES ---------- */
+
 #heroParticles{
 position:absolute;top:0;left:0;width:100%;height:100%;
 pointer-events:none;opacity:.35;
 }
 
-/* HEADER LOGO */
-header img{transition:.3s;}
-header img:hover{transform:rotate(-6deg) scale(1.08);filter:drop-shadow(0 0 12px #00f7ff);}
+/* ---------- INTRO FIXED ---------- */
 
-/* INTRO */
 #boot{
 position:fixed;inset:0;background:#02050a;
 display:flex;flex-direction:column;align-items:center;justify-content:center;
 z-index:9999;
 }
+
 #boot img{
 width:130px;margin-bottom:25px;
 filter:drop-shadow(0 0 25px #00f7ff);
 animation:bootPulse 2s infinite;
 }
+
 @keyframes bootPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
-#boot-text{color:#00f7ff;white-space:pre}
+
+#boot-text{
+color:#00ff9c;
+white-space:pre-line;
+min-height:120px;
+font-size:14px;
+}
+
+#boot-text::after{
+content:"_";
+margin-left:6px;
+animation:blink 1s infinite;
+}
+
+@keyframes blink{0%,50%,100%{opacity:1}25%,75%{opacity:0}}
+
+.boot-bar{
+width:240px;height:5px;background:#07111a;border-radius:999px;margin-top:20px;overflow:hidden;
+}
+#boot-progress{
+height:100%;width:0%;background:#00f7ff;transition:.3s;
+}
+
 .fade-out{animation:fade 1s forwards}
 @keyframes fade{to{opacity:0;visibility:hidden}}
 
 section{border-top:1px solid rgba(0,255,255,.08)}
 
-/* HERO TYPING */
+/* HERO typing */
+
 .terminal{height:1.4em;max-width:28ch;overflow:hidden;position:relative;}
 .terminal span{position:absolute;white-space:nowrap;color:#ff2bd6;text-shadow:0 0 12px #ff2bd6aa;}
 .terminal span:after{content:"_";margin-left:6px;animation:blink 1s infinite;}
-@keyframes blink{0%,50%,100%{opacity:1}25%,75%{opacity:0}}
 
 </style>
 </head>
@@ -112,6 +138,7 @@ section{border-top:1px solid rgba(0,255,255,.08)}
 <div id="boot">
 <img src="logo.png">
 <div id="boot-text"></div>
+<div class="boot-bar"><div id="boot-progress"></div></div>
 </div>
 
 <header class="container py-5 flex items-center gap-3">
@@ -137,7 +164,6 @@ section{border-top:1px solid rgba(0,255,255,.08)}
 <span class="badge">🇮🇳 NCIIPC Acknowledged</span>
 <span class="badge">🎥Content Creator</span>
 <span class="badge">👥 12K+ LinkedIn Followers</span>
-
 </div>
 
 <p class="mt-6 text-slate-300 max-w-xl">
@@ -171,8 +197,7 @@ Cybersecurity Analyst specializing in Web Application Penetration Testing, API s
 <p><strong>Phone:</strong> 9*6*5*****</p>
 </div>
 <p class="mt-4 text-xs text-slate-400">
-“It scratched that part of my mind — the part that doesn’t allow good to exist without condition.”
-                                                                                     — Mr. Robot
+“It scratched that part of my mind — the part that doesn’t allow good to exist without condition.” — Mr. Robot
 </p>
 </div>
 </section>
@@ -225,7 +250,6 @@ Cybersecurity Analyst specializing in Web Application Penetration Testing, API s
 <p class="mt-3 text-sm text-slate-300">
 Demonstrated hardware attack simulations using Flipper Zero, Wi-Fi Deauther, BadUSB devices, Kali NetHunter setups, M5Stick tools and embedded hardware platforms.
 </p>
-<p class="mt-3 text-xs text-cyan-300">View proof →</p>
 </a>
 
 <a href="https://www.linkedin.com/posts/ashwin-vadakkeel_cybersecurity-hardwarehacking-iedcsummit-activity-7421250049134895104-FEGH" target="_blank" class="card block">
@@ -233,7 +257,6 @@ Demonstrated hardware attack simulations using Flipper Zero, Wi-Fi Deauther, Bad
 <p class="mt-3 text-sm text-slate-300">
 Conducted hands-on demonstrations showcasing real-time attack simulations and embedded cybersecurity research tools.
 </p>
-<p class="mt-3 text-xs text-cyan-300">View proof →</p>
 </a>
 
 <a href="https://www.linkedin.com/posts/ashwin-vadakkeel_cybersecurity-guestlecture-alumnipride-activity-7407760075827609600-casR" target="_blank" class="card block md:col-span-2">
@@ -241,7 +264,6 @@ Conducted hands-on demonstrations showcasing real-time attack simulations and em
 <p class="mt-3 text-sm text-slate-300">
 Conducted multiple cybersecurity awareness sessions and guest lectures for college students covering ethical hacking, web security risks, hardware attacks, and cybersecurity career guidance.
 </p>
-<p class="mt-3 text-xs text-cyan-300">View proof →</p>
 </a>
 
 </div>
@@ -260,41 +282,81 @@ SYSTEM STATUS: ONLINE<br>
 
 <script>
 
-/* INTRO */
-const lines=["Booting secure portfolio...","Loading modules...","Access granted."];
-let i=0,c=0,el=document.getElementById("boot-text");
-function type(){
-if(i<lines.length){
-if(c<lines[i].length){el.textContent+=lines[i][c++];setTimeout(type,20);}
-else{el.textContent+="\n";i++;c=0;setTimeout(type,300);}
+/* ---------- INTRO FIX ---------- */
+
+const bootLines=[
+"Booting secure portfolio...",
+"Loading cybersecurity modules...",
+"Establishing encrypted session...",
+"Access granted ✔"
+];
+
+let li=0,ch=0;
+const el=document.getElementById("boot-text");
+const prog=document.getElementById("boot-progress");
+
+function typeBoot(){
+
+if(li<bootLines.length){
+
+if(ch<bootLines[li].length){
+el.textContent+=bootLines[li][ch++];
+setTimeout(typeBoot,20);
 }else{
-setTimeout(()=>{
+el.textContent+="\n";
+li++;ch=0;
+prog.style.width=((li/bootLines.length)*100)+"%";
+setTimeout(typeBoot,250);
+}
+
+}else{
+setTimeout(endBoot,600);
+}
+
+}
+
+function endBoot(){
 document.getElementById("boot").classList.add("fade-out");
 document.body.classList.add("reveal");
-setTimeout(typeHero,600);
-},500);
-}}
-type();
+setTimeout(typeHero,400);
+}
 
-/* HERO TYPING */
+typeBoot();
+
+/* safety fallback */
+setTimeout(endBoot,6000);
+
+
+/* HERO typing */
 const words=[
 "Web Application Pentester",
 "API Security Analyst",
 "Hardware Security Researcher",
 "Cybersecurity Mentor"
 ];
+
 let w=0,cc=0,del=false;
+
 function typeHero(){
 const el=document.getElementById("typing");
 const t=words[w];
-if(!del){el.textContent=t.slice(0,++cc);if(cc===t.length){del=true;setTimeout(typeHero,1200);return}}
-else{el.textContent=t.slice(0,--cc);if(cc===0){del=false;w=(w+1)%words.length}}
+
+if(!del){
+el.textContent=t.slice(0,++cc);
+if(cc===t.length){del=true;setTimeout(typeHero,1200);return;}
+}else{
+el.textContent=t.slice(0,--cc);
+if(cc===0){del=false;w=(w+1)%words.length;}
+}
+
 setTimeout(typeHero,del?30:60);
 }
 
-/* HERO GLOW */
+
+/* HERO glow */
 const heroBox=document.getElementById("heroBox");
 const heroImg=document.getElementById("heroImg");
+
 heroBox.addEventListener("mousemove",(e)=>{
 const r=heroBox.getBoundingClientRect();
 const x=(e.clientX-r.left)/r.width;
@@ -305,15 +367,19 @@ heroImg.style.filter=`drop-shadow(${mx*2}px ${my*2}px 60px rgba(0,247,255,.35))`
 });
 heroBox.addEventListener("mouseleave",()=>{heroImg.style.transform="";heroImg.style.filter="";});
 
+
 /* PARTICLES */
 const canvas=document.getElementById("heroParticles");
 const ctx=canvas.getContext("2d");
+
 function resize(){canvas.width=canvas.offsetWidth;canvas.height=canvas.offsetHeight;}
 resize();window.addEventListener("resize",resize);
+
 const particles=[];
 for(let i=0;i<40;i++){
 particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*1.8+.6,vx:(Math.random()-.5)*.25,vy:(Math.random()-.5)*.25});
 }
+
 function draw(){
 ctx.clearRect(0,0,canvas.width,canvas.height);
 particles.forEach(p=>{
@@ -321,11 +387,13 @@ p.x+=p.vx;p.y+=p.vy;
 if(p.x<0||p.x>canvas.width)p.vx*=-1;
 if(p.y<0||p.y>canvas.height)p.vy*=-1;
 ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-ctx.fillStyle="rgba(0,247,255,.7)";ctx.fill();
+ctx.fillStyle="rgba(0,247,255,.7)";
+ctx.fill();
 });
 requestAnimationFrame(draw);
 }
 draw();
+
 
 /* AUTO GITHUB */
 fetch("https://api.github.com/users/hermit148/repos?per_page=100")
