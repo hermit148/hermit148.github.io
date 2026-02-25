@@ -1,22 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Ashwin Vadakkeel | Cybersecurity Analyst</title>
 
+<meta name="description" content="Ashwin Vadakkeel - Cybersecurity Analyst specializing in web application penetration testing, API security, hardware research, and responsible disclosure. Recognized by NCIIPC and Broadcom PSIRT.">
+
+<meta property="og:title" content="Ashwin Vadakkeel | Cybersecurity Analyst">
+<meta property="og:description" content="Web & API Pentester • Hardware Security Researcher • NCIIPC Acknowledged • Broadcom Hall of Fame">
+<meta property="og:image" content="logo.png">
+
 <link rel="icon" href="logo.png">
+<link rel="apple-touch-icon" href="logo.png">
+
 <script src="https://cdn.tailwindcss.com"></script>
+
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
 
 <style>
+
 html{scroll-behavior:smooth}
+
 body{
 background: radial-gradient(circle at 20% 20%, #07111a, #02050a 60%);
 color:#e6f1ff;
 font-family:'JetBrains Mono',monospace;
 overflow-x:hidden;
 }
+
 body:before{
 content:"";
 position:fixed;
@@ -27,11 +41,13 @@ linear-gradient(90deg, rgba(0,255,255,.05) 1px, transparent 1px);
 background-size:40px 40px;
 pointer-events:none;
 }
+
 .cyber{
 font-family:'Orbitron',sans-serif;
 color:#00f7ff;
 text-shadow:0 0 12px #00f7ff,0 0 30px #00f7ff55;
 }
+
 .badge{
 border:1px solid rgba(255,43,214,.4);
 background:rgba(255,43,214,.08);
@@ -41,31 +57,101 @@ display:inline-block;
 border-radius:999px;
 color:#ff7af3;
 }
-.terminal{height:1.4em;width:28ch;position:relative;overflow:hidden;}
-.terminal span{position:absolute;white-space:nowrap;color:#ff2bd6;text-shadow:0 0 12px #ff2bd6aa;}
-.terminal span:after{content:"_";margin-left:6px;animation:blink 1s infinite;}
+
+.terminal{
+height:1.4em;
+width:30ch;
+position:relative;
+overflow:hidden;
+}
+.terminal span{
+position:absolute;
+white-space:nowrap;
+color:#ff2bd6;
+text-shadow:0 0 12px #ff2bd6aa;
+}
+.terminal span:after{
+content:"_";
+margin-left:6px;
+animation:blink 1s infinite;
+}
 @keyframes blink{0%,50%,100%{opacity:1}25%,75%{opacity:0}}
 
-.hero-box{width:620px;max-width:100%;aspect-ratio:1/1;position:relative;contain:layout paint size style;}
-.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;z-index:2;animation:imgFloat 8s cubic-bezier(.45,.05,.55,.95) infinite;}
-.hero-glow{position:absolute;inset:0;background:url('logo.png') center/contain no-repeat;filter:drop-shadow(0 0 70px rgba(0,247,255,.45));z-index:1;animation:glowFloat 9s ease-in-out infinite;}
-@keyframes imgFloat{0%{transform:translateY(0)}25%{transform:translateY(-6px)}50%{transform:translateY(-10px)}75%{transform:translateY(-4px)}100%{transform:translateY(0)}}
-@keyframes glowFloat{0%{transform:translateY(0)}50%{transform:translateY(-16px)}100%{transform:translateY(0)}}
+.hero-box{
+width:620px;
+max-width:100%;
+aspect-ratio:1/1;
+position:relative;
+contain:layout paint size style;
+}
 
-.card{background:rgba(3,10,18,.92);border:1px solid rgba(0,255,255,.25);padding:1.4rem;border-radius:14px;transition:.3s;}
-.card:hover{border-color:#00f7ff;box-shadow:0 0 25px rgba(0,247,255,.25);transform:translateY(-6px);}
+.hero-img{
+position:absolute;
+inset:0;
+width:100%;
+height:100%;
+object-fit:contain;
+z-index:2;
+animation:imgFloat 8s cubic-bezier(.45,.05,.55,.95) infinite;
+}
 
-.btn{padding:10px 22px;border:1px solid #00f7ff;color:#00f7ff;border-radius:999px;transition:.25s;}
-.btn:hover{background:#00f7ff;color:black;box-shadow:0 0 20px #00f7ff;}
+.hero-glow{
+position:absolute;
+inset:0;
+background:url('logo.png') center/contain no-repeat;
+filter:drop-shadow(0 0 70px rgba(0,247,255,.45));
+z-index:1;
+animation:glowFloat 9s ease-in-out infinite;
+}
 
-section{border-top:1px solid rgba(0,255,255,.08);}
+@keyframes imgFloat{
+0%{transform:translateY(0)}
+25%{transform:translateY(-6px)}
+50%{transform:translateY(-10px)}
+75%{transform:translateY(-4px)}
+100%{transform:translateY(0)}
+}
+
+@keyframes glowFloat{
+0%{transform:translateY(0)}
+50%{transform:translateY(-16px)}
+100%{transform:translateY(0)}
+}
+
+.card{
+background:rgba(3,10,18,.92);
+border:1px solid rgba(0,255,255,.25);
+padding:1.4rem;
+border-radius:14px;
+transition:.3s;
+}
+.card:hover{
+border-color:#00f7ff;
+box-shadow:0 0 25px rgba(0,247,255,.25);
+transform:translateY(-6px);
+}
+
+.btn{
+padding:10px 22px;
+border:1px solid #00f7ff;
+color:#00f7ff;
+border-radius:999px;
+transition:.25s;
+}
+.btn:hover{
+background:#00f7ff;
+color:black;
+box-shadow:0 0 20px #00f7ff;
+}
+
 .masked{letter-spacing:1px;color:#9ca3af}
+section{border-top:1px solid rgba(0,255,255,.08)}
+
 </style>
 </head>
 
 <body>
 
-<!-- NAV -->
 <header class="max-w-6xl mx-auto flex justify-between items-center py-6 px-4">
 <div class="flex items-center gap-3">
 <img src="logo.png" class="w-10">
@@ -88,8 +174,8 @@ CYBERSECURITY ANALYST
 
 <div class="mt-4">
 <span class="badge">🇮🇳 NCIIPC Acknowledged</span>
-<span class="badge">🏆 Broadcom Hall of Fame</span>
-<span class="badge">🛡 Responsible Disclosure</span>
+<span class="badge">🏆 Broadcom Hall of Fame 2025</span>
+<span class="badge">👥 12K+ LinkedIn Followers</span>
 </div>
 
 <p class="mt-6 text-slate-300 text-lg max-w-xl">
@@ -100,7 +186,7 @@ and support remediation.
 </p>
 
 <div class="mt-8 flex gap-3 flex-wrap">
-<a href="resume.pdf" download class="btn">⬇ Resume</a>
+<a href="https://linkedin.com/in/ashwin-vadakkeel" download class="btn">⬇ Resume</a>
 <a href="https://github.com/hermit148" target="_blank" class="btn">GitHub</a>
 <a href="https://linkedin.com/in/ashwin-vadakkeel" target="_blank" class="btn">LinkedIn</a>
 </div>
@@ -131,16 +217,49 @@ hardware security research, and responsible disclosure.
 <div class="mt-6 space-y-2 text-sm">
 
 <p><strong>Location:</strong> Kannur, Kerala, India</p>
+<p><strong>Email:</strong> <span class="masked">ashwi************@gmail.com</span></p>
+<p><strong>Phone:</strong> <span class="masked">9*6*5*****</span></p>
 
-<p><strong>Email:</strong>
-<span class="masked">ashwi************@gmail.com</span>
-</p>
-
-<p><strong>Phone:</strong>
-<span class="masked">99615*****</span>
+<p class="mt-3 text-xs text-slate-400">
+LinkedIn community: 12K+ followers • Research demo reached 2.1M+ impressions
 </p>
 
 </div>
+
+</div>
+
+</section>
+
+<!-- RECOGNITIONS -->
+<section class="max-w-6xl mx-auto py-20 px-4">
+
+<h2 class="cyber text-3xl mb-8">RECOGNITIONS</h2>
+
+<div class="grid md:grid-cols-3 gap-8">
+
+<a href="https://www.broadcom.com/support/security-center/security-thanks"
+target="_blank" class="card block">
+<h3 class="text-cyan-300">Broadcom PSIRT Hall of Fame (2025)</h3>
+<p class="mt-2 text-slate-300 text-sm">
+Officially listed by Broadcom for responsible disclosure. Click to view →
+</p>
+</a>
+
+<a href="https://www.linkedin.com/posts/ashwin-vadakkeel_cybersecurity-responsibledisclosure-ethicalhacking-activity-7273920968874426369-vrK7"
+target="_blank" class="card block">
+<h3 class="text-cyan-300">NCIIPC Acknowledgement</h3>
+<p class="mt-2 text-slate-300 text-sm">
+Proof of government acknowledgement for vulnerability disclosures →
+</p>
+</a>
+
+<a href="https://www.linkedin.com/posts/ashwin-vadakkeel_cybersecurity-diy-opensource-activity-7283806951489028096-0cCi"
+target="_blank" class="card block">
+<h3 class="text-cyan-300">Hardware Research Impact</h3>
+<p class="mt-2 text-slate-300 text-sm">
+2.1M+ impressions • 47K+ likes • 1K+ comments on research demo →
+</p>
+</a>
 
 </div>
 
@@ -148,6 +267,7 @@ hardware security research, and responsible disclosure.
 
 <!-- EXPERIENCE -->
 <section class="max-w-6xl mx-auto py-20 px-4">
+
 <h2 class="cyber text-3xl mb-8">EXPERIENCE</h2>
 
 <div class="card max-w-3xl">
@@ -155,11 +275,11 @@ hardware security research, and responsible disclosure.
 <p class="text-slate-400 text-sm mt-1">Sep 2024 – Present • Kannur, Kerala</p>
 
 <ul class="mt-4 space-y-2 text-slate-300 text-sm">
-<li>• Perform web app pentesting across authentication, APIs, sessions and uploads.</li>
-<li>• Identify access-control flaws, input validation issues and misconfigurations.</li>
-<li>• Produce structured reports with CVSS scoring and remediation guidance.</li>
-<li>• Collaborate with developers to verify fixes.</li>
-<li>• Tested production education platforms, WooCommerce stores and custom systems.</li>
+<li>• Perform web application pentesting across authentication flows, APIs, sessions and uploads.</li>
+<li>• Identify access-control flaws, input validation issues and security misconfigurations.</li>
+<li>• Produce structured vulnerability reports with CVSS scoring and remediation guidance.</li>
+<li>• Collaborate with developers to verify fixes and reduce exposure to risks.</li>
+<li>• Tested production education platforms, WooCommerce stores and custom e-commerce systems.</li>
 </ul>
 </div>
 
@@ -167,12 +287,15 @@ hardware security research, and responsible disclosure.
 
 <!-- PROJECTS -->
 <section class="max-w-6xl mx-auto py-20 px-4">
+
 <h2 class="cyber text-3xl mb-8">GITHUB PROJECTS</h2>
 <div id="repos" class="grid md:grid-cols-3 gap-8"></div>
+
 </section>
 
 <!-- SKILLS -->
 <section class="max-w-6xl mx-auto py-20 px-4">
+
 <h2 class="cyber text-3xl mb-8">TECHNICAL SKILLS</h2>
 
 <div class="grid md:grid-cols-2 gap-8">
@@ -199,24 +322,36 @@ Hashcat, OWASP ZAP, Postman, Kali Linux, Git.
 
 <footer class="py-10 text-center text-slate-500">
 <p>SYSTEM STATUS: ONLINE</p>
-<p class="text-xs mt-2">© 2026 Ashwin Vadakkeel</p>
+<p class="text-xs mt-2">Last updated: Aug 2026</p>
+<p class="text-xs mt-1">© 2026 Ashwin Vadakkeel</p>
 </footer>
 
 <script>
+
 const words=[
 "Web Application Pentester",
 "API Security Analyst",
 "Hardware Security Researcher",
 "Cybersecurity Mentor"
 ];
+
 let w=0,c=0,del=false;
+
 function type(){
 const el=document.getElementById("typing");
 const t=words[w];
-if(!del){el.textContent=t.slice(0,++c);if(c===t.length){del=true;setTimeout(type,1200);return}}
-else{el.textContent=t.slice(0,--c);if(c===0){del=false;w=(w+1)%words.length}}
+
+if(!del){
+el.textContent=t.slice(0,++c);
+if(c===t.length){del=true;setTimeout(type,1200);return;}
+}else{
+el.textContent=t.slice(0,--c);
+if(c===0){del=false;w=(w+1)%words.length;}
+}
+
 setTimeout(type,del?30:60);
 }
+
 type();
 
 fetch("https://api.github.com/users/hermit148/repos?sort=updated")
@@ -227,13 +362,17 @@ const a=document.createElement("a");
 a.href=d.html_url;
 a.target="_blank";
 a.className="card block";
+
 a.innerHTML=`
 <h3 class='text-cyan-300 text-lg font-semibold'>${d.name.replaceAll("-"," ")}</h3>
 <p class='mt-2 text-slate-300 text-sm'>${d.description||"Security repository"}</p>
-<p class='text-cyan-300 mt-3 text-sm'>★ ${d.stargazers_count} | 🍴 ${d.forks_count}</p>`;
+<p class='text-cyan-300 mt-3 text-sm'>★ ${d.stargazers_count} | 🍴 ${d.forks_count}</p>
+`;
+
 repos.appendChild(a);
 });
 });
+
 </script>
 
 </body>
