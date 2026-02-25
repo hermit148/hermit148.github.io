@@ -14,6 +14,7 @@
 <style>
 
 /* BASE */
+
 body{
 background: radial-gradient(circle at 20% 20%, #07111a, #02050a 60%);
 color:#e6f1ff;
@@ -21,10 +22,11 @@ font-family:'JetBrains Mono',monospace;
 overflow-x:hidden;
 opacity:1;
 }
+
 body.reveal{animation:pageReveal 1s ease forwards;}
 @keyframes pageReveal{from{opacity:.6}to{opacity:1}}
 
-.container{max-width:1150px;margin:auto;padding:0 20px}
+.container{max-width:1150px;margin:auto;padding:0 20px;}
 
 .cyber{
 font-family:'Orbitron',sans-serif;
@@ -59,6 +61,7 @@ color:#ff7af3;font-size:12px;
 }
 
 /* HERO IMAGE */
+
 .hero-box{
 width:100%;
 max-width:520px;
@@ -68,6 +71,7 @@ border-radius:22px;
 overflow:hidden;
 z-index:2;
 }
+
 .hero-img{
 position:absolute;
 inset:0;
@@ -79,12 +83,14 @@ animation:floatHero 7s ease-in-out infinite;
 box-shadow:0 0 50px rgba(0,247,255,.15);
 transition:.3s;
 }
+
 @keyframes floatHero{
 0%,100%{transform:translateY(0)}
 50%{transform:translateY(-10px)}
 }
 
 /* PARTICLES */
+
 #heroParticles{
 position:absolute;
 top:0;
@@ -97,16 +103,19 @@ z-index:0;
 }
 
 /* INTRO */
+
 #boot{
 position:fixed;inset:0;background:#02050a;
 display:flex;flex-direction:column;align-items:center;justify-content:center;
 z-index:9999;
 }
+
 #boot img{
 width:130px;margin-bottom:25px;
 filter:drop-shadow(0 0 25px #00f7ff);
 animation:bootPulse 2s infinite;
 }
+
 @keyframes bootPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
 
 #boot-text{
@@ -115,11 +124,13 @@ white-space:pre-line;
 min-height:120px;
 font-size:14px;
 }
+
 #boot-text::after{
 content:"_";
 margin-left:6px;
 animation:blink 1s infinite;
 }
+
 @keyframes blink{0%,50%,100%{opacity:1}25%,75%{opacity:0}}
 
 .boot-bar{
@@ -136,30 +147,38 @@ section{border-top:1px solid rgba(0,255,255,.08)}
 .terminal span{position:absolute;white-space:nowrap;color:#ff2bd6;text-shadow:0 0 12px #ff2bd6aa;}
 .terminal span:after{content:"_";margin-left:6px;animation:blink 1s infinite;}
 
-/* RESPONSIVE */
+/* MOBILE */
+
 @media(max-width:768px){
 
 .container{padding:0 16px}
 
-header{flex-direction:column;text-align:center}
+header{flex-direction:column;text-align:center;gap:8px;}
 
-.container.flex,
 section.container.flex{
 flex-direction:column !important;
 text-align:center;
 gap:30px;
 }
 
-.hero-box{max-width:260px;margin:auto}
-.hero-img{animation:none}
-#heroParticles{display:none}
+.hero-box{max-width:260px;margin:auto;}
+.hero-img{animation:none;}
+#heroParticles{display:none;}
 
 .md\:grid-cols-2,
 .md\:grid-cols-3{
 grid-template-columns:1fr !important;
 }
 
-.btn{width:100%;max-width:260px;margin:auto}
+.btn{width:100%;max-width:260px;margin:auto;}
+
+}
+
+@media(max-width:480px){
+h1{font-size:26px !important;}
+.hero-box{max-width:220px;}
+.badge{font-size:10px;padding:5px 10px;}
+.card{padding:1rem;}
 }
 
 </style>
@@ -219,7 +238,94 @@ Cybersecurity Analyst specializing in Web Application Penetration Testing, API s
 
 </section>
 
-<!-- (rest of your sections stay SAME as before — ABOUT, EXPERIENCE, etc.) -->
+<!-- ABOUT -->
+<section class="container py-12">
+<h2 class="cyber text-2xl mb-6">ABOUT</h2>
+<div class="card max-w-2xl">
+<p>Cybersecurity Analyst focused on web pentesting, API Pentesting, hardware security research, and responsible disclosure.</p>
+<div class="mt-4 text-sm space-y-2">
+<p><strong>Location:</strong> Kannur, Kerala, India</p>
+<p><strong>Email:</strong> ashwi************@gmail.com</p>
+<p><strong>Phone:</strong> 9*6*5*****</p>
+</div>
+<p class="mt-4 text-xs text-slate-400">
+“It scratched that part of my mind — the part that doesn’t allow good to exist without condition.” — Mr. Robot
+</p>
+</div>
+</section>
+
+<!-- RECOGNITIONS -->
+<section class="container py-12">
+<h2 class="cyber text-2xl mb-6">RECOGNITIONS</h2>
+<div class="grid md:grid-cols-3 gap-6">
+
+<a href="https://www.broadcom.com/support/security-center/security-thanks" target="_blank" class="card block">
+<h3 class="text-cyan-300">Broadcom PSIRT Hall of Fame</h3>
+<p class="mt-2 text-sm text-slate-300">Official responsible disclosure listing →</p>
+</a>
+
+<a href="https://www.linkedin.com/posts/ashwin-vadakkeel_cybersecurity-responsibledisclosure-ethicalhacking-activity-7273920968874426369-vrK7" target="_blank" class="card block">
+<h3 class="text-cyan-300">NCIIPC Acknowledgement</h3>
+<p class="mt-2 text-sm text-slate-300">Government acknowledgement proof →</p>
+</a>
+
+<a href="https://www.linkedin.com/posts/ashwin-vadakkeel_cybersecurity-diy-opensource-activity-7283806951489028096-0cCi" target="_blank" class="card block">
+<h3 class="text-cyan-300">Research Impact</h3>
+<p class="mt-2 text-sm text-slate-300">2.1M+ impressions research demo →</p>
+</a>
+
+</div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="container py-12">
+<h2 class="cyber text-2xl mb-6">EXPERIENCE</h2>
+<div class="card max-w-3xl">
+<h3 class="text-cyan-300 text-lg">Cybersecurity Analyst — Hazercloud Infotech</h3>
+<p class="text-slate-400 text-xs mt-1">Sep 2024 – Present • Kannur</p>
+<ul class="mt-4 text-sm space-y-2 text-slate-300">
+<li>• Perform web application pentesting across authentication, APIs and sessions.</li>
+<li>• Identify access control flaws, validation issues and misconfigurations.</li>
+<li>• Produce structured vulnerability reports with CVSS scoring.</li>
+<li>• Collaborate with developers to verify fixes.</li>
+</ul>
+</div>
+</section>
+
+<!-- MENTORSHIP -->
+<section class="container py-12">
+<h2 class="cyber text-2xl mb-6">MENTORSHIP & COMMUNITY</h2>
+<div class="grid md:grid-cols-2 gap-6">
+
+<a href="https://www.linkedin.com/posts/ashwin-vadakkeel_futuresummit-cybersecurity-realtimeattacks-activity-7289909800564359168-nA_n" target="_blank" class="card block">
+<h3 class="text-cyan-300">Lead Mentor — Cybersecurity War Room</h3>
+<p class="mt-3 text-sm text-slate-300">
+Demonstrated hardware attack simulations using Flipper Zero, Wi-Fi Deauther, BadUSB devices, Kali NetHunter setups, M5Stick tools and embedded hardware platforms.
+</p>
+</a>
+
+<a href="https://www.linkedin.com/posts/ashwin-vadakkeel_cybersecurity-hardwarehacking-iedcsummit-activity-7421250049134895104-FEGH" target="_blank" class="card block">
+<h3 class="text-cyan-300">IEDC Summit — Hardware Security Demo</h3>
+<p class="mt-3 text-sm text-slate-300">
+Conducted hands-on demonstrations showcasing real-time attack simulations and embedded cybersecurity research tools.
+</p>
+</a>
+
+<a href="https://www.linkedin.com/posts/ashwin-vadakkeel_cybersecurity-guestlecture-alumnipride-activity-7407760075827609600-casR" target="_blank" class="card block md:col-span-2">
+<h3 class="text-cyan-300">Guest Lectures & College Cybersecurity Sessions</h3>
+<p class="mt-3 text-sm text-slate-300">
+Conducted multiple cybersecurity awareness sessions and guest lectures for college students covering ethical hacking, web security risks, hardware attacks, and cybersecurity career guidance.
+</p>
+</a>
+
+</div>
+</section>
+
+<!-- PROJECTS -->
+<section class="container py-12">
+<h2 class="cyber text-2xl mb-6">GITHUB PROJECTS</h2>
+<div id="repos" class="grid md:grid-cols-3 gap-6"></div>
+</section>
 
 <footer class="py-6 text-center text-slate-500 text-sm">
 SYSTEM STATUS: ONLINE<br>
@@ -228,10 +334,9 @@ SYSTEM STATUS: ONLINE<br>
 
 <script>
 
-/* SAFE START AFTER DOM LOAD */
-window.addEventListener("DOMContentLoaded",()=>{
+document.addEventListener("DOMContentLoaded", function(){
 
-const isMobile = window.innerWidth < 768;
+/* INTRO */
 
 const bootLines=[
 "Booting secure portfolio...",
@@ -248,13 +353,13 @@ function typeBoot(){
 if(li<bootLines.length){
 if(ch<bootLines[li].length){
 el.textContent+=bootLines[li][ch++];
-setTimeout(typeBoot,isMobile?10:20);
+setTimeout(typeBoot,20);
 }else{
 el.textContent+="\n";li++;ch=0;
 prog.style.width=((li/bootLines.length)*100)+"%";
-setTimeout(typeBoot,isMobile?120:250);
+setTimeout(typeBoot,250);
 }
-}else{setTimeout(endBoot,400);}
+}else{setTimeout(endBoot,600);}
 }
 
 function endBoot(){
@@ -266,16 +371,18 @@ typeHero();
 typeBoot();
 
 /* HERO typing */
+
 const words=[
 "Web Application Pentester",
 "API Security Analyst",
 "Hardware Security Researcher",
 "Cybersecurity Mentor"
 ];
+
 let w=0,cc=0,del=false;
+
 function typeHero(){
 const el=document.getElementById("typing");
-if(!el)return;
 const t=words[w];
 if(!del){
 el.textContent=t.slice(0,++cc);
@@ -286,6 +393,53 @@ if(cc===0){del=false;w=(w+1)%words.length;}
 }
 setTimeout(typeHero,del?30:60);
 }
+
+/* PARTICLES desktop only */
+
+if(window.innerWidth>768){
+const canvas=document.getElementById("heroParticles");
+const ctx=canvas.getContext("2d");
+function resize(){canvas.width=canvas.offsetWidth;canvas.height=canvas.offsetHeight;}
+resize();window.addEventListener("resize",resize);
+
+const particles=[];
+for(let i=0;i<40;i++){
+particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*1.8+.6,vx:(Math.random()-.5)*.25,vy:(Math.random()-.5)*.25});
+}
+
+function draw(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+particles.forEach(p=>{
+p.x+=p.vx;p.y+=p.vy;
+if(p.x<0||p.x>canvas.width)p.vx*=-1;
+if(p.y<0||p.y>canvas.height)p.vy*=-1;
+ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+ctx.fillStyle="rgba(0,247,255,.7)";
+ctx.fill();
+});
+requestAnimationFrame(draw);
+}
+draw();
+}
+
+/* AUTO GITHUB */
+
+fetch("https://api.github.com/users/hermit148/repos?per_page=100")
+.then(r=>r.json())
+.then(data=>{
+data=data.filter(repo=>!repo.fork);
+data.sort((a,b)=>new Date(b.updated_at)-new Date(a.updated_at));
+data.forEach(d=>{
+const a=document.createElement("a");
+a.href=d.html_url;
+a.target="_blank";
+a.className="card block";
+a.innerHTML=`<h3 class='text-cyan-300 text-lg'>${d.name.replaceAll("-"," ")}</h3>
+<p class='mt-2 text-sm text-slate-300'>${d.description||"Security repository"}</p>
+<p class='text-cyan-300 mt-3 text-sm'>★ ${d.stargazers_count} | 🍴 ${d.forks_count}</p>`;
+document.getElementById("repos").appendChild(a);
+});
+});
 
 });
 
