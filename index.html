@@ -21,16 +21,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
 
 <style>
-
 html{scroll-behavior:smooth}
-
 body{
 background: radial-gradient(circle at 20% 20%, #07111a, #02050a 60%);
 color:#e6f1ff;
 font-family:'JetBrains Mono',monospace;
 overflow-x:hidden;
 }
-
 body:before{
 content:"";
 position:fixed;
@@ -41,13 +38,11 @@ linear-gradient(90deg, rgba(0,255,255,.05) 1px, transparent 1px);
 background-size:40px 40px;
 pointer-events:none;
 }
-
 .cyber{
 font-family:'Orbitron',sans-serif;
 color:#00f7ff;
 text-shadow:0 0 12px #00f7ff,0 0 30px #00f7ff55;
 }
-
 .badge{
 border:1px solid rgba(255,43,214,.4);
 background:rgba(255,43,214,.08);
@@ -58,19 +53,15 @@ border-radius:999px;
 color:#ff7af3;
 font-size:13px;
 }
-
 .terminal{height:1.4em;width:30ch;position:relative;overflow:hidden;}
 .terminal span{position:absolute;white-space:nowrap;color:#ff2bd6;text-shadow:0 0 12px #ff2bd6aa;}
 .terminal span:after{content:"_";margin-left:6px;animation:blink 1s infinite;}
 @keyframes blink{0%,50%,100%{opacity:1}25%,75%{opacity:0}}
-
-.hero-box{width:580px;max-width:100%;aspect-ratio:1/1;position:relative;}
+.hero-box{width:560px;max-width:100%;aspect-ratio:1/1;position:relative;}
 .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;z-index:2;animation:float 8s ease-in-out infinite;}
 .hero-glow{position:absolute;inset:0;background:url('logo.png') center/contain no-repeat;filter:drop-shadow(0 0 60px rgba(0,247,255,.45));z-index:1;animation:floatGlow 9s ease-in-out infinite;}
-
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
 @keyframes floatGlow{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
-
 .card{
 background:rgba(3,10,18,.92);
 border:1px solid rgba(0,255,255,.25);
@@ -79,7 +70,6 @@ border-radius:14px;
 transition:.3s;
 }
 .card:hover{border-color:#00f7ff;box-shadow:0 0 25px rgba(0,247,255,.25);transform:translateY(-6px);}
-
 .btn{
 padding:10px 22px;
 border:1px solid #00f7ff;
@@ -89,12 +79,9 @@ transition:.25s;
 font-size:14px;
 }
 .btn:hover{background:#00f7ff;color:black;box-shadow:0 0 20px #00f7ff;}
-
 .masked{letter-spacing:1px;color:#9ca3af}
 section{border-top:1px solid rgba(0,255,255,.08)}
-
 .container{max-width:1100px;margin:auto;padding:0 18px}
-
 </style>
 </head>
 
@@ -163,6 +150,11 @@ hardware security research, and responsible disclosure.
 <p><strong>Email:</strong> <span class="masked">ashwi************@gmail.com</span></p>
 <p><strong>Phone:</strong> <span class="masked">9*6*5*****</span></p>
 </div>
+
+<p class="mt-4 text-xs text-slate-400">
+LinkedIn community: 12K+ followers • Research demo reached 2.1M+ impressions
+</p>
+
 </div>
 </section>
 
@@ -206,23 +198,45 @@ hardware security research, and responsible disclosure.
 </div>
 </section>
 
-<!-- MENTOR -->
+<!-- MENTORSHIP -->
 <section class="container py-20">
 <h2 class="cyber text-3xl mb-8">MENTORSHIP & COMMUNITY</h2>
 
 <div class="grid md:grid-cols-2 gap-8">
 
 <div class="card">
-<h3 class="text-cyan-300">Lead Mentor — Future Summit 2025</h3>
-<p class="mt-2 text-sm text-slate-300">
-Led Cybersecurity War Room conducting live hardware demonstrations and guiding participants.
+<h3 class="text-cyan-300">Lead Mentor — Cybersecurity War Room</h3>
+<p class="text-slate-400 text-sm mt-1">IEDC Summit 2026</p>
+<p class="mt-3 text-sm text-slate-300">
+Mentored participants while demonstrating real-world hardware-based attack scenarios using Flipper Zero,
+Wi-Fi Deauther, jammer research setups, BadUSB devices, Kali NetHunter environments,
+M5Stick-based tools, and embedded hardware platforms. Guided attendees through practical
+attack simulations and defensive concepts.
 </p>
 </div>
 
 <div class="card">
-<h3 class="text-cyan-300">Cybersecurity Workshops</h3>
-<p class="mt-2 text-sm text-slate-300">
-Delivered multiple hands-on workshops demonstrating web, hardware and attack-defense techniques.
+<h3 class="text-cyan-300">Lead Mentor — Future Summit Cybersecurity War Room</h3>
+<p class="text-slate-400 text-sm mt-1">Jain University, Kochi</p>
+<p class="mt-3 text-sm text-slate-300">
+Conducted live hardware demonstrations and guided participants through real-world
+attack scenarios and defensive practices.
+</p>
+</div>
+
+<div class="card">
+<h3 class="text-cyan-300">Cybersecurity Workshops & Training</h3>
+<p class="mt-3 text-sm text-slate-300">
+Delivered hands-on cybersecurity workshops demonstrating web attacks, hardware security
+research setups, and real-world penetration testing methodologies.
+</p>
+</div>
+
+<div class="card">
+<h3 class="text-cyan-300">Community Impact</h3>
+<p class="mt-3 text-sm text-slate-300">
+Security research demonstrations and technical content reached over
+<strong>2.1M+ impressions</strong> with strong engagement across the cybersecurity community.
 </p>
 </div>
 
