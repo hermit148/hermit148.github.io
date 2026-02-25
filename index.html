@@ -1,616 +1,342 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ashwin Vadakkeel | Cybersecurity Analyst</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ashwin Vadakkeel | Cybersecurity Analyst</title>
 
-    <link rel="icon" href="logo.png">
-    <script src="https://cdn.tailwindcss.com"></script>
+<link rel="icon" href="logo.png">
+<script src="https://cdn.tailwindcss.com"></script>
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=JetBrains+Mono:wght@300;400;700&display=swap"
-        rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
 
-    <style>
-        /* ===== BACKGROUND GRID ===== */
+<style>
 
-        body {
-            background:
-                linear-gradient(rgba(0, 247, 255, .05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 247, 255, .05) 1px, transparent 1px),
-                radial-gradient(circle at 20% 20%, #07111a, #02050a 60%);
-            background-size: 40px 40px, 40px 40px, cover;
-            color: #e6f1ff;
-            font-family: 'JetBrains Mono', monospace;
-            overflow-x: hidden;
-        }
+/* ---------- BASE ---------- */
 
-        body::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-            background: radial-gradient(circle at center, rgba(0, 247, 255, .12), transparent 70%);
-            animation: gridPulse 6s ease-in-out infinite;
-            pointer-events: none;
-            z-index: 0;
-        }
+body{
+background:
+linear-gradient(rgba(0,247,255,.05) 1px, transparent 1px),
+linear-gradient(90deg, rgba(0,247,255,.05) 1px, transparent 1px),
+radial-gradient(circle at 20% 20%, #07111a, #02050a 60%);
+background-size:40px 40px,40px 40px,cover;
+color:#e6f1ff;
+font-family:'JetBrains Mono',monospace;
+overflow-x:hidden;
+}
 
-        @keyframes gridPulse {
+.container{max-width:1150px;margin:auto;padding:0 20px;}
 
-            0%,
-            100% {
-                opacity: .3
-            }
+.cyber{
+font-family:'Orbitron',sans-serif;
+color:#00f7ff;
+text-shadow:0 0 12px #00f7ff,0 0 30px #00f7ff55;
+}
 
-            50% {
-                opacity: .6
-            }
-        }
+.card{
+background:rgba(3,10,18,.92);
+border:1px solid rgba(0,255,255,.25);
+padding:1.4rem;border-radius:14px;
+transition:.35s;
+opacity:0;
+transform:translateY(25px);
+}
+.card.visible{opacity:1;transform:none;}
 
-        .container {
-            max-width: 1150px;
-            margin: auto;
-            padding: 0 20px;
-            position: relative;
-            z-index: 1;
-        }
+.card:hover{
+border-color:#00f7ff;
+box-shadow:0 0 25px rgba(0,247,255,.25);
+transform:translateY(-5px);
+}
 
-        .cyber {
-            font-family: 'Orbitron', sans-serif;
-            color: #00f7ff;
-            text-shadow: 0 0 12px #00f7ff, 0 0 30px #00f7ff55;
-        }
+.btn{
+padding:10px 22px;
+border:1px solid #00f7ff;
+color:#00f7ff;
+border-radius:999px;
+transition:.25s;
+font-size:14px;
+display:inline-block;
+text-align:center;
+}
+.btn:hover{background:#00f7ff;color:black;box-shadow:0 0 18px #00f7ff}
 
-        /* ===== CARDS / BUTTONS ===== */
+.badge{
+border:1px solid rgba(255,43,214,.4);
+background:rgba(255,43,214,.08);
+padding:6px 12px;
+margin:4px;
+display:inline-block;
+border-radius:999px;
+color:#ff7af3;
+font-size:12px;
+}
 
-        .card {
-            background: rgba(3, 10, 18, .92);
-            border: 1px solid rgba(0, 255, 255, .25);
-            padding: 1.4rem;
-            border-radius: 14px;
-            transition: .35s;
-            opacity: 0;
-            transform: translateY(30px);
-        }
+/* ---------- HERO IMAGE ---------- */
 
-        .card.visible {
-            opacity: 1;
-            transform: none;
-        }
+.hero-box{
+position:relative;
+width:100%;
+max-width:420px;
+aspect-ratio:1/1;
+margin:auto;
+border-radius:22px;
+}
 
-        .card:hover {
-            border-color: #00f7ff;
-            box-shadow: 0 0 25px rgba(0, 247, 255, .25);
-            transform: translateY(-5px);
-        }
+.hero-box::before{
+content:"";
+position:absolute;
+inset:-5px;
+border-radius:28px;
+background:conic-gradient(#00f7ff, transparent, #ff2bd6, #00f7ff);
+filter:blur(12px);
+opacity:.6;
+animation:ring 8s linear infinite;
+}
+@keyframes ring{to{transform:rotate(360deg)}}
 
-        .btn {
-            padding: 10px 22px;
-            border: 1px solid #00f7ff;
-            color: #00f7ff;
-            border-radius: 999px;
-            transition: .25s;
-            font-size: 14px;
-            display: inline-block;
-            text-align: center;
-            white-space: nowrap;
-        }
+.hero-img{
+position:relative;
+width:100%;
+height:100%;
+object-fit:cover;
+border-radius:20px;
+box-shadow:0 0 40px rgba(0,247,255,.25);
+}
 
-        .btn:hover {
-            background: #00f7ff;
-            color: black;
-            box-shadow: 0 0 18px #00f7ff
-        }
+/* ---------- SECTION ---------- */
 
-        .badge {
-            border: 1px solid rgba(255, 43, 214, .4);
-            background: rgba(255, 43, 214, .08);
-            padding: 5px 11px;
-            margin: 3px;
-            display: inline-block;
-            border-radius: 999px;
-            color: #ff7af3;
-            font-size: 11px;
-        }
+section{border-top:1px solid rgba(0,255,255,.08)}
 
-        /* ===== HERO IMAGE RING===== */
+.terminal{height:1.4em;max-width:28ch;overflow:hidden;position:relative}
+.terminal span{position:absolute;white-space:nowrap;color:#ff2bd6;text-shadow:0 0 12px #ff2bd6aa;}
+.terminal span:after{content:"_";margin-left:6px;animation:blink 1s infinite;}
+@keyframes blink{0%,50%,100%{opacity:1}25%,75%{opacity:0}}
 
-        .hero-box {
-            position: relative;
-            width: 100%;
-            max-width: 380px;
-            aspect-ratio: 1/1;
-            margin: auto;
-            border-radius: 24px;
-            flex-shrink: 0;
-        }
+/* ---------- MOBILE FIX ---------- */
 
-        .hero-box::before {
-            content: "";
-            position: absolute;
-            inset: -6px;
-            border-radius: 30px;
-            background: conic-gradient(from 0deg,
-                    #00f7ff,
-                    #00f7ff00,
-                    #ff2bd6,
-                    #00f7ff);
-            filter: blur(12px);
-            opacity: .7;
-            animation: ringSpin 8s linear infinite;
-        }
+img{max-width:100%;height:auto;display:block;}
 
-        @keyframes ringSpin {
-            from {
-                transform: rotate(0)
-            }
+@media(max-width:768px){
 
-            to {
-                transform: rotate(360deg)
-            }
-        }
+.container{padding:0 16px;}
 
-        .hero-img {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 22px;
-            box-shadow: 0 0 50px rgba(0, 247, 255, .2);
-        }
+header{flex-direction:column;text-align:center;gap:10px;}
 
-        /* ===== SECTIONS ===== */
+section.container.flex{
+flex-direction:column !important;
+align-items:center !important;
+text-align:center;
+gap:28px;
+}
 
-        section {
-            border-top: 1px solid rgba(0, 255, 255, .08)
-        }
+.hero-box{
+max-width:240px;
+margin-top:15px;
+}
 
-        /* typing */
-        .terminal {
-            height: 1.6em;
-            overflow: hidden;
-            position: relative
-        }
+.btn{
+width:100%;
+max-width:260px;
+margin:auto;
+}
 
-        .terminal span {
-            position: absolute;
-            white-space: nowrap;
-            color: #ff2bd6;
-            text-shadow: 0 0 12px #ff2bd6aa;
-        }
+.md\:grid-cols-2,
+.md\:grid-cols-3{
+grid-template-columns:1fr !important;
+}
 
-        .terminal span:after {
-            content: "_";
-            margin-left: 6px;
-            animation: blink 1s infinite;
-        }
+}
 
-        @keyframes blink {
+@media(max-width:420px){
+.hero-box{max-width:200px;}
+h1{font-size:26px !important;line-height:1.2;}
+}
 
-            0%,
-            50%,
-            100% {
-                opacity: 1
-            }
-
-            25%,
-            75% {
-                opacity: 0
-            }
-        }
-
-        /* ===== HAMBURGER ===== */
-
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            background: none;
-            border: none;
-            padding: 4px;
-            margin-left: auto;
-        }
-
-        .hamburger span {
-            display: block;
-            width: 24px;
-            height: 2px;
-            background: #00f7ff;
-            border-radius: 2px;
-            transition: .3s;
-            box-shadow: 0 0 6px #00f7ff;
-        }
-
-        .hamburger.open span:nth-child(1) {
-            transform: translateY(7px) rotate(45deg);
-        }
-
-        .hamburger.open span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger.open span:nth-child(3) {
-            transform: translateY(-7px) rotate(-45deg);
-        }
-
-        /* Mobile nav */
-        .mobile-nav {
-            display: none;
-            flex-direction: column;
-            background: rgba(2, 5, 10, .97);
-            border-top: 1px solid rgba(0, 255, 255, .1);
-            overflow: hidden;
-            max-height: 0;
-            transition: max-height .35s ease;
-            position: relative;
-            z-index: 50;
-        }
-
-        .mobile-nav.open {
-            max-height: 300px;
-        }
-
-        .mobile-nav a {
-            display: block;
-            padding: .85rem 1.25rem;
-            color: #a8d8e0;
-            text-decoration: none;
-            font-size: .85rem;
-            letter-spacing: .08em;
-            border-bottom: 1px solid rgba(0, 255, 255, .06);
-            transition: .2s;
-        }
-
-        .mobile-nav a:hover {
-            background: rgba(0, 247, 255, .06);
-            color: #00f7ff;
-        }
-
-        /* ===== MOBILE RESPONSIVE ===== */
-
-        @media(max-width:768px) {
-
-            /* Header */
-            header.container {
-                flex-wrap: wrap;
-                gap: 10px;
-            }
-
-            /* Show hamburger */
-            .hamburger {
-                display: flex;
-            }
-
-            /* Hero */
-            .hero-section {
-                flex-direction: column !important;
-                text-align: center;
-                gap: 2rem;
-            }
-
-            .hero-section>div:first-child {
-                width: 100%;
-            }
-
-            .hero-box {
-                max-width: clamp(160px, 55vw, 240px);
-                margin: 0 auto;
-            }
-
-            /* Center badges and buttons */
-            .badges-row {
-                justify-content: center !important;
-            }
-
-            .btns-row {
-                justify-content: center !important;
-                flex-wrap: wrap !important;
-            }
-
-            .btns-row .btn {
-                flex: 1 1 auto;
-                min-width: 120px;
-                max-width: 180px;
-            }
-
-            /* Grids collapse to single column */
-            .responsive-grid {
-                grid-template-columns: 1fr !important;
-            }
-
-            /* Section headings */
-            .cyber {
-                word-break: break-word;
-            }
-
-            /* Cards full-width */
-            .card {
-                border-radius: 10px;
-            }
-
-            /* Footer */
-            footer {
-                padding: 1.5rem 1rem;
-            }
-
-        }
-
-        @media(max-width:480px) {
-            .cyber {
-                font-size: clamp(1rem, 6vw, 1.5rem) !important;
-            }
-
-            h1.cyber {
-                font-size: clamp(1.6rem, 8vw, 2.5rem) !important;
-            }
-
-            .badge {
-                font-size: 10px;
-                padding: 4px 9px;
-            }
-
-            .btn {
-                font-size: 12px;
-                padding: 8px 14px;
-            }
-        }
-
-        /* Touch-friendly tap targets for mobile */
-        @media (pointer: coarse) {
-
-            .btn,
-            .card,
-            a,
-            .hamburger {
-                min-height: 44px;
-                min-width: 44px;
-            }
-
-            .hamburger span {
-                height: 3px;
-            }
-        }
-    </style>
+</style>
 </head>
 
 <body>
 
-    <!-- HEADER -->
-    <header class="container py-5 flex items-center gap-3">
-        <img src="logo.png" class="w-10 h-10 object-contain flex-shrink-0">
-        <div class="cyber text-lg md:text-xl">ASHWIN VADAKKEEL</div>
-        <!-- Hamburger (mobile only) -->
-        <button class="hamburger" id="hamburger" aria-label="Open menu">
-            <span></span><span></span><span></span>
-        </button>
-    </header>
-    <!-- Mobile nav -->
-    <nav class="mobile-nav" id="mobileNav">
-        <a href="#about">About</a>
-        <a href="#recognitions">Recognitions</a>
-        <a href="#experience">Experience</a>
-        <a href="#mentor">Mentorship</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
-    </nav>
+<!-- HEADER -->
+<header class="container py-5 flex items-center gap-3">
+<img src="logo.png" class="w-10 h-10 object-contain">
+<div class="cyber text-xl">ASHWIN VADAKKEEL</div>
+</header>
 
-    <!-- HERO -->
-    <section class="container py-10">
-        <div class="hero-section flex flex-col md:flex-row items-center gap-10">
+<!-- HERO -->
+<section class="container flex flex-col md:flex-row items-center gap-10 py-10">
 
-            <div class="flex-1 w-full">
+<div class="flex-1">
 
-                <h1 class="text-4xl md:text-6xl cyber">CYBERSECURITY ANALYST</h1>
+<h1 class="text-4xl md:text-6xl cyber">CYBERSECURITY ANALYST</h1>
 
-                <div class="terminal mt-2 text-lg md:text-xl">
-                    <span id="typing"></span>
-                </div>
+<div class="terminal mt-2 text-lg md:text-xl">
+<span id="typing"></span>
+</div>
 
-                <div class="badges-row mt-4 flex flex-wrap justify-start">
-                    <span class="badge">🎓 CEH Certified</span>
-                    <span class="badge">🏆 Broadcom Hall of Fame 2025</span>
-                    <span class="badge">🇮🇳 NCIIPC Acknowledged</span>
-                    <span class="badge">🎥 Content Creator</span>
-                    <span class="badge">👥 12K+ LinkedIn Followers</span>
-                </div>
+<div class="mt-4 flex flex-wrap justify-center md:justify-start">
+<span class="badge">🎓 CEH Certified</span>
+<span class="badge">🏆 Broadcom Hall of Fame 2025</span>
+<span class="badge">🇮🇳 NCIIPC Acknowledged</span>
+<span class="badge">🎥Content Creator</span>
+<span class="badge">👥 12K+ LinkedIn Followers</span>
+</div>
 
-                <p class="mt-6 text-slate-300 max-w-xl">
-                    Cybersecurity Analyst specializing in Web Application Penetration Testing, API security, and
-                    vulnerability validation. Currently working at Hazercloud Infotech.
-                </p>
+<p class="mt-6 text-slate-300 max-w-xl mx-auto md:mx-0">
+Cybersecurity Analyst specializing in Web Application Penetration Testing, API security, and vulnerability validation. Currently working at Hazercloud Infotech.
+</p>
 
-                <div class="btns-row mt-6 flex gap-3 flex-wrap justify-start">
-                    <a href="https://linkedin.com/in/ashwin-vadakkeel" target="_blank" class="btn">⬇ Resume</a>
-                    <a href="https://github.com/hermit148" target="_blank" class="btn">GitHub</a>
-                    <a href="https://linkedin.com/in/ashwin-vadakkeel" target="_blank" class="btn">LinkedIn</a>
-                </div>
+<div class="mt-6 flex gap-3 flex-wrap justify-center md:justify-start">
+<a href="https://linkedin.com/in/ashwin-vadakkeel" target="_blank" class="btn">⬇ Resume</a>
+<a href="https://github.com/hermit148" target="_blank" class="btn">GitHub</a>
+<a href="https://linkedin.com/in/ashwin-vadakkeel" target="_blank" class="btn">LinkedIn</a>
+</div>
 
-            </div>
+</div>
 
-            <div class="flex justify-center w-full md:w-auto">
-                <div class="hero-box">
-                    <img src="profile.png" class="hero-img" alt="Ashwin Vadakkeel">
-                </div>
-            </div>
+<div class="flex-1 flex justify-center">
+<div class="hero-box">
+<img src="profile.png" class="hero-img">
+</div>
+</div>
 
-        </div>
-    </section>
+</section>
 
-    <!-- ABOUT -->
-    <section id="about" class="container py-12">
-        <h2 class="cyber text-2xl mb-6">ABOUT</h2>
-        <div class="card max-w-2xl">
-            <p>Cybersecurity Analyst focused on web pentesting, API Pentesting, hardware security research, and
-                responsible disclosure.</p>
-            <div class="mt-4 text-sm space-y-2">
-                <p><strong>Location:</strong> Kannur, Kerala, India</p>
-                <p><strong>Email:</strong> ashwi************@gmail.com</p>
-                <p><strong>Phone:</strong> 9*6*5*****</p>
-            </div>
-            <p class="mt-4 text-xs text-slate-400">
-                "It scratched that part of my mind — the part that doesn't allow good to exist without condition." — Mr.
-                Robot
-            </p>
-        </div>
-    </section>
+<!-- ABOUT -->
+<section class="container py-12">
+<h2 class="cyber text-2xl mb-6">ABOUT</h2>
+<div class="card max-w-2xl">
+<p>Cybersecurity Analyst focused on web pentesting, API Pentesting, hardware security research, and responsible disclosure.</p>
+<div class="mt-4 text-sm space-y-2">
+<p><strong>Location:</strong> Kannur, Kerala, India</p>
+<p><strong>Email:</strong> ashwi************@gmail.com</p>
+<p><strong>Phone:</strong> 9*6*5*****</p>
+</div>
+<p class="mt-4 text-xs text-slate-400">
+“It scratched that part of my mind — the part that doesn’t allow good to exist without condition.” — Mr. Robot
+</p>
+</div>
+</section>
 
-    <!-- RECOGNITIONS -->
-    <section id="recognitions" class="container py-12">
-        <h2 class="cyber text-2xl mb-6">RECOGNITIONS</h2>
-        <div class="responsive-grid grid md:grid-cols-3 gap-6">
+<!-- RECOGNITIONS -->
+<section class="container py-12">
+<h2 class="cyber text-2xl mb-6">RECOGNITIONS</h2>
+<div class="grid md:grid-cols-3 gap-6">
 
-            <a href="https://www.broadcom.com/support/security-center/security-thanks" target="_blank"
-                class="card block">
-                <h3 class="text-cyan-300">Broadcom PSIRT Hall of Fame</h3>
-                <p class="mt-2 text-sm text-slate-300">Official responsible disclosure listing →</p>
-            </a>
+<a href="https://www.broadcom.com/support/security-center/security-thanks" target="_blank" class="card block">
+<h3 class="text-cyan-300">Broadcom PSIRT Hall of Fame</h3>
+<p class="mt-2 text-sm text-slate-300">Official responsible disclosure listing →</p>
+</a>
 
-            <a href="https://www.linkedin.com/posts/ashwin-vadakkeel_cybersecurity-responsibledisclosure-ethicalhacking-activity-7273920968874426369-vrK7"
-                target="_blank" class="card block">
-                <h3 class="text-cyan-300">NCIIPC Acknowledgement</h3>
-                <p class="mt-2 text-sm text-slate-300">Government acknowledgement proof →</p>
-            </a>
+<a href="https://www.linkedin.com/posts/ashwin-vadakkeel_cybersecurity-responsibledisclosure-ethicalhacking-activity-7273920968874426369-vrK7" target="_blank" class="card block">
+<h3 class="text-cyan-300">NCIIPC Acknowledgement</h3>
+<p class="mt-2 text-sm text-slate-300">Government acknowledgement proof →</p>
+</a>
 
-            <a href="https://www.linkedin.com/posts/ashwin-vadakkeel_cybersecurity-diy-opensource-activity-7283806951489028096-0cCi"
-                target="_blank" class="card block">
-                <h3 class="text-cyan-300">Research Impact</h3>
-                <p class="mt-2 text-sm text-slate-300">2.1M+ impressions research demo →</p>
-            </a>
+<a href="https://www.linkedin.com/posts/ashwin-vadakkeel_cybersecurity-diy-opensource-activity-7283806951489028096-0cCi" target="_blank" class="card block">
+<h3 class="text-cyan-300">Research Impact</h3>
+<p class="mt-2 text-sm text-slate-300">2.1M+ impressions research demo →</p>
+</a>
 
-        </div>
-    </section>
+</div>
+</section>
 
-    <!-- EXPERIENCE -->
-    <section id="experience" class="container py-12">
-        <h2 class="cyber text-2xl mb-6">EXPERIENCE</h2>
-        <div class="card max-w-3xl">
-            <h3 class="text-cyan-300 text-lg">Cybersecurity Analyst — Hazercloud Infotech</h3>
-            <p class="text-slate-400 text-xs mt-1">Sep 2024 – Present • Kannur</p>
-            <ul class="mt-4 text-sm space-y-2 text-slate-300">
-                <li>• Perform web application pentesting across authentication, APIs and sessions.</li>
-                <li>• Identify access control flaws, validation issues and misconfigurations.</li>
-                <li>• Produce structured vulnerability reports with CVSS scoring.</li>
-                <li>• Collaborate with developers to verify fixes.</li>
-            </ul>
-        </div>
-    </section>
+<!-- EXPERIENCE -->
+<section class="container py-12">
+<h2 class="cyber text-2xl mb-6">EXPERIENCE</h2>
+<div class="card max-w-3xl">
+<h3 class="text-cyan-300 text-lg">Cybersecurity Analyst — Hazercloud Infotech</h3>
+<p class="text-slate-400 text-xs mt-1">Sep 2024 – Present • Kannur</p>
+<ul class="mt-4 text-sm space-y-2 text-slate-300">
+<li>• Perform web application pentesting across authentication, APIs and sessions.</li>
+<li>• Identify access control flaws, validation issues and misconfigurations.</li>
+<li>• Produce structured vulnerability reports with CVSS scoring.</li>
+<li>• Collaborate with developers to verify fixes.</li>
+</ul>
+</div>
+</section>
 
-    <!-- MENTORSHIP -->
-    <section id="mentor" class="container py-12">
-        <h2 class="cyber text-2xl mb-6">MENTORSHIP &amp; COMMUNITY</h2>
-        <div class="responsive-grid grid md:grid-cols-2 gap-6">
+<!-- MENTORSHIP -->
+<section class="container py-12">
+<h2 class="cyber text-2xl mb-6">MENTORSHIP & COMMUNITY</h2>
+<div class="grid md:grid-cols-2 gap-6">
 
-            <a href="https://www.linkedin.com/posts/ashwin-vadakkeel_futuresummit-cybersecurity-realtimeattacks-activity-7289909800564359168-nA_n"
-                target="_blank" class="card block">
-                <h3 class="text-cyan-300">Lead Mentor — Cybersecurity War Room</h3>
-                <p class="mt-3 text-sm text-slate-300">
-                    Demonstrated hardware attack simulations using Flipper Zero, Wi-Fi Deauther, BadUSB devices, Kali
-                    NetHunter setups, M5Stick tools and embedded hardware platforms.
-                </p>
-            </a>
+<a href="https://www.linkedin.com/posts/ashwin-vadakkeel_futuresummit-cybersecurity-realtimeattacks-activity-7289909800564359168-nA_n" target="_blank" class="card block">
+<h3 class="text-cyan-300">Lead Mentor — Cybersecurity War Room</h3>
+<p class="mt-3 text-sm text-slate-300">
+Demonstrated hardware attack simulations using Flipper Zero, Wi-Fi Deauther, BadUSB devices, Kali NetHunter setups, M5Stick tools and embedded hardware platforms.
+</p>
+</a>
 
-            <a href="https://www.linkedin.com/posts/ashwin-vadakkeel_cybersecurity-hardwarehacking-iedcsummit-activity-7421250049134895104-FEGH"
-                target="_blank" class="card block">
-                <h3 class="text-cyan-300">IEDC Summit — Hardware Security Demo</h3>
-                <p class="mt-3 text-sm text-slate-300">
-                    Conducted hands-on demonstrations showcasing real-time attack simulations and embedded cybersecurity
-                    research tools.
-                </p>
-            </a>
+<a href="https://www.linkedin.com/posts/ashwin-vadakkeel_cybersecurity-hardwarehacking-iedcsummit-activity-7421250049134895104-FEGH" target="_blank" class="card block">
+<h3 class="text-cyan-300">IEDC Summit — Hardware Security Demo</h3>
+<p class="mt-3 text-sm text-slate-300">
+Conducted hands-on demonstrations showcasing real-time attack simulations and embedded cybersecurity research tools.
+</p>
+</a>
 
-            <a href="https://www.linkedin.com/posts/ashwin-vadakkeel_cybersecurity-guestlecture-alumnipride-activity-7407760075827609600-casR"
-                target="_blank" class="card block md:col-span-2">
-                <h3 class="text-cyan-300">Guest Lectures &amp; College Cybersecurity Sessions</h3>
-                <p class="mt-3 text-sm text-slate-300">
-                    Conducted multiple cybersecurity awareness sessions and guest lectures for college students covering
-                    ethical hacking, web security risks, hardware attacks, and cybersecurity career guidance.
-                </p>
-            </a>
+<a href="https://www.linkedin.com/posts/ashwin-vadakkeel_cybersecurity-guestlecture-alumnipride-activity-7407760075827609600-casR" target="_blank" class="card block md:col-span-2">
+<h3 class="text-cyan-300">Guest Lectures & College Cybersecurity Sessions</h3>
+<p class="mt-3 text-sm text-slate-300">
+Conducted multiple cybersecurity awareness sessions and guest lectures for college students covering ethical hacking, web security risks, hardware attacks, and cybersecurity career guidance.
+</p>
+</a>
 
-        </div>
-    </section>
+</div>
+</section>
 
-    <!-- PROJECTS -->
-    <section id="projects" class="container py-12">
-        <h2 class="cyber text-2xl mb-6">GITHUB PROJECTS</h2>
-        <div id="repos" class="responsive-grid grid md:grid-cols-3 gap-6"></div>
-    </section>
+<!-- PROJECTS -->
+<section class="container py-12">
+<h2 class="cyber text-2xl mb-6">GITHUB PROJECTS</h2>
+<div id="repos" class="grid md:grid-cols-3 gap-6"></div>
+</section>
 
-    <footer id="contact" class="py-6 text-center text-slate-500 text-sm">
-        SYSTEM STATUS: ONLINE<br>
-        <span class="text-xs">Last updated: 2026</span>
-    </footer>
+<footer class="py-6 text-center text-slate-500 text-sm">
+SYSTEM STATUS: ONLINE<br>
+<span class="text-xs">Last updated: 2026</span>
+</footer>
 
-    <script>
-        /* typing hero */
-        const words = [
-            "Web Application Pentester",
-            "API Security Analyst",
-            "Hardware Security Researcher",
-            "Cybersecurity Mentor"
-        ];
-        let w = 0, c = 0, del = false;
-        function type() {
-            const el = document.getElementById("typing");
-            const t = words[w];
-            if (!del) {
-                el.textContent = t.slice(0, ++c);
-                if (c === t.length) { del = true; setTimeout(type, 1200); return; }
-            } else {
-                el.textContent = t.slice(0, --c);
-                if (c === 0) { del = false; w = (w + 1) % words.length; }
-            }
-            setTimeout(type, del ? 30 : 60);
-        }
-        type();
+<script>
 
-        /* scroll reveal */
-        const obs = new IntersectionObserver(entries => {
-            entries.forEach(e => {
-                if (e.isIntersecting) e.target.classList.add("visible");
-            });
-        }, { threshold: .15 });
-        document.querySelectorAll(".card").forEach(el => obs.observe(el));
+/* typing */
+const words=["Web Application Pentester","API Security Analyst","Hardware Security Researcher","Cybersecurity Mentor"];
+let w=0,c=0,del=false;
+function type(){
+const el=document.getElementById("typing");
+const t=words[w];
+if(!del){el.textContent=t.slice(0,++c);if(c===t.length){del=true;setTimeout(type,1200);return;}}
+else{el.textContent=t.slice(0,--c);if(c===0){del=false;w=(w+1)%words.length;}}
+setTimeout(type,del?30:60);
+}
+type();
 
-        /* hamburger */
-        const hamburger = document.getElementById("hamburger");
-        const mobileNav = document.getElementById("mobileNav");
-        hamburger.addEventListener("click", () => {
-            hamburger.classList.toggle("open");
-            mobileNav.classList.toggle("open");
-        });
-        mobileNav.querySelectorAll("a").forEach(a => {
-            a.addEventListener("click", () => {
-                hamburger.classList.remove("open");
-                mobileNav.classList.remove("open");
-            });
-        });
+/* scroll reveal */
+const obs=new IntersectionObserver(e=>{
+e.forEach(x=>{if(x.isIntersecting)x.target.classList.add("visible");});
+},{threshold:.15});
+document.querySelectorAll(".card").forEach(el=>obs.observe(el));
 
-        /* github */
-        fetch("https://api.github.com/users/hermit148/repos?per_page=100")
-            .then(r => r.json())
-            .then(data => {
-                if (!Array.isArray(data)) return;
-                data = data.filter(repo => !repo.fork);
-                data.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
-                data.forEach(d => {
-                    const a = document.createElement("a");
-                    a.href = d.html_url;
-                    a.target = "_blank";
-                    a.className = "card block";
-                    a.innerHTML = `<h3 class='text-cyan-300 text-lg'>${d.name.replaceAll("-", " ")}</h3>
-<p class='mt-2 text-sm text-slate-300'>${d.description || "Security repository"}</p>
+/* github repos */
+fetch("https://api.github.com/users/hermit148/repos?per_page=100")
+.then(r=>r.json())
+.then(data=>{
+data=data.filter(repo=>!repo.fork);
+data.sort((a,b)=>new Date(b.updated_at)-new Date(a.updated_at));
+data.forEach(d=>{
+const a=document.createElement("a");
+a.href=d.html_url;
+a.target="_blank";
+a.className="card block";
+a.innerHTML=`<h3 class='text-cyan-300 text-lg'>${d.name.replaceAll("-"," ")}</h3>
+<p class='mt-2 text-sm text-slate-300'>${d.description||"Security repository"}</p>
 <p class='text-cyan-300 mt-3 text-sm'>★ ${d.stargazers_count} | 🍴 ${d.forks_count}</p>`;
-                    document.getElementById("repos").appendChild(a);
-                    obs.observe(a);
-                });
-            });
-    </script>
+document.getElementById("repos").appendChild(a);
+});
+});
+
+</script>
 
 </body>
-
 </html>
