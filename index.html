@@ -1385,7 +1385,7 @@ function copyEmail(){
   }).catch(()=>{
     const input=document.createElement("input");input.value=email;
     document.body.appendChild(input);input.select();document.execCommand("copy");document.body.removeChild(input);
-    emailText.textContent="Copied!";setTimeout(()=>{emailText.textContent="ashwin******@gmail.com"},2500);
+    emailText.textContent="Copied!";setTimeout(()=>{emailText.textContent="Thank You"},2500);
   });
 }
 emailBtn.addEventListener("click",copyEmail);
