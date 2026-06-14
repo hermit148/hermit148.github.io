@@ -69,6 +69,53 @@
   --nav-height: 64px;
 }
 
+/* ===== CUSTOM SCROLLBAR ===== */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #02050a;
+  border-left: 1px solid rgba(0, 247, 255, 0.06);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #00f7ff, #ff2bd6);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #00f7ff;
+}
+
+/* ===== CYBER EFFECTS & CANVAS ===== */
+#cyber-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.35;
+}
+
+.sweep-line {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(0, 247, 255, 0.1), #00f7ff, rgba(0, 247, 255, 0.1), transparent);
+  opacity: 0.12;
+  pointer-events: none;
+  z-index: 9997;
+  animation: cyber-sweep 12s linear infinite;
+}
+
+@keyframes cyber-sweep {
+  0% { transform: translateY(-100vh); }
+  100% { transform: translateY(100vh); }
+}
+
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
 html{scroll-behavior:smooth}
@@ -780,24 +827,36 @@ footer span{font-size:11px;opacity:.5}
   transition:all .8s cubic-bezier(.4,0,.2,1);
 }
 
-.boot-lines{
-  display:flex;
-  flex-direction:column;
-  gap:8px;
-  align-items:center;
+.boot-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: flex-start;
+  width: clamp(280px, 85vw, 550px);
+  max-height: 220px;
+  margin: 20px auto;
+  border-left: 2px solid rgba(0, 247, 255, 0.15);
+  padding-left: 14px;
+  overflow-y: hidden;
+  box-sizing: border-box;
 }
 
-.boot-line{
-  font-size:clamp(11px, 1.5vw, 13px);
-  color:var(--text-secondary);
-  letter-spacing:1px;
-  opacity:0;
-  transform:translateY(10px);
+.boot-line {
+  font-size: clamp(10px, 1.3vw, 12px);
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  letter-spacing: 0.5px;
+  opacity: 0;
+  transform: translateY(4px);
+  line-height: 1.5;
+  text-align: left;
 }
 
-#boot.loaded .boot-line:nth-child(1){opacity:.6;transition:all .6s .3s}
-#boot.loaded .boot-line:nth-child(2){opacity:.8;transition:all .6s .5s}
-#boot.loaded .boot-line:nth-child(3){opacity:1;transition:all .6s .7s}
+.boot-line.visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.15s ease-out;
+}
 
 .boot-progress{
   width:200px;
@@ -816,11 +875,9 @@ footer span{font-size:11px;opacity:.5}
   background:linear-gradient(90deg, var(--accent-cyan), var(--accent-pink));
   border-radius:var(--radius-full);
   width:0;
-  animation:progressFill 1.5s ease-out 1s forwards;
+  transition:width 0.1s ease-out;
   box-shadow:0 0 10px var(--accent-cyan);
 }
-
-@keyframes progressFill{to{width:100%}}
 
 .boot-cursor{
   font-size:clamp(12px, 2vw, 16px);
@@ -915,22 +972,281 @@ main{animation:fadeIn .8s ease .3s both}
   html{scroll-behavior:auto}
 }
 
+/* ===== CRT MONITOR EFFECT ===== */
+.crt-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background: radial-gradient(circle, transparent 55%, rgba(2, 5, 10, 0.45) 100%);
+  transition: opacity 0.5s ease;
+  opacity: 0;
+}
+
+body.crt-active .crt-overlay {
+  opacity: 1;
+}
+
+body.crt-active::after {
+  content: " ";
+  display: block;
+  position: fixed;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 247, 255, 0.08) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.04), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.04));
+  z-index: 9999;
+  background-size: 100% 3px, 3px 100%;
+  pointer-events: none;
+  animation: crt-flicker 0.15s infinite;
+}
+
+@keyframes crt-flicker {
+  0% { opacity: 0.98; }
+  50% { opacity: 1; }
+  100% { opacity: 0.99; }
+}
+
+body.crt-active .hero-title,
+body.crt-active h2,
+body.crt-active h3 {
+  text-shadow: 1px 0 1px rgba(255,0,0,0.8), -1px 0 1px rgba(0,255,255,0.8), 0 0 10px rgba(0,247,255,0.6);
+}
+
+.crt-toggle-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 20px;
+}
+
+.crt-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-secondary);
+  letter-spacing: 1px;
+}
+
+.crt-switch {
+  position: relative;
+  width: 36px;
+  height: 18px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+  padding: 2px;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.crt-switch-knob {
+  display: block;
+  width: 12px;
+  height: 12px;
+  background: var(--text-secondary);
+  border-radius: 50%;
+  transition: transform 0.3s, background-color 0.3s;
+}
+
+body.crt-active #crt-toggle-btn,
+body.sound-active #sound-toggle-btn {
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 10px rgba(0, 247, 255, 0.4);
+}
+
+body.crt-active #crt-toggle-btn .crt-switch-knob,
+body.sound-active #sound-toggle-btn .crt-switch-knob {
+  transform: translateX(18px);
+  background: var(--accent-cyan);
+  box-shadow: 0 0 8px var(--accent-cyan);
+}
+
+@media(max-width: 768px) {
+  .crt-toggle-container {
+    margin-left: auto;
+    margin-right: 12px;
+  }
+}
+
+/* ===== CLI TERMINAL MODAL ===== */
+.terminal-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(2, 5, 10, 0.85);
+  backdrop-filter: blur(8px);
+  z-index: 10005;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.terminal-modal-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.terminal-window {
+  width: clamp(320px, 90vw, 750px);
+  height: clamp(380px, 70vh, 500px);
+  background: rgba(3, 10, 18, 0.98);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  box-shadow: 0 0 50px rgba(0, 247, 255, 0.15), 0 25px 50px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transform: translateY(20px) scale(0.95);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.terminal-modal-overlay.active .terminal-window {
+  transform: translateY(0) scale(1);
+}
+
+.terminal-header {
+  background: rgba(10, 15, 20, 0.95);
+  border-bottom: 1px solid var(--border-glow);
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  user-select: none;
+}
+
+.terminal-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.terminal-dots .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.terminal-dots .dot.close { background: #ff5f56; }
+.terminal-dots .dot.minimize { background: #ffbd2e; }
+.terminal-dots .dot.maximize { background: #27c93f; }
+
+.terminal-title {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+}
+
+.terminal-window-close {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 18px;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0 4px;
+  transition: color 0.2s;
+}
+
+.terminal-window-close:hover {
+  color: var(--accent-pink);
+}
+
+.terminal-body {
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+}
+
+.terminal-output {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.terminal-output p {
+  margin-bottom: 4px;
+  white-space: pre-wrap;
+}
+
+.terminal-input-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.terminal-prompt {
+  color: var(--accent-cyan);
+}
+
+#terminal-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--accent-pink);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  caret-shape: block;
+}
+
+.term-green { color: #00ff88; text-shadow: 0 0 5px rgba(0,255,136,0.3); }
+.term-cyan { color: var(--accent-cyan); text-shadow: 0 0 5px rgba(0,247,255,0.3); }
+.term-pink { color: var(--accent-pink); text-shadow: 0 0 5px rgba(255,43,214,0.3); }
+.term-muted { color: var(--text-muted); }
+.term-yellow { color: #ffd700; }
+
 </style>
 
 </head>
 <body>
 
+<div class="crt-overlay"></div>
+<div class="sweep-line"></div>
+<canvas id="cyber-canvas"></canvas>
 <div id="cursor-glow"></div>
 <div id="scroll-progress"></div>
+
+<!-- Terminal Modal Overlay -->
+<div id="terminal-modal" class="terminal-modal-overlay">
+  <div class="terminal-window">
+    <div class="terminal-header">
+      <div class="terminal-dots">
+        <span class="dot close"></span>
+        <span class="dot minimize"></span>
+        <span class="dot maximize"></span>
+      </div>
+      <div class="terminal-title">ashwin@hazer-host:~</div>
+      <button id="terminal-close-btn" class="terminal-window-close">&times;</button>
+    </div>
+    <div class="terminal-body" id="terminal-shell">
+      <div class="terminal-output" id="terminal-output-container">
+        <p class="term-green">Ashwin Vadakkeel Portfolio CLI [Version 1.0.0]</p>
+        <p class="term-muted">Type 'help' to see list of available commands or 'exit' to close.</p>
+        <p>&nbsp;</p>
+      </div>
+      <div class="terminal-input-line">
+        <span class="terminal-prompt">ashwin@hazer-host:~$</span>
+        <input type="text" id="terminal-input" autocomplete="off" spellcheck="false">
+      </div>
+    </div>
+  </div>
+</div>
 
 <div id="boot">
   <div class="boot-content">
     <div class="boot-title">INITIALIZING SYSTEM...</div>
-    <div class="boot-lines">
-      <div class="boot-line">Loading Portfolio</div>
-      <div class="boot-line">>> Establishing secure connection</div>
-      <div class="boot-line">>> Loading encryption keys</div>
-    </div>
+    <div class="boot-lines" id="boot-console"></div>
     <div class="boot-progress"><div class="boot-progress-bar"></div></div>
     <div class="boot-cursor">_</div>
   </div>
@@ -946,6 +1262,16 @@ main{animation:fadeIn .8s ease .3s both}
       <span class="status-dot"></span>
       <span>Cybersecurity Analyst @ Hazercloud</span>
     </div>
+    <div class="crt-toggle-container">
+      <span class="crt-label">CRT</span>
+      <button id="crt-toggle-btn" class="crt-switch" aria-label="Toggle CRT Effect">
+        <span class="crt-switch-knob"></span>
+      </button>
+      <span class="crt-label" style="margin-left: 14px;">SOUND</span>
+      <button id="sound-toggle-btn" class="crt-switch" aria-label="Toggle Cyber Sound Effects">
+        <span class="crt-switch-knob"></span>
+      </button>
+    </div>
     <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
@@ -957,6 +1283,7 @@ main{animation:fadeIn .8s ease .3s both}
       <li><a href="#skills">Skills</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#contact">Contact</a></li>
+      <li><a href="#" id="terminal-trigger" style="color: var(--accent-pink); text-shadow: 0 0 10px rgba(255,43,214,0.4)">>_ CLI</a></li>
     </ul>
   </div>
 </nav>
@@ -1214,14 +1541,323 @@ main{animation:fadeIn .8s ease .3s both}
 const boot=document.getElementById("boot");
 const body=document.body;
 
-// Start boot animation immediately
-setTimeout(()=>{boot.classList.add("loaded")},100);
+/* === CRT TOGGLE === */
+const crtToggleBtn = document.getElementById("crt-toggle-btn");
+if (localStorage.getItem("crt-active") === "true") {
+  body.classList.add("crt-active");
+}
+crtToggleBtn.addEventListener("click", () => {
+  const active = body.classList.toggle("crt-active");
+  localStorage.setItem("crt-active", active ? "true" : "false");
+  if (typeof playSound === "function") playSound("crt");
+});
 
-// Hide boot after animation completes
-setTimeout(()=>{
-  boot.classList.add("hidden");
-  body.classList.add("visible");
-},3000);
+/* === CYBER SYNTH AUDIO ENGINE === */
+let audioCtx = null;
+function initAudio() {
+  if (audioCtx) return;
+  audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+}
+
+function playSound(type) {
+  if (!body.classList.contains("sound-active")) return;
+  // Disable hover sound effects on touchscreen-only devices (prevents double trigger click+hover overlaps)
+  if (type === "hover" && window.matchMedia("(hover: none)").matches) return;
+  
+  try {
+    initAudio();
+    if (audioCtx.state === "suspended") {
+      audioCtx.resume();
+    }
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    
+    const now = audioCtx.currentTime;
+    
+    if (type === "hover") {
+      // High-frequency UI boundary tick
+      osc.type = "sine";
+      osc.frequency.setValueAtTime(1800, now);
+      osc.frequency.exponentialRampToValueAtTime(1000, now + 0.02);
+      gain.gain.setValueAtTime(0.005, now);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.02);
+      osc.start(now);
+      osc.stop(now + 0.03);
+    } else if (type === "click") {
+      // Snappy mechanical toggle/switch release click
+      osc.type = "triangle";
+      osc.frequency.setValueAtTime(2200, now);
+      osc.frequency.exponentialRampToValueAtTime(120, now + 0.015);
+      gain.gain.setValueAtTime(0.06, now);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.015);
+      osc.start(now);
+      osc.stop(now + 0.02);
+    } else if (type === "crt") {
+      // Heavy hardware spring relay clack (double osc)
+      osc.type = "triangle";
+      osc.frequency.setValueAtTime(800, now);
+      osc.frequency.exponentialRampToValueAtTime(60, now + 0.04);
+      gain.gain.setValueAtTime(0.1, now);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.04);
+      
+      const osc2 = audioCtx.createOscillator();
+      const gain2 = audioCtx.createGain();
+      osc2.type = "sine";
+      osc2.frequency.setValueAtTime(1200, now);
+      osc2.frequency.exponentialRampToValueAtTime(200, now + 0.02);
+      osc2.connect(gain2);
+      gain2.connect(audioCtx.destination);
+      gain2.gain.setValueAtTime(0.04, now);
+      gain2.gain.exponentialRampToValueAtTime(0.0001, now + 0.02);
+      
+      osc.start(now);
+      osc.stop(now + 0.05);
+      osc2.start(now);
+      osc2.stop(now + 0.03);
+    } else if (type === "keypress") {
+      // Realistic keyboard keycap press click
+      osc.type = "sine";
+      const pitch = 1400 + Math.random() * 600;
+      osc.frequency.setValueAtTime(pitch, now);
+      osc.frequency.exponentialRampToValueAtTime(400, now + 0.012);
+      gain.gain.setValueAtTime(0.02, now);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.012);
+      osc.start(now);
+      osc.stop(now + 0.02);
+    }
+  } catch (e) {
+    console.warn("Audio Context error:", e);
+  }
+}
+
+/* === SOUND TOGGLE === */
+const soundToggleBtn = document.getElementById("sound-toggle-btn");
+if (localStorage.getItem("sound-active") !== "false") {
+  body.classList.add("sound-active");
+}
+soundToggleBtn.addEventListener("click", () => {
+  const active = body.classList.toggle("sound-active");
+  localStorage.setItem("sound-active", active ? "true" : "false");
+  if (active) {
+    initAudio();
+    playSound("crt");
+  }
+});
+
+function bindAudioTriggers() {
+  const elements = document.querySelectorAll("a, button, .card, .skill-tag, .contact-link");
+  elements.forEach(el => {
+    if (el.dataset.soundBound) return;
+    el.dataset.soundBound = "true";
+    el.addEventListener("mouseenter", () => playSound("hover"));
+    el.addEventListener("click", () => playSound("click"));
+  });
+}
+
+document.addEventListener("click", () => {
+  initAudio();
+}, { once: true });
+document.addEventListener("touchstart", () => {
+  initAudio();
+}, { once: true });
+
+bindAudioTriggers();
+
+/* === CYBER CANVAS BACKGROUND === */
+(function() {
+  const canvas = document.getElementById("cyber-canvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  
+  let width = canvas.width = window.innerWidth;
+  let height = canvas.height = window.innerHeight;
+  
+  let particles = [];
+  let particleCount = Math.min(80, Math.floor((width * height) / 20000));
+  const connectionDistance = 120;
+  const mouse = { x: null, y: null, radius: 150 };
+  
+  class Particle {
+    constructor() {
+      this.x = Math.random() * width;
+      this.y = Math.random() * height;
+      this.vx = (Math.random() - 0.5) * 0.6;
+      this.vy = (Math.random() - 0.5) * 0.6;
+      this.radius = Math.random() * 2 + 1;
+      this.color = Math.random() > 0.5 ? "#00f7ff" : "#ff2bd6";
+    }
+    
+    update() {
+      this.x += this.vx;
+      this.y += this.vy;
+      
+      if (this.x < 0 || this.x > width) this.vx *= -1;
+      if (this.y < 0 || this.y > height) this.vy *= -1;
+      
+      if (mouse.x !== null && mouse.y !== null) {
+        const dx = this.x - mouse.x;
+        const dy = this.y - mouse.y;
+        const dist = Math.hypot(dx, dy);
+        if (dist < mouse.radius) {
+          const force = (mouse.radius - dist) / mouse.radius;
+          this.x += (dx / dist) * force * 1.5;
+          this.y += (dy / dist) * force * 1.5;
+        }
+      }
+    }
+    
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+      ctx.fillStyle = this.color;
+      ctx.fill();
+    }
+  }
+  
+  function init() {
+    particles = [];
+    particleCount = Math.min(80, Math.floor((width * height) / 20000));
+    for (let i = 0; i < particleCount; i++) {
+      particles.push(new Particle());
+    }
+  }
+  
+  function animate() {
+    ctx.clearRect(0, 0, width, height);
+    
+    for (let i = 0; i < particles.length; i++) {
+      particles[i].update();
+      particles[i].draw();
+    }
+    
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.hypot(dx, dy);
+        
+        if (dist < connectionDistance) {
+          const alpha = (1 - dist / connectionDistance) * 0.12;
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          
+          const grad = ctx.createLinearGradient(particles[i].x, particles[i].y, particles[j].x, particles[j].y);
+          grad.addColorStop(0, particles[i].color === "#00f7ff" ? `rgba(0, 247, 255, ${alpha})` : `rgba(255, 43, 214, ${alpha})`);
+          grad.addColorStop(1, particles[j].color === "#00f7ff" ? `rgba(0, 247, 255, ${alpha})` : `rgba(255, 43, 214, ${alpha})`);
+          
+          ctx.strokeStyle = grad;
+          ctx.lineWidth = 0.8;
+          ctx.stroke();
+        }
+      }
+      
+      if (mouse.x !== null && mouse.y !== null) {
+        const dx = particles[i].x - mouse.x;
+        const dy = particles[i].y - mouse.y;
+        const dist = Math.hypot(dx, dy);
+        if (dist < connectionDistance + 30) {
+          const alpha = (1 - dist / (connectionDistance + 30)) * 0.2;
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(mouse.x, mouse.y);
+          ctx.strokeStyle = `rgba(0, 247, 255, ${alpha})`;
+          ctx.lineWidth = 0.5;
+          ctx.stroke();
+        }
+      }
+    }
+    
+    requestAnimationFrame(animate);
+  }
+  
+  window.addEventListener("resize", () => {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+    init();
+  });
+  
+  window.addEventListener("mousemove", (e) => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+  });
+  
+  window.addEventListener("mouseleave", () => {
+    mouse.x = null;
+    mouse.y = null;
+  });
+  
+  init();
+  animate();
+})();
+
+// Start boot sequence with verbose terminal logs
+const bootConsole = document.getElementById("boot-console");
+const bootProgressFill = document.querySelector(".boot-progress-bar");
+
+const bootLogs = [
+  "Initializing Ashwin Vadakkeel OS loader...",
+  "Running pre-load hardware diagnostic...",
+  "Loading main system assets... [ OK ]",
+  "Checking CEH signature integrity... VALID",
+  "Establishing socket connection to hazerc.infotech...",
+  "Downloading secure profile configs...",
+  "Initializing encryption subsystem...",
+  "Decrypted contact tokens: ashwin******@gmail.com",
+  "Scanning responsible disclosure databases...",
+  "Vulnerability scan engine status: active [ 100% ]",
+  "Decrypting LinkedIn credentials... [ OK ]",
+  "Establishing web interface...",
+  "SYSTEM INITIALIZED AND SAFE FOR BROWSER RUNTIME.",
+  ">> ACCESS GRANTED <<"
+];
+
+function runBootSequence() {
+  boot.classList.add("loaded");
+  let logIndex = 0;
+  
+  function addLogLine() {
+    if (logIndex < bootLogs.length) {
+      const line = document.createElement("div");
+      line.className = "boot-line";
+      line.textContent = ">> " + bootLogs[logIndex];
+      if (bootLogs[logIndex].includes("ACCESS GRANTED")) {
+        line.style.color = "var(--accent-cyan)";
+        line.style.fontWeight = "bold";
+      }
+      bootConsole.appendChild(line);
+      bootConsole.scrollTop = bootConsole.scrollHeight;
+      
+      setTimeout(() => line.classList.add("visible"), 20);
+      
+      logIndex++;
+      const percent = (logIndex / bootLogs.length) * 100;
+      bootProgressFill.style.width = percent + "%";
+      
+      const delay = Math.random() * 120 + 80;
+      setTimeout(addLogLine, delay);
+    } else {
+      setTimeout(() => {
+        boot.classList.add("hidden");
+        body.classList.add("visible");
+        
+        // Trigger text scramble decode of hero title
+        const heroTitle = document.querySelector(".hero-title");
+        if (heroTitle) {
+          heroTitle.classList.add("scrambled");
+          const scraper = new TextScramble(heroTitle);
+          scraper.setText(heroTitle.dataset.text || heroTitle.innerText);
+        }
+      }, 700);
+    }
+  }
+  
+  setTimeout(addLogLine, 300);
+}
+
+runBootSequence();
 
 /* === CURSOR GLOW === */
 const glow=document.getElementById("cursor-glow");
@@ -1269,6 +1905,79 @@ function type(){
   setTimeout(type,deleting?45:90);
 }
 setTimeout(type,2000);
+
+/* === TEXT SCRAMBLE DECODER === */
+class TextScramble {
+  constructor(el) {
+    this.el = el;
+    this.chars = '!<>-_\\/[]{}—=+*^?#________';
+    this.update = this.update.bind(this);
+  }
+  setText(newText) {
+    const oldText = this.el.innerText;
+    const length = Math.max(oldText.length, newText.length);
+    const promise = new Promise((resolve) => this.resolve = resolve);
+    this.queue = [];
+    for (let i = 0; i < length; i++) {
+      const from = oldText[i] || '';
+      const to = newText[i] || '';
+      const start = Math.floor(Math.random() * 25);
+      const end = start + Math.floor(Math.random() * 25);
+      this.queue.push({ from, to, start, end, char: '' });
+    }
+    cancelAnimationFrame(this.frameRequest);
+    this.frame = 0;
+    this.update();
+    return promise;
+  }
+  update() {
+    let output = '';
+    let complete = 0;
+    for (let i = 0, n = this.queue.length; i < n; i++) {
+      let { from, to, start, end, char } = this.queue[i];
+      if (this.frame >= end) {
+        complete++;
+        output += to;
+      } else if (this.frame >= start) {
+        if (!char || Math.random() < 0.28) {
+          char = this.randomChar();
+          this.queue[i].char = char;
+        }
+        output += `<span style="color: var(--accent-cyan); text-shadow: 0 0 5px var(--accent-cyan); opacity: 0.8">${char}</span>`;
+      } else {
+        output += from;
+      }
+    }
+    this.el.innerHTML = output;
+    if (complete === this.queue.length) {
+      this.resolve();
+    } else {
+      this.frameRequest = requestAnimationFrame(this.update);
+      this.frame++;
+    }
+  }
+  randomChar() {
+    return this.chars[Math.floor(Math.random() * this.chars.length)];
+  }
+}
+
+const scrambleObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting && !entry.target.classList.contains("scrambled")) {
+      entry.target.classList.add("scrambled");
+      const scraper = new TextScramble(entry.target);
+      const targetText = entry.target.dataset.text || entry.target.innerText;
+      scraper.setText(targetText);
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll("h2, .hero-title").forEach((el) => {
+  if (!el.dataset.text) {
+    el.dataset.text = el.innerText;
+  }
+  scrambleObserver.observe(el);
+});
 
 /* === SCROLL SPY === */
 const navLinks=document.querySelectorAll(".nav-list a");
@@ -1363,12 +2072,14 @@ async function loadRepos(){
     data=data.filter(repo=>!repo.fork&&repo.visibility==="public").slice(0,9);
     reposContainer.innerHTML="";
     data.forEach(repo=>{const card=createCard(repo);reposContainer.appendChild(card);observer.observe(card)});
+    if (typeof bindAudioTriggers === "function") bindAudioTriggers();
   }catch(e){
     const card=document.createElement("div");
     card.className="card";card.style.gridColumn="1/-1";
     card.innerHTML='<h3 class="card-title">Unable to load GitHub projects</h3><p class="card-desc">Please check your connection or try again later.</p><button class="btn" id="retryBtn" style="margin-top:12px">Retry</button>';
     reposContainer.appendChild(card);
     document.getElementById("retryBtn").addEventListener("click",loadRepos);
+    if (typeof bindAudioTriggers === "function") bindAudioTriggers();
   }
 }
 loadRepos();
@@ -1428,6 +2139,158 @@ const statObserver=new IntersectionObserver((entries)=>{
 },{threshold:0.5});
 
 document.querySelectorAll(".stat-badge, .stat-counter").forEach(el=>statObserver.observe(el));
+
+/* === CLI TERMINAL LOGIC === */
+(function() {
+  const modal = document.getElementById("terminal-modal");
+  const trigger = document.getElementById("terminal-trigger");
+  const closeBtn = document.getElementById("terminal-close-btn");
+  const input = document.getElementById("terminal-input");
+  const output = document.getElementById("terminal-output-container");
+  const shellBody = document.getElementById("terminal-shell");
+  
+  if (!modal || !trigger || !input) return;
+  
+  function toggleTerminal(e) {
+    if (e) e.preventDefault();
+    modal.classList.toggle("active");
+    if (modal.classList.contains("active")) {
+      setTimeout(() => input.focus(), 100);
+    }
+  }
+  
+  trigger.addEventListener("click", toggleTerminal);
+  closeBtn.addEventListener("click", toggleTerminal);
+  
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) toggleTerminal();
+  });
+  
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "`" || e.key === "~") {
+      if (document.activeElement.tagName !== "INPUT" && document.activeElement.tagName !== "TEXTAREA") {
+        e.preventDefault();
+        toggleTerminal();
+      }
+    }
+  });
+  
+  const commands = {
+    help: () => `
+Available commands:
+  <span class="term-cyan">about</span>          - Display short biography
+  <span class="term-cyan">skills</span>         - List core cybersecurity skills
+  <span class="term-cyan">certs</span>          - Show professional certifications
+  <span class="term-cyan">neofetch</span>       - Print system & profile specifications
+  <span class="term-cyan">contact</span>        - Show secure communication endpoints
+  <span class="term-cyan">clear</span>          - Clear terminal history
+  <span class="term-cyan">exit</span>           - Exit terminal interface
+`,
+    about: () => `
+<span class="term-cyan">--- ABOUT ASHWIN VADAKKEEL ---</span>
+Job Title:  Cybersecurity Analyst
+Location:   Kannur, Kerala, India
+Current:    Web & API Pentesting at Hazercloud Infotech
+Bio:        Cybersecurity Analyst specializing in Web Application Penetration
+            Testing, API Security, and vulnerability validation. Focuses on
+            identifying validation flaws, access controls, and misconfigurations.
+`,
+    skills: () => `
+<span class="term-cyan">--- TECHNICAL SKILLS & UTILITIES ---</span>
+* Web Security:  Web Pentesting, API Security, OWASP Top 10, CVSS
+* Hacking Tools: Burp Suite, Metasploit, Wireshark, Kali Linux
+* Hardware Sec:  Flipper Zero, BadUSB, ESP32, ESP8266, M5StickC Plus 2
+* Languages:    Python, Bash, JavaScript, HTML/CSS
+`,
+    certs: () => `
+<span class="term-cyan">--- PROFESSIONAL CERTIFICATIONS ---</span>
+[+] CEH v13 (EC-Council) - Certified Ethical Hacker (May 2025)
+[+] Verified Vanta Admin (Vanta) (Jan 2025)
+[+] Ethical Hacking Essentials (EC-Council) (Jan 2024)
+[+] SQL Injection Attack (EC-Council) (Jan 2024)
+[+] Computer Hardware Basics (Cisco Networking Academy) (Feb 2024)
+[+] Web Fundamentals (TryHackMe) (Apr 2024)
+[+] Introduction to Ethical Hacking (Offenso Hackers Academy) (Apr 2023)
+[+] IoT & Robotics (Model Finishing School IHRD) (Oct 2022)
+`,
+    neofetch: () => `
+<span class="term-pink">       .---.        </span>   <span class="term-cyan">ashwin@hazer-host</span>
+<span class="term-pink">      /     \\       </span>   -----------------
+<span class="term-pink">      \\\\\\\\\\   /       </span>   <span class="term-pink">OS:</span> AshwinOS v1.0.0 x86_64
+<span class="term-pink">       \\\\\\\\\\ /        </span>   <span class="term-pink">Host:</span> Hazercloud-Workspace
+<span class="term-pink">        \`---'       </span>   <span class="term-pink">Kernel:</span> 2026.06.14.LATEST
+<span class="term-pink">       /     \\      </span>   <span class="term-pink">Uptime:</span> 3 mins
+<span class="term-pink">      |       |     </span>   <span class="term-pink">Shell:</span> bash-cyber-5.2
+<span class="term-pink">      |  o o  |     </span>   <span class="term-pink">Resolution:</span> ${window.innerWidth}x${window.innerHeight}
+<span class="term-pink">      |   ^   |     </span>   <span class="term-pink">Role:</span> Cybersecurity Analyst
+<span class="term-pink">       \\_ - _/      </span>   <span class="term-pink">Certs:</span> CEH v13, Vanta Admin
+<span class="term-pink">        \`---'       </span>   <span class="term-pink">LinkedIn:</span> 12K+ Followers
+`,
+    contact: () => `
+<span class="term-cyan">--- CONTACT ENDPOINTS ---</span>
+Email:     ashwin******@gmail.com
+LinkedIn:  linkedin.com/in/ashwin-vadakkeel
+GitHub:    github.com/hermit148
+`,
+    clear: () => {
+      output.innerHTML = "";
+      return "";
+    },
+    exit: () => {
+      toggleTerminal();
+      return "";
+    }
+  };
+  
+  input.addEventListener("keydown", (e) => {
+    if (typeof playSound === "function") {
+      playSound(e.key === "Enter" ? "click" : "keypress");
+    }
+    if (e.key === "Enter") {
+      const lineText = input.value.trim();
+      const parts = lineText.split(" ");
+      const cmd = parts[0].toLowerCase();
+      
+      const cmdLine = document.createElement("p");
+      cmdLine.innerHTML = `<span class="terminal-prompt">ashwin@hazer-host:~$</span> <span class="term-pink">${escapeHTML(lineText)}</span>`;
+      output.appendChild(cmdLine);
+      
+      if (lineText !== "") {
+        if (commands[cmd]) {
+          const res = commands[cmd](parts.slice(1));
+          if (res !== "") {
+            const resLine = document.createElement("p");
+            resLine.innerHTML = res;
+            output.appendChild(resLine);
+          }
+        } else {
+          const errorLine = document.createElement("p");
+          errorLine.innerHTML = `<span class="term-pink">shell: command not found: ${escapeHTML(cmd)}. Type 'help' for options.</span>`;
+          output.appendChild(errorLine);
+        }
+      }
+      
+      input.value = "";
+      shellBody.scrollTop = shellBody.scrollHeight;
+    }
+  });
+
+  function escapeHTML(str) {
+    return str.replace(/[&<>'"]/g, 
+      tag => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        "'": '&#39;',
+        '"': '&quot;'
+      }[tag] || tag)
+    );
+  }
+  
+  shellBody.addEventListener("click", () => {
+    input.focus();
+  });
+})();
 
 })();
 </script>
