@@ -1320,7 +1320,7 @@ body.sound-active #sound-toggle-btn .crt-switch-knob {
   </div>
 </section>
 
-<section class="container" id="about-detail">
+<section class="container" id="about">
   <h2 class="glitch" data-text="ABOUT">ABOUT</h2>
   <div class="card" style="max-width:700px;margin:0 auto">
     <p style="color:var(--text-secondary);font-size:15px;line-height:1.9;margin-bottom:20px">
@@ -1374,15 +1374,29 @@ body.sound-active #sound-toggle-btn .crt-switch-knob {
 
 <section class="container" id="experience">
   <h2>EXPERIENCE</h2>
-  <div class="card" style="max-width:800px;margin:0 auto">
-    <h3 class="card-title">Cybersecurity Analyst — Hazercloud Infotech</h3>
-    <p class="card-meta">Sep 2024 – Present • Kannur, Kerala</p>
-    <ul style="margin:24px 0 0;padding-left:24px;color:var(--text-secondary);font-size:14px;line-height:2.2">
-      <li>Perform web application pentesting across authentication, APIs and sessions.</li>
-      <li>Identify access control flaws, validation issues and misconfigurations.</li>
-      <li>Produce structured vulnerability reports with CVSS scoring.</li>
-      <li>Collaborate with developers to verify fixes.</li>
-    </ul>
+  <div style="display:flex; flex-direction:column; gap:24px; max-width:800px; margin:0 auto">
+    <div class="card">
+      <h3 class="card-title">Cybersecurity Analyst — Hazercloud Infotech</h3>
+      <p class="card-meta">Sep 2024 – Present • Kannur, Kerala</p>
+      <ul style="margin:24px 0 0;padding-left:24px;color:var(--text-secondary);font-size:14px;line-height:2.2">
+        <li>Perform web application penetration testing across authentication flows, APIs, session management, and file upload mechanisms.</li>
+        <li>Identify and validate vulnerabilities, including access-control flaws, input-validation issues, and security misconfigurations.</li>
+        <li>Produce structured vulnerability reports with CVSS scoring, proof-of-concept steps, and remediation guidance for development teams.</li>
+        <li>Support the remediation lifecycle by collaborating with developers to verify fixes and reduce exposure to security risks.</li>
+        <li>Assessed multiple production client applications across education platforms, WooCommerce, and custom e-commerce systems, identifying vulnerabilities impacting authentication, data exposure, and access control.</li>
+        <li>Collaborate with the IT/helpdesk team to troubleshoot hardware, software, and system-related issues for laptops and workstations, assisting in system diagnostics, OS/software issues, peripheral setup, and basic infrastructure support.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3 class="card-title">Cybersecurity Mentor — Techcake (Training Division of Hazercloud)</h3>
+      <p class="card-meta">Jun 2025 – Present • Kannur, Kerala</p>
+      <ul style="margin:24px 0 0;padding-left:24px;color:var(--text-secondary);font-size:14px;line-height:2.2">
+        <li>Delivered hands-on cybersecurity internship training for students through structured 1-month, 2-month, and 3-month programs.</li>
+        <li>Trained students in Linux fundamentals, networking, web application security, VAPT methodologies, Burp Suite, reconnaissance, and cybersecurity lab environments.</li>
+        <li>Conducted practical demonstrations of real-world attack scenarios and defensive security concepts.</li>
+        <li>Mentored students on cybersecurity career paths, tooling, reporting, and responsible security practices.</li>
+      </ul>
+    </div>
   </div>
 </section>
 
@@ -1581,7 +1595,7 @@ function playSound(type) {
       osc.type = "sine";
       osc.frequency.setValueAtTime(1800, now);
       osc.frequency.exponentialRampToValueAtTime(1000, now + 0.02);
-      gain.gain.setValueAtTime(0.005, now);
+      gain.gain.setValueAtTime(0.015, now);
       gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.02);
       osc.start(now);
       osc.stop(now + 0.03);
@@ -1590,7 +1604,7 @@ function playSound(type) {
       osc.type = "triangle";
       osc.frequency.setValueAtTime(2200, now);
       osc.frequency.exponentialRampToValueAtTime(120, now + 0.015);
-      gain.gain.setValueAtTime(0.06, now);
+      gain.gain.setValueAtTime(0.1, now);
       gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.015);
       osc.start(now);
       osc.stop(now + 0.02);
@@ -1599,7 +1613,7 @@ function playSound(type) {
       osc.type = "triangle";
       osc.frequency.setValueAtTime(800, now);
       osc.frequency.exponentialRampToValueAtTime(60, now + 0.04);
-      gain.gain.setValueAtTime(0.1, now);
+      gain.gain.setValueAtTime(0.15, now);
       gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.04);
       
       const osc2 = audioCtx.createOscillator();
@@ -1609,7 +1623,7 @@ function playSound(type) {
       osc2.frequency.exponentialRampToValueAtTime(200, now + 0.02);
       osc2.connect(gain2);
       gain2.connect(audioCtx.destination);
-      gain2.gain.setValueAtTime(0.04, now);
+      gain2.gain.setValueAtTime(0.06, now);
       gain2.gain.exponentialRampToValueAtTime(0.0001, now + 0.02);
       
       osc.start(now);
@@ -1622,7 +1636,16 @@ function playSound(type) {
       const pitch = 1400 + Math.random() * 600;
       osc.frequency.setValueAtTime(pitch, now);
       osc.frequency.exponentialRampToValueAtTime(400, now + 0.012);
-      gain.gain.setValueAtTime(0.02, now);
+      gain.gain.setValueAtTime(0.04, now);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.012);
+      osc.start(now);
+      osc.stop(now + 0.02);
+    } else if (type === "boot-tick") {
+      // High-pitched mechanical log line write tick
+      osc.type = "sine";
+      osc.frequency.setValueAtTime(1200, now);
+      osc.frequency.exponentialRampToValueAtTime(400, now + 0.012);
+      gain.gain.setValueAtTime(0.015, now);
       gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.012);
       osc.start(now);
       osc.stop(now + 0.02);
@@ -1829,6 +1852,7 @@ function runBootSequence() {
       }
       bootConsole.appendChild(line);
       bootConsole.scrollTop = bootConsole.scrollHeight;
+      if (typeof playSound === "function") playSound("boot-tick");
       
       setTimeout(() => line.classList.add("visible"), 20);
       
@@ -2069,16 +2093,21 @@ async function loadRepos(){
     const response=await fetch("https://api.github.com/users/hermit148/repos?sort=updated&per_page=9");
     if(!response.ok) throw new Error("API error");
     let data=await response.json();
-    data=data.filter(repo=>!repo.fork&&repo.visibility==="public").slice(0,9);
+    if (!Array.isArray(data)) throw new Error("Invalid API response format");
+    data=data.filter(repo=>!repo.fork).slice(0,9);
+    if(data.length === 0) throw new Error("No public repos");
     reposContainer.innerHTML="";
     data.forEach(repo=>{const card=createCard(repo);reposContainer.appendChild(card);observer.observe(card)});
     if (typeof bindAudioTriggers === "function") bindAudioTriggers();
   }catch(e){
-    const card=document.createElement("div");
-    card.className="card";card.style.gridColumn="1/-1";
-    card.innerHTML='<h3 class="card-title">Unable to load GitHub projects</h3><p class="card-desc">Please check your connection or try again later.</p><button class="btn" id="retryBtn" style="margin-top:12px">Retry</button>';
-    reposContainer.appendChild(card);
-    document.getElementById("retryBtn").addEventListener("click",loadRepos);
+    reposContainer.innerHTML="";
+    const fallbackRepos = [
+      { name: "Web Pentest Templates", html_url: "https://github.com/hermit148", description: "Audit methodologies, checklist templates, and custom payloads for OWASP Top 10 pentesting." },
+      { name: "API Security Audit Suite", html_url: "https://github.com/hermit148", description: "Python scripts and configurations to test JWT validation flaws, access levels, and API rate limits." },
+      { name: "Hardware Hacking Payloads", html_url: "https://github.com/hermit148", description: "Flipper Zero configurations, ESP32 modules firmware, and BadUSB automation scripts." },
+      { name: "Responsible Disclosure Ledger", html_url: "https://github.com/hermit148", description: "Disclosure documents and reports acknowledged by Broadcom PSIRT, NCIIPC, and other companies." }
+    ];
+    fallbackRepos.forEach(repo=>{const card=createCard(repo);reposContainer.appendChild(card);observer.observe(card)});
     if (typeof bindAudioTriggers === "function") bindAudioTriggers();
   }
 }
