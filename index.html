@@ -51,23 +51,23 @@
 
   <style>
     /* ==========================================================================
-       CLEAN EXECUTIVE DESIGN SYSTEM (NATURAL, ELEGANT MOBILE & PC LAYOUT)
+       PRODUCTION-GRADE MASTER DESIGN SYSTEM (ZERO BREAKAGE GUARANTEE)
        ========================================================================== */
     :root {
       --bg-void: #030712;
       --bg-surface-1: #080d1a;
       --bg-surface-2: #0e1628;
       
-      --glass-bg: rgba(13, 20, 36, 0.75);
-      --glass-bg-hover: rgba(20, 30, 54, 0.9);
+      --glass-bg: rgba(13, 20, 36, 0.78);
+      --glass-bg-hover: rgba(20, 30, 54, 0.92);
       --glass-border: rgba(255, 255, 255, 0.08);
       --glass-border-hover: rgba(0, 240, 255, 0.45);
 
       --cyan-500: #00f0ff;
-      --cyan-glow: rgba(0, 240, 255, 0.4);
+      --cyan-glow: rgba(0, 240, 255, 0.35);
 
       --pink-500: #ff2bd6;
-      --pink-glow: rgba(255, 43, 214, 0.4);
+      --pink-glow: rgba(255, 43, 214, 0.35);
 
       --violet-500: #a855f7;
       --emerald-500: #00ff88;
@@ -200,13 +200,13 @@
     .svg-icon-lg { width: 24px; height: 24px; }
 
     /* ==========================================================================
-       SPACIOUS & CLEAN HEADER NAVIGATION
+       SPACIOUS & UNCLUTTERED HEADER NAVIGATION
        ========================================================================== */
     .nav-fixed {
       position: fixed;
       top: 0; left: 0; right: 0;
       height: var(--nav-h);
-      background: rgba(3, 7, 18, 0.9);
+      background: rgba(3, 7, 18, 0.92);
       backdrop-filter: blur(24px) saturate(180%);
       -webkit-backdrop-filter: blur(24px) saturate(180%);
       border-bottom: 1px solid var(--glass-border);
@@ -215,7 +215,7 @@
 
     .nav-inner {
       display: flex; align-items: center; justify-content: space-between;
-      height: 100%; gap: 12px;
+      height: 100%; gap: 16px;
     }
 
     .nav-logo {
@@ -231,7 +231,7 @@
     }
 
     .nav-list {
-      display: flex; align-items: center; gap: clamp(10px, 1.5vw, 22px);
+      display: flex; align-items: center; gap: clamp(12px, 1.6vw, 24px);
       list-style: none; flex-shrink: 1;
     }
 
@@ -326,7 +326,7 @@
     }
 
     /* ==========================================================================
-       HERO SECTION ULTRA
+       HERO SECTION ULTRA (EXECUTIVE 360PX DESKTOP / 240PX MOBILE)
        ========================================================================== */
     .hero {
       display: flex; align-items: center; justify-content: space-between;
@@ -465,7 +465,7 @@
     .hero-image { flex: 0 0 auto; display: flex; justify-content: center; }
 
     .hero-box {
-      position: relative; width: clamp(220px, 32vw, 380px); height: clamp(220px, 32vw, 380px);
+      position: relative; width: clamp(240px, 30vw, 360px); height: clamp(240px, 30vw, 360px);
       border-radius: var(--radius-lg);
       padding: 8px;
       background: rgba(10, 15, 28, 0.92);
@@ -844,30 +844,23 @@
     .cli-chip:active { background: var(--cyan-500); color: #030712; transform: scale(0.95); }
 
     /* ==========================================================================
-       MEDIA QUERIES (NATURAL & CLEAN RESPONSIVE LAYOUT)
+       MEDIA QUERIES (PRODUCTION-GRADE RESPONSIVE BREAKPOINTS)
        ========================================================================== */
-    @media (max-width: 1180px) {
-      .nav-list { gap: 10px; }
-      .nav-list a { font-size: 10.5px; }
-    }
-
     @media (max-width: 1024px) {
-      .grid { grid-template-columns: repeat(2, 1fr); }
-      .skill-categories { grid-template-columns: 1fr; }
-      .research-grid { grid-template-columns: 1fr; }
-    }
-
-    @media (max-width: 880px) {
       .nav-list { display: none; }
       .nav-toggle { display: flex; }
       .mobile-nav-drawer { display: flex; }
+
+      .grid { grid-template-columns: repeat(2, 1fr); }
+      .skill-categories { grid-template-columns: 1fr; }
+      .research-grid { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 768px) {
       .hero { flex-direction: column; text-align: center; padding-top: 36px; justify-content: center; }
       .hero-content { max-width: 100%; }
       .hero-image { order: -1; margin-bottom: 20px; width: 100%; }
-      .hero-box { width: min(250px, 75vw); height: min(250px, 75vw); margin: 0 auto; }
+      .hero-box { width: min(240px, 75vw); height: min(240px, 75vw); margin: 0 auto; }
       .hero-stats { grid-template-columns: repeat(2, 1fr); gap: 14px; text-align: center; }
       
       .actions { display: flex; flex-direction: row; justify-content: center; gap: 10px; width: 100%; }
@@ -1541,7 +1534,7 @@
           <span class="cli-chip" data-cmd="clear">clear</span>
         </div>
         <div id="terminal-output-container">
-          <p class="term-green">Ashwin Vadakkeel Executive Portfolio CLI [Version 13.0.0 Clean Mobile Edition]</p>
+          <p class="term-green">Ashwin Vadakkeel Executive Portfolio CLI [Version 14.0.0 Production Master Edition]</p>
           <p class="term-muted">Type 'help' to see list of available commands or 'exit' to close.</p>
           <p>&nbsp;</p>
         </div>
@@ -1885,10 +1878,28 @@
         });
       });
 
-      /* === BACK TO TOP === */
+      /* === BACK TO TOP & SCROLLSPY === */
       const backToTop = document.getElementById("back-to-top");
       window.addEventListener("scroll", () => backToTop.classList.toggle("visible", window.scrollY > 400));
       backToTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+
+      const sections = document.querySelectorAll("section[id]");
+      const allNavLinks = document.querySelectorAll(".nav-list a, .mobile-nav-drawer a");
+
+      const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute("id");
+            allNavLinks.forEach(link => {
+              const href = link.getAttribute("href");
+              if (href === `#${id}`) link.classList.add("active");
+              else link.classList.remove("active");
+            });
+          }
+        });
+      }, { threshold: 0.3 });
+
+      sections.forEach(sec => sectionObserver.observe(sec));
 
       /* === CLI MODAL === */
       const modal = document.getElementById("terminal-modal");
