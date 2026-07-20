@@ -848,29 +848,81 @@
       }
     }
 
+    /* ==========================================================================
+       APP-LIKE NATIVE MOBILE DOCK & INTERACTIVE CAROUSELS
+       ========================================================================== */
+    .mobile-bottom-dock {
+      display: none;
+      position: fixed; bottom: 12px; left: 50%; transform: translateX(-50%);
+      background: rgba(8, 13, 26, 0.92);
+      border: 1px solid var(--cyan-500);
+      border-radius: var(--radius-full);
+      padding: 6px 12px;
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      box-shadow: 0 0 30px rgba(0, 240, 255, 0.3), 0 10px 30px rgba(0, 0, 0, 0.8);
+      z-index: 9999;
+      gap: 6px; align-items: center; justify-content: space-around;
+      width: min(92vw, 420px);
+    }
+
+    .dock-item {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 2px; padding: 6px 10px; min-height: 44px; min-width: 44px;
+      color: var(--text-muted); font-family: var(--font-mono); font-size: 9px;
+      border-radius: var(--radius-full); transition: all 0.2s var(--ease-spring);
+    }
+    .dock-item.active, .dock-item:active {
+      color: var(--cyan-500); background: rgba(0, 240, 255, 0.12);
+      transform: scale(1.08);
+    }
+
+    .dock-cli-btn {
+      background: rgba(255, 43, 214, 0.15); border: 1px solid var(--pink-500);
+      color: var(--pink-500); font-weight: 700;
+    }
+
+    /* CLI Quick Tap Chips on Mobile */
+    .cli-quick-chips {
+      display: flex; gap: 6px; padding: 8px 0; overflow-x: auto;
+      border-bottom: 1px solid var(--glass-border); margin-bottom: 10px;
+      -webkit-overflow-scrolling: touch;
+    }
+    .cli-chip {
+      background: rgba(0, 240, 255, 0.08); border: 1px solid rgba(0, 240, 255, 0.3);
+      color: var(--cyan-500); padding: 4px 10px; border-radius: var(--radius-full);
+      font-family: var(--font-mono); font-size: 11px; white-space: nowrap;
+      cursor: pointer; transition: all 0.2s;
+    }
+    .cli-chip:active { background: var(--cyan-500); color: #030712; transform: scale(0.95); }
+
+    /* Media Queries for App-Like Mobile Experience */
     @media (max-width: 768px) {
-      .hero { flex-direction: column; text-align: center; padding-top: 40px; justify-content: center; }
-      .hero-content { max-width: 100%; }
-      .hero-image { order: -1; margin-bottom: 16px; width: 100%; }
-      .hero-box { width: min(280px, 80vw); height: min(280px, 80vw); margin: 0 auto; }
-      .hero-stats { grid-template-columns: repeat(2, 1fr); gap: 14px; text-align: center; }
-      
-      .actions { display: grid; grid-template-columns: 1fr; gap: 12px; width: 100%; }
-      .actions .btn { width: 100%; min-height: 50px; font-size: 13px; }
+      .mobile-bottom-dock { display: flex; }
 
-      .grid { grid-template-columns: 1fr; }
-      
-      .timeline::before { left: 16px; }
-      .timeline-item { padding-left: 42px !important; padding-right: 0 !important; justify-content: flex-start !important; width: 100%; }
-      .timeline-node { left: 16px !important; }
-      .timeline-date { position: relative !important; top: auto !important; left: auto !important; display: block; margin-bottom: 8px; text-align: left !important; }
+      /* Touch Glow Pulse on Tap */
+      .card:active, .btn:active, .skill-tag:active, .skill-tab:active, .dock-item:active {
+        transform: scale(0.95) !important;
+        border-color: var(--cyan-500) !important;
+        box-shadow: 0 0 30px rgba(0, 240, 255, 0.5) !important;
+      }
 
-      .contact-links { gap: 16px; }
-      .contact-link { width: 52px; height: 52px; }
+      /* Horizontal Swipeable Carousels for Grids on Mobile */
+      .grid, .research-grid, .skill-categories {
+        display: flex !important;
+        overflow-x: auto !important;
+        scroll-snap-type: x mandatory !important;
+        gap: 14px !important;
+        padding: 4px 4px 16px 4px !important;
+        -webkit-overflow-scrolling: touch !important;
+        width: 100% !important;
+      }
+      .grid > *, .research-grid > *, .skill-categories > * {
+        scroll-snap-align: center !important;
+        flex: 0 0 85vw !important;
+        max-width: 320px !important;
+      }
 
-      .research-card { flex-direction: row; }
-      .cert-card { flex-direction: row; }
-      .edu-card { flex-direction: row; }
+      #back-to-top { bottom: 74px; }
     }
 
     @media (max-width: 480px) {
@@ -903,6 +955,27 @@
 
   <!-- Ambient Cursor Glow Spotlight -->
   <div id="cursor-spotlight"></div>
+
+  <!-- Floating Mobile Quick Dock -->
+  <div class="mobile-bottom-dock">
+    <a href="#hero" class="dock-item active">
+      <svg class="svg-icon" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+      Home
+    </a>
+    <a href="#skills" class="dock-item">
+      <svg class="svg-icon" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+      Skills
+    </a>
+    <a href="#certifications" class="dock-item">
+      <svg class="svg-icon" viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+      Certs
+    </a>
+    <a href="#contact" class="dock-item">
+      <svg class="svg-icon" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/></svg>
+      Contact
+    </a>
+    <button id="dock-cli-btn" class="dock-item dock-cli-btn">>_ CLI</button>
+  </div>
 
   <!-- Navigation Bar -->
   <nav class="nav-fixed">
@@ -1518,6 +1591,15 @@
         <button id="terminal-close-btn" style="color:var(--text-subtle);font-size:18px">&times;</button>
       </div>
       <div class="terminal-body" id="terminal-shell">
+        <div class="cli-quick-chips">
+          <span class="cli-chip" data-cmd="help">help</span>
+          <span class="cli-chip" data-cmd="about">about</span>
+          <span class="cli-chip" data-cmd="skills">skills</span>
+          <span class="cli-chip" data-cmd="certs">certs</span>
+          <span class="cli-chip" data-cmd="research">research</span>
+          <span class="cli-chip" data-cmd="contact">contact</span>
+          <span class="cli-chip" data-cmd="clear">clear</span>
+        </div>
         <div id="terminal-output-container">
           <p class="term-green">Ashwin Vadakkeel Executive Portfolio CLI [Version 12.0.0 Flawless Mobile Edition]</p>
           <p class="term-muted">Type 'help' to see list of available commands or 'exit' to close.</p>
@@ -1863,10 +1945,28 @@
         });
       });
 
-      /* === BACK TO TOP === */
+      /* === BACK TO TOP & SCROLLSPY DOCK SYNC === */
       const backToTop = document.getElementById("back-to-top");
       window.addEventListener("scroll", () => backToTop.classList.toggle("visible", window.scrollY > 400));
       backToTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+
+      const sections = document.querySelectorAll("section[id]");
+      const allNavLinks = document.querySelectorAll(".nav-list a, .mobile-nav-drawer a, .dock-item[href]");
+
+      const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute("id");
+            allNavLinks.forEach(link => {
+              const href = link.getAttribute("href");
+              if (href === `#${id}`) link.classList.add("active");
+              else link.classList.remove("active");
+            });
+          }
+        });
+      }, { threshold: 0.3 });
+
+      sections.forEach(sec => sectionObserver.observe(sec));
 
       /* === CLI MODAL === */
       const modal = document.getElementById("terminal-modal");
@@ -1885,6 +1985,18 @@
 
       trigger.addEventListener("click", toggleTerminal);
       closeBtn.addEventListener("click", toggleTerminal);
+      const dockCliBtn = document.getElementById("dock-cli-btn");
+      if (dockCliBtn) dockCliBtn.addEventListener("click", toggleTerminal);
+
+      document.querySelectorAll(".cli-chip").forEach(chip => {
+        chip.addEventListener("click", () => {
+          const cmd = chip.dataset.cmd;
+          input.value = cmd;
+          const event = new KeyboardEvent("keydown", { key: "Enter" });
+          input.dispatchEvent(event);
+        });
+      });
+
       modal.addEventListener("click", (e) => { if (e.target === modal) toggleTerminal(); });
 
       document.addEventListener("keydown", (e) => {
